@@ -62,7 +62,7 @@ const RegisterPage = ({}: // currentPage,
 
   return (
     <div className="w-full">
-      <h1 className="text-[26px] font-bold font-primary">
+      <h1 className="text-[24px] lg:text-[26px] font-bold font-primary">
         Continue with your email
       </h1>
       <p className=" text-[#596569]  w-full ">

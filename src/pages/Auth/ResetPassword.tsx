@@ -69,10 +69,10 @@ const ResetPasswordPage = ({
   ];
   return (
     <div className="w-full  ">
-      <h1 className="text-[26px] font-bold font-primary ">
+      <h1 className="text-[24px] lg:text-[26px] font-bold font-primary ">
       Reset Your Password
       </h1>
-      <p className=" text-[#596569]  w-full ">
+      <p className=" text-[#596569] text-[14px] lg:text-[16px]   w-full ">
       Enter a new password to reset the password on your account. We’ll ask for this password whenever you log in.
       </p>
       <div className="w-full my-[24px]">
@@ -114,11 +114,11 @@ const ResetPasswordPage = ({
                 </FormItem>
               )}
             />
-            <div className="flex flex-col gap-[12px]">
+            <div className="flex flex-col gap-[8px]">
               {passwordCriteria.map((criteria, index) => (
                 <div key={index} className="flex items-center gap-[12px]">
                   <img src={infoIcon} className="w-[20px] h-[20px]" />
-                  <p className="text-[14px] text-[#596569]">{criteria}</p>
+                  <p className="text-[12px] lg:text-[14px] text-[#596569]">{criteria}</p>
                 </div>
               ))}
             </div>
@@ -158,14 +158,14 @@ const ResetPasswordPage = ({
             <Button className="w-full" type="submit">
               Reset Password
             </Button>
-            <div className="text-center w-full font-primary font-regular text-[16px]">
+            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px] ">
             <p className=" mb-[24px]">
             If you do not want to change your password or didn't
             request a reset, you can ignore and delete this email.
             </p>
           </div>
        
-            <div className="text-center w-full font-primary font-regular text-[16px] mb-[24px] ">
+            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  mb-[24px] ">
               <p className=" text-[#596569]  text-center w-full ">
                 Back to{" "}
                 <span

@@ -15,7 +15,7 @@ function InputOTP({
     <OTPInput
       data-slot="input-otp"
       containerClassName={cn(
-        "flex items-center gap-[24px] has-disabled:opacity-50",
+        "flex items-center gap-[2px] sm:gap-[6px] md:gap-[24px] lg:gap-[16px] xl:gap-[24px] has-disabled:opacity-50",
         containerClassName
       )}
       className={cn("disabled:cursor-not-allowed", className)}
@@ -49,7 +49,7 @@ function InputOTPSlot({
       data-slot="input-otp-slot"
       data-active={isActive}
       className={cn(
-        "border-input data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive relative flex h-16 w-16 items-center justify-center border-y border-r text-[16px] transition-all outline-none data-[active=true]:z-10 data-[active=true]:ring-[3px] bg-[rgb(64,64,64,0.08)] rounded-[10px]",
+        "border-input data-[active=true]:border-ring data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive relative flex  h-14 w-14 sm:w-14 md:h-16  md:w-16 lg:h-14  lg:w-14 xl:h-16 xl:w-16 items-center justify-center border-y border-r text-[14px] lg:text-[16px] transition-all outline-none data-[active=true]:z-10 data-[active=true]:ring-[3px] bg-[rgb(64,64,64,0.08)] rounded-[10px]",
         className
       )}
       {...props}

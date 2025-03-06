@@ -14,16 +14,16 @@ export const AuthLayout = () => {
   const [index, setIndex] = useState(0);
 
   return (
-    <div className="flex min-h-screen w-full items-center justify-center relative bg-gray-200 ">
+    <div className="flex min-h-screen w-full items-center justify-center relative bg-gray-100 ">
       {/* Carousel Section */}
-      {/* <div className="hidden sm:block min-h-screen w-full">
+      <div className="hidden lg:block min-h-screen w-full">
         <Carousel images={images} setIndex={setIndex} index={index} />
-      </div> */}
+      </div>
 
       {/* Content Section */}
       <div className="lg:absolute z-10   w-full lg:flex ">
         <div className="w-full relative">
-          {/* <div className="hidden sm:flex gap-3 absolute bottom-8 w-full justify-center">
+          <div className="hidden sm:flex gap-3 absolute bottom-8 w-full justify-center">
             {images.map((_, indx) => (
               <button
                 key={indx}
@@ -35,7 +35,7 @@ export const AuthLayout = () => {
                 aria-label={`Go to slide ${indx + 1}`}
               />
             ))}
-          </div> */}
+          </div>
         </div>
 
         {/* Outlet Section with Scrollable Content */}

@@ -66,10 +66,10 @@ const LoginPage = ({
 
   return (
     <div className="w-full">
-      <h1 className="text-[26px] font-bold font-primary">
+      <h1 className="text-[24px] lg:text-[26px] font-bold font-primary">
         Sign in to your account
       </h1>
-      <p className=" text-[#596569]  w-full ">
+      <p className=" text-[#596569] text-[14px] lg:text-[16px]  w-full ">
         To continue, please Sign in with your registered email and password.
       </p>
 
@@ -146,12 +146,12 @@ const LoginPage = ({
                     </FormControl>
                     <Label
                       htmlFor="rememberMe"
-                      className="text-[#596569] !text-[16px]"
+                     className="text-[#596569] !text-[14px] lg:!text-[16px]"
                     >
                       Remember Me
                     </Label>
                   </div>
-                  <p className="w-full text-right">
+                  <p className="w-full text-right text-[14px] lg:text-[16px]">
                     <Link to="#" onClick={()=>setCurrentPage('forgot-password')} className="text-[#0280F9]">
                       Forgot Password?
                     </Link>
@@ -178,7 +178,7 @@ const LoginPage = ({
                   </div>
 
                   <FormControl>
-                    <Input placeholder="Enter captcha" {...field} />
+                    <Input placeholder="Enter Captcha" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -189,7 +189,7 @@ const LoginPage = ({
               Login
             </Button>
 
-            <div className="text-center w-full font-primary font-regular text-[16px] mb-[24px] ">
+            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  mb-[24px] ">
               <p className=" text-[#596569]  text-center w-full ">
                 Don’t have an account?{" "}
                 <span

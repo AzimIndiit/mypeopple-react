@@ -44,10 +44,10 @@ const ForgotPasswordPage = ({
   console.log("logo", logo);
   return (
     <div className="w-full  ">
-      <h1 className="text-[26px] font-bold font-primary ">
+      <h1 className="text-[24px] lg:text-[26px] font-bold font-primary ">
       Forgot your Password ?
       </h1>
-      <p className=" text-[#596569]  w-full ">
+      <p className="text-[14px] lg:text-[16px] text-[#596569]  w-full ">
       It happens to the best of us
       Please type your email below :
       </p>
@@ -78,14 +78,14 @@ const ForgotPasswordPage = ({
             <Button className="w-full" type="submit">
               Submit
             </Button>
-            <div className="text-center w-full font-primary font-regular text-[16px]">
+            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px] ">
             <p className=" mb-[24px]">
             If an account exists for this email you will get an email with instructions on resetting your password. If it doesn't
             arrive, be sure to check your spam folder.
             </p>
           </div>
        
-            <div className="text-center w-full font-primary font-regular text-[16px] mb-[24px] ">
+            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  mb-[24px] ">
               <p className=" text-[#596569]  text-center w-full ">
                 Back to{" "}
                 <span

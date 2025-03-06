@@ -46,10 +46,10 @@ const OtpPage = ({
   console.log("logo", logo);
   return (
     <div className="w-full  ">
-      <h1 className="text-[26px] font-bold font-primary ">
+      <h1 className=" text-[24px] lg:text-[26px] font-bold font-primary ">
         Verify Your Identity!
       </h1>
-      <p className=" text-[#596569]  w-full ">
+      <p className=" text-[#596569] text-[14px] lg:text-[16px]  w-full ">
         Enter the code received by email to verify your identity, we sent you a
         one-time code by email to: *****ltd@gmail.com
       </p>
@@ -71,7 +71,7 @@ const OtpPage = ({
                     <InputOTP
                       pattern={REGEXP_ONLY_DIGITS}
                       name="otp"
-                      className="h-[64px] text-lg w-full"
+                      className=" text-lg w-full"
                       maxLength={6}
                       value={field.value || ""}
                       onChange={(value) => field.onChange(value)}
@@ -85,7 +85,7 @@ const OtpPage = ({
                 </FormItem>
               )}
             />
-            <div className="text-center w-full font-primary font-regular text-[16px] mb-[24px] ">
+            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px] mb-[24px] ">
               <p className=" text-[#596569]  text-center w-full ">
                 Didn't get OTP?{" "}
                 <span
@@ -99,7 +99,7 @@ const OtpPage = ({
             <Button className="w-full" type="submit">
               Login
             </Button>
-            <div className="text-center w-full font-primary font-regular text-[16px] mb-[24px] ">
+            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px] mb-[24px] ">
               <p className=" text-[#596569]  text-center w-full ">
                 Back to{" "}
                 <span

@@ -34,10 +34,10 @@ const Carousel: React.FC<CrouseProps> = ({images,index,setIndex}) => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // useEffect(() => {
-  //   const interval = setInterval(nextSlide, 5000);
-  //   return () => clearInterval(interval);
-  // }, [index]);
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000);
+    return () => clearInterval(interval);
+  }, [index]);
 
   return (
     <div className="relative w-screen h-screen overflow-hidden">

@@ -16,10 +16,7 @@ import ResetPasswordPage from "./ResetPassword";
 const Page = () => {
   const location = useLocation();
   const initialPage = location.pathname.split("/").pop();
-  console.log('initialPage', initialPage)
-  const [currentPage, setCurrentPage] = useState(initialPage || "main");
-
-  console.log("logo", logo);
+  const [currentPage, setCurrentPage] = useState(initialPage || "otp");
 
   const pageComponents = {
     main: MainCreationPage,
@@ -37,82 +34,95 @@ const Page = () => {
       <Component currentPage={currentPage} setCurrentPage={setCurrentPage} />
     ) : null;
   };
+
+  const getHeight = () => {
+    switch (currentPage) {
+      case "login":
+        return "h-full";
+      case "register":
+        return "h-full"; // Adjust as needed
+      case "reset-password":
+        return "h-full"; // Adjust height for longer content
+      default:
+        return "";
+    }
+  };
+
   return (
-    <div
-      className={`w-full flex justify-center items-center py-[32px] ${
-        ["register", "login"].includes(currentPage)
-          ? "lg:overflow-y-scroll lg:max-h-screen lg:pb-[32px]"
-          : ""
-      } ${
-        currentPage === "login"
-          ? "lg:pt-[12rem]"
-          : currentPage === "register"
-          ? "lg:pt-[14rem]"
-          : ""
-      }`}
-    >
-      <div className=" bg-white bg-opacity-95 p-[32px] flex flex-col justify-center rounded-[60px] w-full md:w-[613px] ">
-        <div className="flex justify-center">
-          <img
-            src={logo}
-            alt="Logo"
-            style={{ height: "48.68px", width: "294px" }}
-          />
-        </div>
-        {["main", "register", "login"].includes(currentPage) && (
-          <div className="flex items-center justify-between space-x-2 mt-[40px]">
-            <Label
-              htmlFor="language-mode"
-              className="font-primary font-semibold  text-[18px]"
-            >
-              Would you like to switch the language to French?
-            </Label>
+    <div className="w-full h-screen flex justify-center items-center overflow-auto py-5 sm:p-5">
+      {/* Outer White Card Container (Fully Scrollable) */}
+      <div className={`flex flex-col  w-full max-w-[613px] ${getHeight()}`}>
+      
 
-            <Switch id="language-mode" className="h-[22px] w-[36.67px]" />
+          {/* Main Dynamic Content (Scrollable) */}
+          <div className="flex-1 bg-white bg-opacity-95 p-[16px] sm:p-[32px] rounded-[30px] lg:rounded-[60px] ">
+              {/* Scrollable Content */}
+        <div className="flex flex-col h-full ">
+          {/* Logo (Fixed, Always Visible) */}
+          <div className="flex justify-center shrink-0 mb-[40px]">
+            <img src={logo} alt="Logo" className="h-[48.68px] w-full sm:w-[294px] block" />
           </div>
-        )}
-        <div className="w-full mt-[24px]">{renderPage()}</div>
-        {["main", "register"].includes(currentPage) && (
-          <div className="text-center w-full font-primary font-regular text-[16px]">
-            <p className=" mb-[24px]">
-              By joining, you agree to the Mypeople{" "}
-              <Link to="#" className="text-[#0280F9]">
-                Terms of Service
-              </Link>{" "}
-              and to occasionally receive emails from us. Please read our{" "}
-              <Link to="#" className="text-[#0280F9]">
-                Privacy Policy
-              </Link>{" "}
-              to learn how we use your personal data.
-            </p>
-          </div>
-        )}
-
-        {["main", "register", "login"].includes(currentPage) && (
-          <>
-            <div className="flex items-center w-full font-primary ">
-              <div className="flex-1 h-[2px] bg-[#E2E2E2]" /> {/* Left Line */}
-              <p className="mx-4 text-[14px] text-[#596569] font-semibold">
-                Download the application?
+          {/* Language Switch */}
+          {["main", "register", "login"].includes(currentPage) && (
+            <div className="flex items-center justify-between space-x-2 mb-[24px] shrink-0">
+              <Label
+                htmlFor="language-mode"
+                className="font-primary font-semibold text-[16px] lg:text-[18px]"
+              >
+                Would you like to switch the language to French?
+              </Label>
+              <Switch id="language-mode" className="h-[22px] w-[36.67px]" />
+            </div>
+          )}
+            {renderPage()}
+            
+              {/* Terms and Conditions */}
+          {["main", "register"].includes(currentPage) && (
+            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  mt-4 shrink-0">
+              <p className="mb-[24px]">
+                By joining, you agree to the Mypeople{" "}
+                <Link to="#" className="text-[#0280F9]">
+                  Terms of Service
+                </Link>{" "}
+                and to occasionally receive emails from us. Please read our{" "}
+                <Link to="#" className="text-[#0280F9]">
+                  Privacy Policy
+                </Link>{" "}
+                to learn how we use your personal data.
               </p>
-              <div className="flex-1 h-[2px] bg-[#E2E2E2]" /> {/* Right Line */}
             </div>
-            <div className="flex items-center w-full font-primary justify-center gap-[12px] mt-[24px]">
-              <Link
-                to="#"
-                className="w-[195px] h-[48px] bg-black flex justify-center items-center rounded-[7.5px]"
-              >
-                <img src={apple} alt="apple" />
-              </Link>
-              <Link
-                to="#"
-                className="w-[195px] h-[48px] bg-black flex justify-center items-center rounded-[7.5px]"
-              >
-                <img src={android} alt="apple" />
-              </Link>
+          )}
+
+          {/* Download App Section */}
+          {["main", "register", "login"].includes(currentPage) && (
+            <>
+              <div className="flex items-center w-full font-primary shrink-0">
+                <div className="flex-1 h-[2px] bg-[#E2E2E2]" />
+                <p className="mx-4 text-[14px] text-[#596569] font-semibold">
+                  Download the application?
+                </p>
+                <div className="flex-1 h-[2px] bg-[#E2E2E2]" />
+              </div>
+              <div className="flex items-center w-full font-primary justify-center gap-[12px] mt-[24px] shrink-0">
+                <Link
+                  to="#"
+                  className="w-[195px] h-[48px] bg-black flex justify-center items-center rounded-[7.5px]"
+                >
+                  <img src={apple} alt="apple" className="block" />
+                </Link>
+                <Link
+                  to="#"
+                  className="w-[195px] h-[48px] bg-black flex justify-center items-center rounded-[7.5px]"
+                >
+                  <img src={android} alt="android" className="block" />
+                </Link>
+              </div>
+            </>
+          )}
             </div>
-          </>
-        )}
+
+        
+        </div>
       </div>
     </div>
   );
