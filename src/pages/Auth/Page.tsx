@@ -2,7 +2,7 @@ import { Switch } from "@/components/ui/switch";
 import logo from "../../assets/icons/logo.svg";
 import { Label } from "@/components/ui/label";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import apple from "../../assets/icons/apple.svg";
 import android from "../../assets/icons/android.svg";
 import { useState } from "react";
@@ -14,7 +14,10 @@ import ForgotPasswordPage from "./ForgotPassword";
 import ResetPasswordPage from "./ResetPassword";
 
 const Page = () => {
-  const [currentPage, setCurrentPage] = useState("resetPassword");
+  const location = useLocation();
+  const initialPage = location.pathname.split("/").pop();
+  console.log('initialPage', initialPage)
+  const [currentPage, setCurrentPage] = useState(initialPage || "main");
 
   console.log("logo", logo);
 
@@ -23,8 +26,8 @@ const Page = () => {
     register: RegisterPage,
     login: LoginPage,
     otp: OtpPage,
-    forgotPassword: ForgotPasswordPage,
-    resetPassword: ResetPasswordPage,
+    "forgot-password": ForgotPasswordPage,
+    "reset-password": ResetPasswordPage,
   };
 
   const renderPage = () => {

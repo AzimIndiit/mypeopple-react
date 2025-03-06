@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { AuthLayout } from "@/layouts/AuthLayout";
 import PrivateRoute from "./PrivateRoute";
-import Login from "@/pages/Auth/Login";
+// import Login from "@/pages/Auth/Login";
 import AuthPage from "@/pages/Auth/Page";
 
 // Lazy-loaded pages
@@ -15,7 +15,7 @@ const AppRoutes = () => {
       {/* 🔓 Public Routes */}
       <Route element={<AuthLayout />}>
       <Route path="/" element={<AuthPage/>} />
-        <Route path="/login" element={<Login/>} />
+      <Route path="/reset-password" element={<AuthPage/>} />
       </Route>
 
       {/* 🔒 Protected Routes */}

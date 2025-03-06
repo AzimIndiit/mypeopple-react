@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form";
 import { InputOTP, InputOTPSlot } from "@/components/ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
+import { useNavigate } from "react-router-dom";
 const OtpSchema = z.object({
   otp: z
     .string()
@@ -30,6 +31,7 @@ const OtpPage = ({
   currentPage: string;
   setCurrentPage: (page: string) => void;
 }) => {
+  const navigate = useNavigate();
   const form = useForm<OtpFormValues>({
     resolver: zodResolver(OtpSchema),
     defaultValues: {
@@ -39,6 +41,7 @@ const OtpPage = ({
 
   const onSubmit = (values: z.infer<typeof OtpSchema>) => {
     console.log(`Form Submitted`, values);
+    navigate("/dashboard");
   };
   console.log("logo", logo);
   return (

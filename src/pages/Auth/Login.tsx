@@ -26,10 +26,16 @@ const LoginSchema = z.object({
   password: z
     .string()
     .min(15, { message: "Password must be at least 15 characters long." })
-    .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter." })
-    .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter." })
+    .regex(/[A-Z]/, {
+      message: "Password must contain at least one uppercase letter.",
+    })
+    .regex(/[a-z]/, {
+      message: "Password must contain at least one lowercase letter.",
+    })
     .regex(/[0-9]/, { message: "Password must contain at least one number." })
-    .regex(/[^A-Za-z0-9]/, { message: "Password must contain at least one special character." }),
+    .regex(/[^A-Za-z0-9]/, {
+      message: "Password must contain at least one special character.",
+    }),
 
   captcha: z.string().min(1, { message: "Captcha is required." }),
 });
@@ -55,6 +61,7 @@ const LoginPage = ({
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     console.log(`Form Submitted`, values);
+    setCurrentPage("otp")
   };
 
   return (
@@ -123,63 +130,76 @@ const LoginPage = ({
                 </FormItem>
               )}
             />
-             
+
             <FormField
               control={form.control}
               name="rememberMe"
               render={({ field }) => (
                 <FormItem className="flex items-center space-x-2">
-                <div className="w-full flex gap-[10px]">
-                <FormControl>
-                    <Checkbox id="rememberMe" checked={field.value} onCheckedChange={field.onChange} />
-                  </FormControl>
-                  <Label htmlFor="rememberMe" className="text-[#596569] !text-[16px]">
-                    Remember Me
-                  </Label>
-                </div>
-              <p className="w-full text-right">
-                <Link to="#" className="text-[#0280F9]">
-                  Forgot Password?
-                </Link>
-              </p>
+                  <div className="w-full flex gap-[10px]">
+                    <FormControl>
+                      <Checkbox
+                        id="rememberMe"
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                    <Label
+                      htmlFor="rememberMe"
+                      className="text-[#596569] !text-[16px]"
+                    >
+                      Remember Me
+                    </Label>
+                  </div>
+                  <p className="w-full text-right">
+                    <Link to="#" onClick={()=>setCurrentPage('forgot-password')} className="text-[#0280F9]">
+                      Forgot Password?
+                    </Link>
+                  </p>
                 </FormItem>
               )}
             />
-           <FormField
-  control={form.control}
-  name="captcha"
-  render={({ field }) => (
-    <FormItem>
-      <div className="flex justify-between items-center md:mb-[24px] mb-[10px] gap-[10px]">
-        <div className="rounded-[10px] overflow-hidden">
-          <img
-            src={captchaImg}
-            alt="captcha"
-            className="w-full md:w-[499px] h-[64px] "
-          />
-        </div>
-        <div className="flex items-center justify-center  cursor-pointer ">
-          <img src={refreshIcon} className="w-[25px] h-[24px]" />
-        </div>
-      </div>
+            <FormField
+              control={form.control}
+              name="captcha"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="flex justify-between items-center md:mb-[24px] mb-[10px] gap-[10px]">
+                    <div className="rounded-[10px] overflow-hidden">
+                      <img
+                        src={captchaImg}
+                        alt="captcha"
+                        className="w-full md:w-[499px] h-[64px] "
+                      />
+                    </div>
+                    <div className="flex items-center justify-center  cursor-pointer ">
+                      <img src={refreshIcon} className="w-[25px] h-[24px]" />
+                    </div>
+                  </div>
 
-      <FormControl>
-        <Input placeholder="Enter captcha" {...field} />
-      </FormControl>
-      <FormMessage />
-    </FormItem>
-  )}
-/>
+                  <FormControl>
+                    <Input placeholder="Enter captcha" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             <Button className="w-full" type="submit">
               Login
             </Button>
 
             <div className="text-center w-full font-primary font-regular text-[16px] mb-[24px] ">
-          <p className=" text-[#596569]  text-center w-full ">
-          Don’t have an account? <span className="text-primary" onClick={() => setCurrentPage("register")}>Join Here</span>
-          </p>
-        </div>
+              <p className=" text-[#596569]  text-center w-full ">
+                Don’t have an account?{" "}
+                <span
+                  className="text-primary"
+                  onClick={() => setCurrentPage("register")}
+                >
+                  Join Here
+                </span>
+              </p>
+            </div>
           </form>
         </Form>
       </div>
