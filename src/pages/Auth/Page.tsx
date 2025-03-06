@@ -16,7 +16,7 @@ import ResetPasswordPage from "./ResetPassword";
 const Page = () => {
   const location = useLocation();
   const initialPage = location.pathname.split("/").pop();
-  const [currentPage, setCurrentPage] = useState(initialPage || "otp");
+  const [currentPage, setCurrentPage] = useState(initialPage || "main");
 
   const pageComponents = {
     main: MainCreationPage,
