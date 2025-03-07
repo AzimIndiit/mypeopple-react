@@ -1,27 +1,26 @@
 import { Switch } from "@/components/ui/switch";
-import logo from "../../assets/icons/logo.svg";
+import logo from "../../../assets/icons/logo.svg";
 import { Label } from "@/components/ui/label";
 
 import { Link, useLocation } from "react-router-dom";
-import apple from "../../assets/icons/apple.svg";
-import android from "../../assets/icons/android.svg";
+import google from "@/assets/icons/google.svg";
+import outlook from "@/assets/icons/outlook.svg";
 import { useState } from "react";
-import LoginPage from "./Login"
-import MainCreationPage from "./MainCreation";
+import LoginPage from "./Login";
 import RegisterPage from "./Register";
-import OtpPage from "./Otp";
-import ForgotPasswordPage from "./ForgotPassword";
-import ResetPasswordPage from "./ResetPassword";
+import OtpPage from "../Otp";
+import ForgotPasswordPage from "../ForgotPassword";
+import ResetPasswordPage from "../ResetPassword";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 
 const Page = () => {
   const location = useLocation();
-  const initialPage = location.pathname.split("/auth").pop();
-  const [currentPage, setCurrentPage] = useState(initialPage || "main");
+  const initialPage = location.pathname.split("/auth/client").pop();
+  const [currentPage, setCurrentPage] = useState(initialPage || "login");
   const { t, i18n } = useTranslation();
-console.log('currentPage', currentPage, i18n.language)
+  console.log("currentPage", currentPage, i18n.language);
   const pageComponents = {
-    main: MainCreationPage,
     register: RegisterPage,
     login: LoginPage,
     otp: OtpPage,
@@ -67,7 +66,7 @@ console.log('currentPage', currentPage, i18n.language)
               />
             </div>
             {/* Language Switch */}
-            {["main", "register", "login"].includes(currentPage) && (
+            {["register", "login"].includes(currentPage) && (
               <div className="flex items-center justify-between space-x-2 mb-[24px] shrink-0">
                 <Label
                   htmlFor="language-mode"
@@ -88,14 +87,14 @@ console.log('currentPage', currentPage, i18n.language)
             {renderPage()}
 
             {/* Terms and Conditions */}
-            {["main", "register"].includes(currentPage) && (
+            {["register"].includes(currentPage) && (
               <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  mt-[16px] shrink-0">
                 <p className="mb-[24px]">
                   {t("auth.bottom-line-1")} {""}
                   <Link to="#" className="text-[#0280F9]">
-                    {t("auth.terms-of-service")} 
+                    {t("auth.terms-of-service")}
                   </Link>{" "}
-                  {t("auth.bottom-line-2")} {" "}
+                  {t("auth.bottom-line-2")}{" "}
                   <Link to="#" className="text-[#0280F9]">
                     {t("auth.privacy-policy")}
                   </Link>{" "}
@@ -105,28 +104,24 @@ console.log('currentPage', currentPage, i18n.language)
             )}
 
             {/* Download App Section */}
-            {["main", "register", "login"].includes(currentPage) && (
+            {["register", "login"].includes(currentPage) && (
               <>
                 <div className="flex items-center w-full font-primary shrink-0">
                   <div className="flex-1 h-[2px] bg-[#E2E2E2]" />
                   <p className="mx-4 text-[14px] text-[#596569] font-semibold">
-                    {t("auth.download-app")}
+                    {t("auth.login.continue-with")}
                   </p>
                   <div className="flex-1 h-[2px] bg-[#E2E2E2]" />
                 </div>
-                <div className="flex items-center w-full font-primary justify-center gap-[12px] mt-[16px] shrink-0">
-                  <Link
-                    to="#"
-                    className="w-[195px] h-[48px] bg-black flex justify-center items-center rounded-[7.5px]"
-                  >
-                    <img src={apple} alt="apple" className="block"  />
-                  </Link>
-                  <Link
-                    to="#"
-                    className="w-[195px] h-[48px] bg-black flex justify-center items-center rounded-[7.5px]"
-                  >
-                    <img src={android} alt="android" className="block" />
-                  </Link>
+                <div className="flex flex-col gap-[12px] sm:flex-row items-center w-full font-primary justify-center mt-[16px] shrink-0">
+                  <Button className="w-full sm:w-[258px] bg-[rgba(252,64,6,0.08)] hover:bg-[rgba(252,64,6,0.08)] text-black font-primary font-semibold text-[16px]">
+                    <img src={google} alt="google" />
+                    {t("auth.login.google")}
+                  </Button>
+                  <Button className="w-full sm:w-[258px] bg-[rgba(252,64,6,0.08)] hover:bg-[rgba(252,64,6,0.08)] text-black font-primary font-semibold text-[16px]">
+                    <img src={outlook} alt="google" />
+                    {t("auth.login.outlook")}
+                  </Button>
                 </div>
               </>
             )}

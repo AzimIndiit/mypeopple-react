@@ -15,8 +15,8 @@ import {
 import { useState, useEffect } from "react";
 import eyeFill from "@/assets/icons/eye-fill.svg";
 
-import refreshIcon from "../../assets/icons/refresh.svg";
-import captchaImg from "../../assets/images/captcha.svg";
+import refreshIcon from "../../../assets/icons/refresh.svg";
+import captchaImg from "../../../assets/images/captcha.svg";
 import { Link } from "react-router-dom";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
@@ -63,7 +63,7 @@ const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCu
   return (
     <div className="w-full">
       <h1 className="text-[24px] lg:text-[26px] font-bold font-primary">
-        {t("auth.login.title")}
+        {t("auth.login.welcome-back")}
       </h1>
       <p className="text-[#596569] text-[14px] lg:text-[16px] w-full">
         {t("auth.login.description")}

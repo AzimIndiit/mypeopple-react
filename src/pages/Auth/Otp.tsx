@@ -1,9 +1,8 @@
-import logo from "../../assets/icons/logo.svg";
+import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-
 import {
   Form,
   FormControl,
@@ -15,63 +14,60 @@ import {
 import { InputOTP, InputOTPSlot } from "@/components/ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useNavigate } from "react-router-dom";
-const OtpSchema = z.object({
-  otp: z
-    .string()
-    .length(6, { message: "OTP is Required." }) // Ensure exactly 6 characters
-    .regex(/^\d+$/, { message: "OTP must contain only numbers." }), // Prevent non-numeric input
-});
+import { useEffect } from "react";
 
-type OtpFormValues = z.infer<typeof OtpSchema>;
-
-const OtpPage = ({
-  currentPage,
-  setCurrentPage,
-}: {
-  currentPage: string;
-  setCurrentPage: (page: string) => void;
-}) => {
+const OtpPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCurrentPage: (page: string) => void }) => {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const form = useForm<OtpFormValues>({
+
+  const OtpSchema = z.object({
+    otp: z
+      .string()
+      .length(6, { message: t("auth.otp.validation.otp.required") }) // Ensure exactly 6 characters
+      .regex(/^\d+$/, { message: t("auth.otp.validation.otp.numeric") }), // Prevent non-numeric input
+  });
+
+  const form = useForm({
     resolver: zodResolver(OtpSchema),
     defaultValues: {
       otp: "", // Ensures controlled component
     },
   });
 
-  const onSubmit = (values: z.infer<typeof OtpSchema>) => {
+  useEffect(() => {
+    if (t) {
+      form.clearErrors(); // Clear validation errors on language change
+    }
+  }, [t, form]);
+
+  const onSubmit = (values: any) => {
     console.log(`Form Submitted`, values);
     navigate("/dashboard");
   };
-  console.log("logo", logo);
+
   return (
-    <div className="w-full  ">
-      <h1 className=" text-[24px] lg:text-[26px] font-bold font-primary ">
-        Verify Your Identity!
+    <div className="w-full">
+      <h1 className="text-[24px] lg:text-[26px] font-bold font-primary">
+        {t("auth.otp.title")}
       </h1>
-      <p className=" text-[#596569] text-[14px] lg:text-[16px]  w-full ">
-        Enter the code received by email to verify your identity, we sent you a
-        one-time code by email to: *****ltd@gmail.com
+      <p className="text-[#596569] text-[14px] lg:text-[16px] w-full">
+        {t("auth.otp.description")}
       </p>
+
       <div className="w-full my-[24px]">
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-6"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
             <FormField
               control={form.control}
               name="otp"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-[15px] !font-primary !font-normal">
-                    Enter OTP
-                  </FormLabel>
+                  <FormLabel className="text-[15px]  !font-primary  !font-normal">{t("auth.otp.enterOtp")}</FormLabel>
                   <FormControl>
                     <InputOTP
                       pattern={REGEXP_ONLY_DIGITS}
                       name="otp"
-                      className=" text-lg w-full"
+                      className="text-lg w-full"
                       maxLength={6}
                       value={field.value || ""}
                       onChange={(value) => field.onChange(value)}
@@ -85,28 +81,29 @@ const OtpPage = ({
                 </FormItem>
               )}
             />
-            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px] mb-[24px] ">
-              <p className=" text-[#596569]  text-center w-full ">
-                Didn't get OTP?{" "}
+
+            <div className="text-center w-full text-[14px] lg:text-[16px] mb-[24px]">
+            <p className=" text-[#596569]  text-center w-full ">
+                  {t("auth.otp.noOtp")}{" "}
                 <span
                   className="text-primary"
                   // onClick={() => setCurrentPage("register")}
                 >
-                  Resend
+                  {t("auth.otp.resend")}
                 </span>
               </p>
+           
             </div>
+
             <Button className="w-full" type="submit">
-              Login
+              {t("auth.otp.login")}
             </Button>
-            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px] mb-[24px] ">
-              <p className=" text-[#596569]  text-center w-full ">
-                Back to{" "}
-                <span
-                  className="text-primary"
-                  onClick={() => setCurrentPage("login")}
-                >
-                  Login
+
+            <div className="text-center w-full text-[14px] lg:text-[16px] mb-[24px]">
+              <p className="text-[#596569]">
+                {t("auth.otp.backTo")}{" "}
+                <span className="text-primary cursor-pointer" onClick={() => setCurrentPage("login")}>
+                  {t("auth.otp.login")}
                 </span>
               </p>
             </div>

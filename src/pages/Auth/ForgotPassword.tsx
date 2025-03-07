@@ -63,7 +63,7 @@ const ForgotPasswordPage = ({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-[15px]  !font-primary  !font-normal">
-                    Email
+                    Email Address
                   </FormLabel>
 
                   <FormControl>
@@ -85,7 +85,7 @@ const ForgotPasswordPage = ({
             </p>
           </div>
        
-            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  mb-[24px] ">
+            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  ">
               <p className=" text-[#596569]  text-center w-full ">
                 Back to{" "}
                 <span

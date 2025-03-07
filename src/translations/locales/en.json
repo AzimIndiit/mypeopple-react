@@ -1,10 +1,97 @@
 {
-    "welcome": "Welcome to the Admin Panel",
-    "logout": "Logout",
-    "dashboard": {
-      "title": "Dashboard"
+  "auth": {
+    "language": "Would you like to switch the language to French?",
+    "download-app": "Download the application ?",
+    "terms-of-service": "Terms of Service",
+    "privacy-policy": "Privacy Policy",
+    "bottom-line-1": "By joining, you agree to the Mypeople",
+    "bottom-line-2": "and to occasionally receive emails from us. Please read our",
+    "bottom-line-3": "to learn how we use your personal data.",
+    "main-creation": {
+      "title": "Create an Account to start collaborate",
+      "google": "Continue with Google",
+      "email": "Continue with Email",
+      "login": "Already have an account?",
+      "login-link": "Login"
     },
-    "auth": {
-      "title": "Sign In"
+    "register": {
+      "title": "Continue with your email",
+      "description": "To continue, please register with your name, email, and password.",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "phoneNumber": "Phone Number",
+      "password": "Password",
+      "placeholder": {
+        "firstName": "Enter First Name",
+        "lastName": "Enter Last Name",
+        "email": "Enter Email Address",
+        "phoneNumber": "Enter Phone Number",
+        "password": "Enter Password"
+      },
+      "submit": "Sign Up",
+      "validation": {
+        "firstName": "First name must be at least 2 characters.",
+        "lastName": "Last name must be at least 2 characters.",
+        "email": "Invalid email address.",
+        "phoneNumber": "Phone number must be at least 10 characters.",
+        "password": {
+          "min": "Password must be at least 15 characters long.",
+          "uppercase": "Password must contain at least one uppercase letter.",
+          "lowercase": "Password must contain at least one lowercase letter.",
+          "number": "Password must contain at least one number.",
+          "specialChar": "Password must contain at least one special character."
+        }
+      }
+    },
+
+    "login": {
+      "outlook": "Outlook",
+      "google": "Google",
+      "welcome-back": "Welcome back!",
+      "continue-with": "Or continue with",
+      "title": "Sign in to your account",
+      "description": "To continue, please sign in with your registered email and password.",
+      "email": "Email Address",
+      "password": "Password",
+      "rememberMe": "Remember Me",
+      "forgotPassword": "Forgot Password?",
+      "captcha": "Enter Captcha",
+      "loginButton": "Login",
+      "noAccount": "Don’t have an account?",
+      "joinHere": "Join Here",
+      "placeholder": {
+        "email": "Enter Email Address",
+        "password": "Enter Password",
+        "captcha": "Enter Captcha"
+      },
+      "validation": {
+        "email": "Invalid email address.",
+        "password": {
+          "min": "Password must be at least 15 characters long.",
+          "uppercase": "Password must contain at least one uppercase letter.",
+          "lowercase": "Password must contain at least one lowercase letter.",
+          "number": "Password must contain at least one number.",
+          "special": "Password must contain at least one special character."
+        },
+        "captcha": "Captcha is required."
+      }
+    },
+    "otp": {
+      "title": "Verify Your Identity!",
+      "description": "Enter the code received by email to verify your identity. We sent you a one-time code by email to: *****ltd@gmail.com",
+      "enterOtp": "Enter OTP",
+      "noOtp": "Didn't get OTP?",
+      "resend": "Resend",
+      "verify": "Verify",
+      "backTo": "Back to",
+      "login": "Login",
+      "validation": {
+        "otp": {
+          "required": "OTP is required.",
+          "numeric": "OTP must contain only numbers."
+        }
+      }
     }
   }
+}

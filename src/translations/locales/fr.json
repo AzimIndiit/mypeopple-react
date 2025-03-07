@@ -1,10 +1,98 @@
 {
-    "welcome": "Bienvenue sur le panneau d'administration",
-    "logout": "Se déconnecter",
-    "dashboard": {
-      "title": "Tableau de Bord"
+  "auth": {
+    "language": "Voulez-vous passer la langue en Anglais ?",
+    "download-app": "Télécharger l'application ?",
+    "terms-of-service": "Conditions d'utilisation",
+    "privacy-policy": "Politique de confidentialité",
+    "bottom-line-1": "En vous inscrivant, vous acceptez les conditions de Mypeople",
+    "bottom-line-2": "et de recevoir occasionnellement des e-mails de notre part. Veuillez lire notre",
+    "bottom-line-3": "pour savoir comment nous utilisons vos données personnelles.",
+    "main-creation": {
+      "title": "Créez un compte pour commencer à collaborer",
+      "google": "Continuer avec Google",
+      "email": "Continuer avec l'e-mail",
+      "login": "Vous avez déjà un compte ?",
+      "login-link": "Connexion"
+      
     },
-    "auth": {
-      "title": "Se Connecter"
+    "register": {
+      "title": "Continuez avec votre email",
+      "description": "Pour continuer, veuillez vous inscrire avec votre nom, e-mail et mot de passe.",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Adresse e-mail",
+      "phoneNumber": "Numéro de téléphone",
+      "password": "Mot de passe",
+      "placeholder": {
+        "firstName": "Entrez votre prénom",
+        "lastName": "Entrez votre nom",
+        "email": "Entrez votre adresse e-mail",
+        "phoneNumber": "Entrez votre numéro de téléphone",
+        "password": "Entrez votre mot de passe"
+      },
+      "submit": "S'inscrire",
+      "validation": {
+        "firstName": "Le prénom doit comporter au moins 2 caractères.",
+        "lastName": "Le nom doit comporter au moins 2 caractères.",
+        "email": "Adresse e-mail invalide.",
+        "phoneNumber": "Le numéro de téléphone doit comporter au moins 10 caractères.",
+        "password": {
+          "min": "Le mot de passe doit comporter au moins 15 caractères.",
+          "uppercase": "Le mot de passe doit contenir au moins une lettre majuscule.",
+          "lowercase": "Le mot de passe doit contenir au moins une lettre minuscule.",
+          "number": "Le mot de passe doit contenir au moins un chiffre.",
+          "specialChar": "Le mot de passe doit contenir au moins un caractère spécial."
+        }
+      }
+    },
+
+    "login": {
+      "outlook": "Outlook",
+      "google": "Google",
+      "welcome-back": "Bienvenue de retour!",
+      "continue-with": "Ou continuez avec",
+      "title": "Connectez-vous à votre compte",
+      "description": "Pour continuer, veuillez vous connecter avec votre e-mail et votre mot de passe enregistrés.",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "rememberMe": "Se souvenir de moi",
+      "forgotPassword": "Mot de passe oublié?",
+      "captcha": "Entrez le Captcha",
+      "loginButton": "Connexion",
+      "noAccount": "Vous n'avez pas de compte?",
+      "joinHere": "Inscrivez-vous ici",
+      "placeholder": {
+        "email": "Entrez votre adresse e-mail",
+        "password": "Entrez votre mot de passe",
+        "captcha": "Entrez le Captcha"
+      },
+      "validation": {
+        "email": "Adresse e-mail invalide.",
+        "password": {
+          "min": "Le mot de passe doit contenir au moins 15 caractères.",
+          "uppercase": "Le mot de passe doit contenir au moins une lettre majuscule.",
+          "lowercase": "Le mot de passe doit contenir au moins une lettre minuscule.",
+          "number": "Le mot de passe doit contenir au moins un chiffre.",
+          "special": "Le mot de passe doit contenir au moins un caractère spécial."
+        },
+        "captcha": "Le Captcha est requis."
+      }
+    },
+    "otp": {
+      "title": "Vérifiez votre identité!",
+      "description": "Entrez le code reçu par e-mail pour vérifier votre identité. Nous vous avons envoyé un code unique par e-mail à : *****ltd@gmail.com",
+      "enterOtp": "Entrez le code OTP",
+      "noOtp": "Vous n'avez pas reçu le code OTP?",
+      "resend": "Renvoyer",
+      "verify": "Vérifier",
+      "backTo": "Retour à",
+      "login": "Connexion",
+      "validation": {
+        "otp": {
+          "required": "Le code OTP est requis.",
+          "numeric": "Le code OTP doit contenir uniquement des chiffres."
+        }
+      }
     }
   }
+}

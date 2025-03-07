@@ -4,8 +4,8 @@ import DashboardLayout from "@/layouts/DashboardLayout";
 import { AuthLayout } from "@/layouts/AuthLayout";
 import PrivateRoute from "./PrivateRoute";
 // import Login from "@/pages/Auth/Login";
-import AuthPage from "@/pages/Auth/Page";
-
+import AuthPage from "@/pages/auth/Page";
+import AuthClientPage from "@/pages/auth/client/Page";
 // Lazy-loaded pages
 
 
@@ -14,8 +14,9 @@ const AppRoutes = () => {
     <Routes>
       {/* 🔓 Public Routes */}
       <Route element={<AuthLayout />}>
-      <Route path="/" element={<AuthPage/>} />
-      <Route path="/reset-password" element={<AuthPage/>} />
+      <Route path="/auth" element={<AuthPage/>} />
+      <Route path="/auth/client" element={<AuthClientPage/>} />
+      <Route path="/authreset-password" element={<AuthPage/>} />
       </Route>
 
       {/* 🔒 Protected Routes */}

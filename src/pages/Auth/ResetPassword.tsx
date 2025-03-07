@@ -75,7 +75,7 @@ const ResetPasswordPage = ({
       <p className=" text-[#596569] text-[14px] lg:text-[16px]   w-full ">
       Enter a new password to reset the password on your account. We’ll ask for this password whenever you log in.
       </p>
-      <div className="w-full my-[24px]">
+      <div className="w-full mt-[24px]">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -158,14 +158,14 @@ const ResetPasswordPage = ({
             <Button className="w-full" type="submit">
               Reset Password
             </Button>
-            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px] ">
+            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  ">
             <p className=" mb-[24px]">
             If you do not want to change your password or didn't
             request a reset, you can ignore and delete this email.
             </p>
           </div>
        
-            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  mb-[24px] ">
+            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]   ">
               <p className=" text-[#596569]  text-center w-full ">
                 Back to{" "}
                 <span
