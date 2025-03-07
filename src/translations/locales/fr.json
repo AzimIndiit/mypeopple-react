@@ -16,6 +16,11 @@
       
     },
     "register": {
+      "continue":"Continuer",
+      "accountType": "Que voulez-vous utiliser Mypeople comme ?",
+      "haveAccount": "Vous avez déjà un compte ?",
+      "signIn": "Connexion",
+"create-account": "Créer votre compte",
       "title": "Continuez avec votre email",
       "description": "Pour continuer, veuillez vous inscrire avec votre nom, e-mail et mot de passe.",
       "firstName": "Prénom",

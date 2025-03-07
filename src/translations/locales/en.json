@@ -15,6 +15,11 @@
       "login-link": "Login"
     },
     "register": {
+      "continue":"Continue",
+      "accountType": "What do you want to use Mypeople as?",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign In",
+      "create-account": "Create Your Account",
       "title": "Continue with your email",
       "description": "To continue, please register with your name, email, and password.",
       "firstName": "First Name",

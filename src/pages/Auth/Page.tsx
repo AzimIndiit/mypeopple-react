@@ -16,8 +16,9 @@ import { useTranslation } from "react-i18next";
 
 const Page = () => {
   const location = useLocation();
-  const initialPage = location.pathname.split("/auth").pop();
-  const [currentPage, setCurrentPage] = useState(initialPage || "main");
+  const initialPage = location.pathname.replace("/auth", "").replace("/", "") || "main";
+const [currentPage, setCurrentPage] = useState(initialPage);
+
   const { t, i18n } = useTranslation();
 console.log('currentPage', currentPage, i18n.language)
   const pageComponents = {

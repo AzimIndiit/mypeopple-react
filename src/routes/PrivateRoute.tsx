@@ -4,7 +4,7 @@ import { useAuth } from "@/hooks/useAuth"; // Custom hook for authentication
 const PrivateRoute = () => {
   const { isAuthenticated } = useAuth(); // Check if user is logged in
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/auth" />;
+  return !isAuthenticated ? <Outlet /> : <Navigate to="/auth" />;
 };
 
 export default PrivateRoute;

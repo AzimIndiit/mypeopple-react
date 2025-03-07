@@ -16,7 +16,8 @@ import { Button } from "@/components/ui/button";
 
 const Page = () => {
   const location = useLocation();
-  const initialPage = location.pathname.split("/auth/client").pop();
+  const initialPage = location.pathname.replace("/auth/client", "").replace("/", "") || "login";
+  console.log('initialPage', initialPage)
   const [currentPage, setCurrentPage] = useState(initialPage || "login");
   const { t, i18n } = useTranslation();
   console.log("currentPage", currentPage, i18n.language);

@@ -15,13 +15,17 @@ import {
 import { useState, useEffect } from "react";
 import eyeFill from "@/assets/icons/eye-fill.svg";
 
-import refreshIcon from "../../../assets/icons/refresh.svg";
-import captchaImg from "../../../assets/images/captcha.svg";
 import { Link } from "react-router-dom";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
-const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCurrentPage: (page: string) => void }) => {
+const LoginPage = ({
+  currentPage,
+  setCurrentPage,
+}: {
+  currentPage: string;
+  setCurrentPage: (page: string) => void;
+}) => {
   const { t, i18n } = useTranslation();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -32,10 +36,16 @@ const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCu
     password: z
       .string()
       .min(15, { message: t("auth.login.validation.password.min") })
-      .regex(/[A-Z]/, { message: t("auth.login.validation.password.uppercase") })
-      .regex(/[a-z]/, { message: t("auth.login.validation.password.lowercase") })
+      .regex(/[A-Z]/, {
+        message: t("auth.login.validation.password.uppercase"),
+      })
+      .regex(/[a-z]/, {
+        message: t("auth.login.validation.password.lowercase"),
+      })
       .regex(/[0-9]/, { message: t("auth.login.validation.password.number") })
-      .regex(/[^A-Za-z0-9]/, { message: t("auth.login.validation.password.special") }),
+      .regex(/[^A-Za-z0-9]/, {
+        message: t("auth.login.validation.password.special"),
+      }),
     captcha: z.string().min(1, { message: t("auth.login.validation.captcha") }),
   });
 
@@ -45,7 +55,6 @@ const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCu
       email: "",
       password: "",
       rememberMe: false,
-      captcha: "",
     },
   });
 
@@ -71,7 +80,10 @@ const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCu
 
       <div className="w-full my-[24px]">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full space-y-6"
+          >
             <FormField
               control={form.control}
               name="email"
@@ -79,7 +91,10 @@ const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCu
                 <FormItem>
                   <FormLabel>{t("auth.login.email")}</FormLabel>
                   <FormControl>
-                    <Input placeholder={t("auth.login.placeholder.email")} {...field} />
+                    <Input
+                      placeholder={t("auth.login.placeholder.email")}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -91,7 +106,7 @@ const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCu
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel >{t("auth.login.password")}</FormLabel>
+                  <FormLabel>{t("auth.login.password")}</FormLabel>
                   <FormControl>
                     <div className="relative">
                       <Input
@@ -112,7 +127,7 @@ const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCu
                 </FormItem>
               )}
             />
- <FormField
+            <FormField
               control={form.control}
               name="rememberMe"
               render={({ field }) => (
@@ -127,34 +142,20 @@ const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCu
                     </FormControl>
                     <Label
                       htmlFor="rememberMe"
-                     className="text-[#596569] !text-[14px] lg:!text-[16px]"
+                      className="text-[#596569] !text-[14px] lg:!text-[16px]"
                     >
-                        {t("auth.login.rememberMe")}
+                      {t("auth.login.rememberMe")}
                     </Label>
                   </div>
                   <p className="w-full text-right text-[14px] lg:text-[16px]">
-                    <Link to="#" onClick={()=>setCurrentPage('forgot-password')} className="text-[#0280F9]">
+                    <Link
+                      to="#"
+                      onClick={() => setCurrentPage("forgot-password")}
+                      className="text-[#0280F9]"
+                    >
                       {t("auth.login.forgotPassword")}
                     </Link>
                   </p>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="captcha"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex flex-col sm:flex-row justify-between items-end sm:items-center gap-[10px] mb-[16px]">
-                    <img src={captchaImg} alt="captcha" className="w-full md:w-[499px] h-[64px]" />
-                    <div className="cursor-pointer">
-                      <img src={refreshIcon} className="w-[25px] h-[24px]" />
-                    </div>
-                  </div>
-                  <FormControl>
-                    <Input placeholder={t("auth.login.placeholder.captcha")} {...field} />
-                  </FormControl>
-                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -166,7 +167,10 @@ const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCu
             <div className="text-center w-full text-[14px] lg:text-[16px]">
               <p className="text-[#596569]">
                 {t("auth.login.noAccount")}{" "}
-                <span className="text-primary cursor-pointer" onClick={() => setCurrentPage("register")}>
+                <span
+                  className="text-primary cursor-pointer"
+                  onClick={() => setCurrentPage("register")}
+                >
                   {t("auth.login.joinHere")}
                 </span>
               </p>
