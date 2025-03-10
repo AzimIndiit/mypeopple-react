@@ -8,6 +8,7 @@ import popular from "@/assets/images/premium.svg";
 
 const pricingPlans = [
   {
+    id: 1,
     price: "20",
     title: "Basic",
     description: "For small startups just starting with HR needs.",
@@ -19,6 +20,7 @@ const pricingPlans = [
     buttonText: "Choose plan",
   },
   {
+    id: 2,
     price: "50",
     title: "Essential",
     description: "For growing businesses requiring regular HR support.",
@@ -30,6 +32,7 @@ const pricingPlans = [
     buttonText: "Choose plan",
   },
   {
+    id: 3,
     price: "100",
     title: "Premium",
     description: "For businesses focused on enhanced HR support.",
@@ -42,6 +45,7 @@ const pricingPlans = [
     buttonText: "Choose plan",
   },
   {
+    id: 4,
     price: "200",
     title: "Advanced",
     description: "For large enterprises with complex HR needs.",
@@ -54,6 +58,7 @@ const pricingPlans = [
   },
 ];
 function PricingCard({
+  planId,
   isMonthly,
   price,
   title,
@@ -62,7 +67,9 @@ function PricingCard({
   isPopular,
   buttonText,
   className,
+  handleSubmit,
 }: {
+  planId: number;
   isMonthly: string;
   price: string;
   title: string;
@@ -71,13 +78,14 @@ function PricingCard({
   isPopular?: boolean;
   buttonText: string;
   className?: string;
+  handleSubmit: (data: any) => void;
 }) {
   return (
     <div
       className={cn(
         "p-4 min-w-[232px] font-primary transition-all flex flex-col  ",
         isPopular
-          ? "bg-black text-white bg-cover bg-center shadow-2xl rounded-3xl"
+          ? "bg-black text-white bg-cover bg-center shadow-2xl rounded-3xl  lg:mt-[-46px] "
           : "",
         className
       )}
@@ -87,7 +95,7 @@ function PricingCard({
               backgroundImage: `url(${popular})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              marginTop: "-46px",
+            
             }
           : {}
       }
@@ -147,13 +155,9 @@ function PricingCard({
       <div className="mx-auto">
         <Button
           type="button"
-          onClick={() => {
-            form.setValue("plan", title);
-
-            form.handleSubmit(onSubmit);
-          }}
+          onClick={()=>handleSubmit({plan:title,planId})}
           className={cn(
-            "w-[207px] h-[45px] rounded-full py-6 text-lg font-medium mt-auto",
+            "w-[207px] h-[45px] rounded-full py-6 text-lg font-medium mt-auto my-4 lg:my-0",
             isPopular
               ? "bg-primary hover:bg-primary/90 text-white"
               : "bg-[#FFF1EE] hover:bg-[#FFF1EE]/90 text-primary"
@@ -166,16 +170,17 @@ function PricingCard({
   );
 }
 
-function PlanPricing({ form, onSubmit }: { form: any; onSubmit: any }) {
+function PlanPricing({screen,  onSubmit }: {  screen?:string,onSubmit: (data: any) => void }) {
   const [isMonthly, setIsMonthly] = useState<string>("MONTHLY");
+
   return (
     <div className="min-h-screen ">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-[18px] font-semibold font-primary mb-4">
+        {screen!=="1" &&  <h2 className="text-[18px] font-semibold font-primary mb-4">
             Choose a Plan
-          </h2>
-          <div className="inline-flex items-center  rounded-full p-1">
+          </h2>}
+          <div className="inline-flex items-center  rounded-full p-1 ">
             {["MONTHLY", "YEARLY"].map((value) => {
               console.log(value, "value");
               return (
@@ -197,9 +202,11 @@ function PlanPricing({ form, onSubmit }: { form: any; onSubmit: any }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 bg-[#F9F9F9] rounded-3xl   p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 bg-[#F9F9F9] rounded-3xl   p-4">
           {pricingPlans.map((plan, index) => (
             <PricingCard
+              handleSubmit={onSubmit}
+              planId={plan.id}
               key={plan.title}
               isMonthly={isMonthly}
               className={`

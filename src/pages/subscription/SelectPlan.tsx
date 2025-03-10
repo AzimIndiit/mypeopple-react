@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
 import { Plus, Minus } from "lucide-react";
+
+import infoSolidIcon from "@/assets/icons/info-fill.svg";
 import { z } from "zod";
 import PlanPricing from "@/components/PlanPricing";
 import {
@@ -25,24 +27,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { toast } from "@/components/hooks/use-toast";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Checkbox } from "@/components/ui/checkbox";
-import infoIcon from "@/assets/icons/info.svg";
-const items = [
-  "I have Work Council and/or In-House Unions",
-  "My topics and needs are more about individual relations",
-  "I have a short-term restructuring project",
-  "Company in the process of being incorporated",
-  "I want to delegate full HR and legal requirements",
-  "HRBP should manage my team day-to-day",
-  "Foreign investor about to implement in France",
-] as const;
 
 const SelectPlanPage = ({
   currentStep,
@@ -54,20 +44,24 @@ const SelectPlanPage = ({
   //   const { t, i18n } = useTranslation();
   const [durationType, setDurationType] = useState("days");
   const [workingDaysType, setWorkingDaysType] = useState("days");
-
+  const [selectedService, setSelectedService] = useState("1");
   //use memo to create the schema
   const SelectPlanSchema = z.object({
     duration: z.number().min(1, { message: "Duration is required" }),
     workingDays: z.number().min(1, { message: "Working Days is required" }),
-    // assignmentDate: z.date({
-    //   required_error: "Assignment Date is required",
-    // }),
-    // assignmentType: z
-    //   .string()
-    //   .min(1, { message: "Assignment Type is required" }),
-    items: z.array(z.string()).refine((value) => value.some((item) => item), {
-      message: "You have to select at least one item.",
+    assignmentDate: z.date({
+      required_error: "Assignment Date is required",
     }),
+    promoCode: z.string().min(1, { message: "Promo Code is required" }),
+    assignmentType: z
+      .string()
+      .min(1, { message: "Assignment Type is required" }),
+    items: z
+      .array(z.string())
+      .refine((value) => value.some((item) => item), {
+        message: "You have to select at least one item.",
+      })
+      .optional(),
     plan: z.string().min(1, { message: "Plan is required" }),
   });
 
@@ -76,17 +70,32 @@ const SelectPlanPage = ({
     defaultValues: {
       duration: 0,
       workingDays: 0,
-      // assignmentDate: null,
-      // assignmentType: "",
+      assignmentDate: undefined,
+      assignmentType: "",
       items: [],
       plan: "",
+      promoCode: "",
     },
   });
 
   const onSubmit = (values: any) => {
     console.log(`Form Submitted`, values);
-    // setCurrentStep("otp");
+    setCurrentStep("billing-details");
   };
+
+  const compareServices = [
+    {
+      id: "1",
+      title: "Invest In France",
+      description: "Our HR package to settle right",
+    },
+    {
+      id: "2",
+      title: "Invest In France",
+      description:
+        "To manage a one time key strategic project or transition period",
+    },
+  ];
 
   return (
     <div className="w-full my-[20px]">
@@ -100,8 +109,8 @@ const SelectPlanPage = ({
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-6"
           >
-            <div className="flex gap-[10px]">
-              <div className="w-full flex justify-between gap-[10px] items-end">
+            <div className="flex flex-col lg:flex-row gap-[10px]">
+              <div className="w-full flex  justify-between gap-[10px] items-end">
                 <FormField
                   control={form.control}
                   name="duration"
@@ -228,50 +237,7 @@ const SelectPlanPage = ({
               </div>
             </div>
 
-            <FormField
-              control={form.control}
-              name="items"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="mb-4">
-                    <FormLabel>You can choose multiple options</FormLabel>
-                  </div>
-                  <div className="flex flex-wrap gap-[10px]">
-                    {items.map((item) => (
-                      <FormItem
-                        key={item}
-                        className="flex h-[44px] flex-row items-center space-x-3 bg-[#FFF4F0] rounded-[10px] p-[10px] max-w-fit"
-                      >
-                        <FormControl>
-                          <Checkbox
-                            className="w-[20px] h-[20px] border border-[#596569] rounded-[4px]"
-                            checked={field.value?.includes(item)}
-                            onCheckedChange={(checked) => {
-                              field.onChange(
-                                checked
-                                  ? [...(field.value || []), item]
-                                  : field.value?.filter(
-                                      (value) => value !== item
-                                    )
-                              );
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className="ml-[-10px] text-[14px] font-primary font-normal">
-                          {item}
-                        </FormLabel>
-                        <FormLabel className="ml-[-10px] text-[14px] font-primary font-normal">
-                          <img src={infoIcon} className="w-[20px] h-[20px]" />
-                        </FormLabel>
-                      </FormItem>
-                    ))}
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* <div className="flex gap-[10px]">
+            <div className="flex flex-col lg:flex-row gap-[10px]">
               <div className="w-full">
                 <FormField
                   control={form.control}
@@ -349,9 +315,248 @@ const SelectPlanPage = ({
                   )}
                 />
               </div>
-            </div> */}
+            </div>
+            <FormField
+              control={form.control}
+              name="items"
+              render={({ field }) => (
+                <FormItem>
+                  {/* <div className="mb-4"> */}
+                  <FormLabel>You can choose multiple options</FormLabel>
+                  {/* </div> */}
+                  {/* <div className="flex flex-wrap gap-[10px]">
+                    {items.map((item) => (
+                      <FormItem
+                        key={item}
+                        className="flex h-[44px] flex-row items-center space-x-3 bg-[#FFF4F0] rounded-[10px] p-[10px] max-w-fit"
+                      >
+                        <FormControl>
+                          <Checkbox
+                            className="w-[20px] h-[20px] border border-[#596569] rounded-[4px]"
+                            checked={field.value?.includes(item)}
+                            onCheckedChange={(checked) => {
+                              field.onChange(
+                                checked
+                                  ? [...(field.value || []), item]
+                                  : field.value?.filter(
+                                      (value) => value !== item
+                                    )
+                              );
+                            }}
+                          />
+                        </FormControl>
+                        <FormLabel className="ml-[-10px] text-[14px] font-primary font-normal">
+                          {item}
+                        </FormLabel>
+                        <FormLabel className="ml-[-10px] text-[14px] font-primary font-normal">
+                          <img src={infoIcon} className="w-[20px] h-[20px]" />
+                        </FormLabel>
+                      </FormItem>
+                    ))}
+                  </div> */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="w-full flex justify-between gap-[10px] items-end">
+              <FormField
+                control={form.control}
+                name="promoCode"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>
+                      Have a Promo Code?{" "}
+                      <FormLabel className=" text-[14px] font-primary font-normal">
+                        <img
+                          src={infoSolidIcon}
+                          className="w-[24px] h-[24px]"
+                        />
+                      </FormLabel>
+                    </FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          className="w-full"
+                          type="string"
+                          placeholder={"KHJGJKYHG78687865"}
+                          {...field}
+                        />
 
-            <PlanPricing form={form} onSubmit={onSubmit} />
+                        <div className="absolute right-[20px] flex gap-[12px] top-1/2 -translate-y-1/2">
+                          <div
+                            className=" p-[2px]  rounded-[7px] cursor-pointer bg-black  "
+                            onClick={() =>
+                              form.setValue("promoCode", field.value + "1")
+                            }
+                          >
+                            <Plus className="w-[25px] h-[24px] text-white" />
+                          </div>
+                          <div
+                            className=" p-[2px]  rounded-[7px] cursor-pointer bg-black  "
+                            onClick={() =>
+                              form.setValue(
+                                "promoCode",
+                                field.value.slice(0, -1)
+                              )
+                            }
+                          >
+                            <Minus className="w-[25px] h-[24px] text-white" />
+                          </div>
+                        </div>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <FormField
+              control={form.control}
+              name="items"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-primary underline !font-semibold text-[14px] mb-4">
+                    Compare Services
+                  </FormLabel>
+                  <div className="flex flex-col gap-[10px]">
+                    <p className="text-[18px] !font-semibold mb-4">
+                      Our Interim Management Services
+                    </p>
+                    <div className="flex flex-col lg:flex-row gap-[20px] w-full  ">
+                      {compareServices.map((type) => (
+                        <div
+                          key={type.title}
+                          className={`h-[78px]  flex lg:justify-start text-left items-center w-full  text-white text-[15px] font-primary font-base rounded-[10px] p-[20px] transition-opacity cursor-pointer ${
+                            selectedService === type.id
+                              ? "bg-black"
+                              : "bg-[rgba(64,64,64,0.08)]"
+                          }`}
+                          onClick={() => setSelectedService(type.id)}
+                        >
+                          <div className="flex flex-col lg:gap-[10px] ">
+                            <p
+                              className={`text-[14px] lg:text-[16px] !font-semibold ${
+                                selectedService === type.id
+                                  ? "text-primary"
+                                  : "text-black"
+                              }`}
+                            >
+                              {type.title}
+                            </p>
+                            <p
+                              className={`text-[14px] lg:text-[16px] font-primary font-normal ${
+                                selectedService === type.id
+                                  ? "text-white"
+                                  : "text-[#596569]"
+                              }`}
+                            >
+                              {type.description}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="rounded-[15px] bg-[#F8F8F8] border border-[#E3E5E8] mt-[20px]">
+                      <div className="flex  gap-[10px]  w-full  ">
+                        <p
+                          className={`text-[14px] w-full text-left h-[48px] py-[14px] px-[16px] flex justify-start items-center text-[#454B54]`}
+                        >
+                          Price Estimate
+                        </p>
+                        <p
+                          className={`text-[16px] text-[#454B54] font-primary font-bold w-full text-left  h-[48px]py-[14px] px-[16px] flex justify-start items-center`}
+                        >
+                          10€
+                        </p>
+                      </div>
+                      <div className="flex  gap-[10px]  w-full  ">
+                        <p
+                          className={`text-[14px] w-full text-left h-[48px] py-[14px] px-[16px] flex justify-start items-center text-[#454B54]`}
+                        >
+                         On Site
+                        </p>
+                        <p
+                          className={`text-[16px] text-[#454B54] font-primary font-bold w-full text-left  h-[48px]py-[14px] px-[16px] flex justify-start items-center`}
+                        >
+                          10€
+                        </p>
+                      </div>
+                      <hr className="w-full" />
+                      <div className="flex  gap-[10px]  w-full  ">
+                        <p
+                          className={`text-[14px] w-full text-left h-[48px] py-[14px] px-[16px] flex justify-start items-center text-[#454B54]`}
+                        >
+                         Special Discount
+                        </p>
+                        <p
+                          className={`text-[16px] text-[#454B54] font-primary font-bold w-full text-left  h-[48px]py-[14px] px-[16px] flex justify-start items-center`}
+                        >
+                          10€
+                        </p>
+                      </div>
+                      <div className="flex  gap-[10px]  w-full  ">
+                        <p
+                          className={`text-[14px] w-full text-left h-[48px] py-[14px] px-[16px] flex justify-start items-center text-[#454B54]`}
+                        >
+                        Total Before VAT
+                        </p>
+                        <p
+                          className={`text-[16px] text-[#454B54] font-primary font-bold w-full text-left  h-[48px]py-[14px] px-[16px] flex justify-start items-center`}
+                        >
+                          270€
+                        </p>
+                      </div>
+                      <div className="flex  gap-[10px]  w-full  ">
+                        <p
+                          className={`text-[14px] w-full text-left h-[48px] py-[14px] px-[16px] flex justify-start items-center text-[#454B54]`}
+                        >
+                       VAT
+                        </p>
+                        <p
+                          className={`text-[16px] text-[#454B54] font-primary font-bold w-full text-left  h-[48px]py-[14px] px-[16px] flex justify-start items-center`}
+                        >
+                          5%
+                        </p>
+                      </div>
+                      <div className="flex  gap-[10px]  w-full  ">
+                        <p
+                          className={`text-[14px] w-full text-left h-[48px] py-[14px] px-[16px] flex justify-start items-center text-[#454B54]`}
+                        >
+                      Total Including VAT
+                        </p>
+                        <p
+                          className={`text-[16px] text-primary font-primary font-bold w-full text-left  h-[48px]py-[14px] px-[16px] flex justify-start items-center`}
+                        >
+                          300€
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="flex flex-col lg:flex-row  gap-[20px] justify-between items-center">
+              <p className="text-[14px] w-full text-left">
+              Compared to hiring an HR manager you save €2000
+              </p>
+              <Button className="w-full lg:w-[315px]" type="button">
+                Buy
+
+              </Button>
+            </div>
+            <hr className="w-full" />
+            <h2 className="text-[16px] lg:text-[18px] font-semibold font-primary my-4">
+            Our HRBP Outsourcing Plans to Switch to Anytime
+          </h2>
+            <PlanPricing
+              screen="1"
+              onSubmit={(value) => {
+                form.setValue("plan", value.planId);
+              onSubmit(form.getValues())
+              }}
+            />
             {/* <Button className="w-full" type="submit">
               {t("auth.login.loginButton")}
             </Button> */}
