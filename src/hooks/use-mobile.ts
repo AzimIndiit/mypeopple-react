@@ -1,19 +1,33 @@
 import * as React from "react"
 
-const MOBILE_BREAKPOINT = 768
+const BREAKPOINTS = {
+  mobile: 768,
+  tablet: 1024,
+  laptop: 1366,
+}
 
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+export function useViewport() {
+  const [viewport, setViewport] = React.useState<"mobile" | "tablet" | "laptop" | "desktop">("desktop")
 
   React.useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    const updateViewport = () => {
+      const width = window.innerWidth
+      if (width < BREAKPOINTS.mobile) {
+        setViewport("mobile")
+      } else if (width < BREAKPOINTS.tablet) {
+        setViewport("tablet")
+      } else if (width < BREAKPOINTS.laptop) {
+        setViewport("laptop")
+      } else {
+        setViewport("desktop")
+      }
     }
-    mql.addEventListener("change", onChange)
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    return () => mql.removeEventListener("change", onChange)
+
+    window.addEventListener("resize", updateViewport)
+    updateViewport()
+
+    return () => window.removeEventListener("resize", updateViewport)
   }, [])
 
-  return !!isMobile
+  return viewport
 }

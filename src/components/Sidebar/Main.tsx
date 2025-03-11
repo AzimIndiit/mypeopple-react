@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import userIcon from "@/assets/icons/user.svg";
@@ -16,7 +16,7 @@ import logoutIcon from "@/assets/icons/logout.svg";
 import coinIcon from "@/assets/icons/coin.svg";
 import messageIcon from "@/assets/icons/message.svg";
 import discoverIcon from "@/assets/icons/Discovery.svg";
-
+import { useViewport } from "@/hooks/use-mobile";
 
 // Menu items.
 const menuItems1 = [
@@ -52,109 +52,250 @@ const menuItems1 = [
   },
 ];
 const menuItems2 = [
-    {
-      title: "Language",
-      url: "/language",
-      icon: languageIcon,
-    },
-    {
-      title: "Currency",
-      url: "/inbox",
-      icon: currencyIcon,
-    },
-    {
-      title: "Settings",
-      url: "/settings",
-      icon: settingIcon,
-    },
-    {
-      title: "Logout",
-      url: "/login",
-      icon: logoutIcon,
-    },
-  ];
-export function AppSidebar() {
-  const [collapsed, setCollapsed] = useState(false);
+  {
+    title: "Language",
+    url: "/language",
+    icon: languageIcon,
+  },
+  {
+    title: "Currency",
+    url: "/currency",
+    icon: currencyIcon,
+  },
+  {
+    title: "Settings",
+    url: "/settings",
+    icon: settingIcon,
+  },
+  {
+    title: "Logout",
+    url: "/login",
+    icon: logoutIcon,
+  },
+];
+export function AppSidebar({collapsed,setCollapsed}:{collapsed:boolean,setCollapsed:(value:boolean)=>void}) {
+  const viewPort = useViewport()
+
   const location = useLocation(); // Get current route
 
+  
+
+ const isMobile = viewPort === "mobile" || viewPort === "tablet"
+if(isMobile){
+  return  <div
+    className={cn(
+      "text-white bg-white h-full absolute top-0 z-10 p-4 transition-all duration-300 border-r border-gray-200 overflow-y-auto  ", // Add bg color
+      collapsed ? "transition-all duration-300 hidden" : "w-[256px]"
+    )}
+  >
+    <div className="flex justify-center items-center my-[26px] lg:my-[40px] ">
+      {!collapsed ? (
+        <img src={logo} alt="logo" className="h-[32px] w-[176px] " />
+      ) : (
+        <img src={logo1} alt="logo" className="h-[56px] w-[56px]" />
+      )}
+    </div>
+    <div className="flex justify-center items-center">
+      <div
+        //   onClick={() => setCollapsed(!collapsed)}
+        className={cn(
+          "mb-[26px]  h-[56px] p-[16px] rounded-[12px] transition-opacity duration-300 flex gap-4 items-center font-primary font-semibold text-[16px] border border-black text-black cursor-pointer hover:bg-black/10",
+          collapsed ? "w-[56px]" : "w-full"
+        )}
+      >
+        <img src={addSolidIcon} alt="toggle" className="w-[36px] h-[36px]" />
+        {!collapsed && <span className=""> Create Order</span>}
+        
+      </div>
+    </div>
+    <ul
+      className={cn(
+        "flex flex-col",
+        collapsed ? "justify-center items-center" : "w-full"
+      )}
+    >
+      {menuItems1.map(({ title, url, icon: Icon }) => (
+        <Link key={title} to={url}>
+          <li
+            // key={title}
+            className={cn(
+              "flex items-center gap-4 h-[56px] p-[16px] rounded-[12px] cursor-pointer transition-colors",
+              collapsed ? "w-[56px]" : "w-full",
+              location.pathname === url ? "bg-black " : "hover:bg-black/10"
+            )}
+          >
+            <img src={Icon} alt={title} className="w-[36px] h-[36px]" />
+
+            {/* Wrap the text in a transition container */}
+            <div className="overflow-hidden transition-all duration-300">
+              <span
+                className={cn(
+                  "opacity-0 transition-opacity duration-300 font-primary font-medium text-[14px] text-[#A4A5A6]",
+                  !collapsed && "opacity-100",
+                  location.pathname === url && "text-white"
+                )}
+              >
+                {title}
+              </span>
+            </div>
+          </li>
+        </Link>
+      ))}
+    </ul>
+    <hr className="my-[26px] " />
+    <ul
+      className={cn(
+        "flex flex-col",
+        collapsed ? "justify-center items-center" : "w-full"
+      )}
+    >
+      {menuItems2.map(({ title, url, icon: Icon }) => (
+        <Link key={title} to={url}>
+          <li
+            // key={title}
+            className={cn(
+              "flex items-center gap-4 h-[56px] p-[16px] rounded-[12px] cursor-pointer transition-colors",
+              collapsed ? "w-[56px]" : "w-full",
+              location.pathname === url ? "bg-black " : "hover:bg-black/10"
+            )}
+          >
+            <img src={Icon} alt={title} className="w-[36px] h-[36px]" />
+
+            {/* Wrap the text in a transition container */}
+            <div className="overflow-hidden transition-all duration-300">
+              <span
+                className={cn(
+                  "opacity-0 transition-opacity duration-300 font-primary font-medium text-[14px] text-[#A4A5A6]",
+                  !collapsed && "opacity-100",
+                  location.pathname === url && "text-white"
+                )}
+              >
+                {title}
+              </span>
+            </div>
+          </li>
+        </Link>
+      ))}
+    </ul>
+    <div className="flex justify-center items-center">
+      <div
+        onClick={() => setCollapsed(!collapsed)}
+        className={cn(
+          " h-[56px] p-[16px] rounded-[12px] flex gap-4 transition-opacity duration-300 items-center font-primary font-medium text-[14px] text-[#A4A5A6] cursor-pointer hover:bg-black/10",
+          collapsed ? "w-[56px]" : "w-full"
+        )}
+      >
+        <img
+          src={collapsed ? chevronRight : chevronLeft}
+          alt="toggle"
+          className="w-[36px] h-[36px]"
+        />
+        {!collapsed && "Collapse"}
+      </div>
+    </div>
+  </div>
+}
   return (
     <div
       className={cn(
-        "text-white p-4 transition-all duration-300 border-r border-gray-200 max-h-screen overflow-y-auto", // Add bg color
+        "text-white p-4 transition-all duration-300 border-r border-gray-200 overflow-y-auto  ", // Add bg color
         collapsed ? "w-[119px]" : "w-[256px]"
       )}
     >
-      <div className="flex justify-center items-center my-[30px] lg:my-[40px]">
+      <div className="flex justify-center items-center my-[26px] lg:my-[40px] ">
         {!collapsed ? (
           <img src={logo} alt="logo" className="h-[32px] w-[176px] " />
         ) : (
           <img src={logo1} alt="logo" className="h-[56px] w-[56px]" />
         )}
       </div>
-     <div className="flex justify-center items-center">
-     <div
-        //   onClick={() => setCollapsed(!collapsed)}
+      <div className="flex justify-center items-center">
+        <div
+          //   onClick={() => setCollapsed(!collapsed)}
           className={cn(
-            "mb-[26px] lg:mb-[36px] h-[56px] p-[16px] rounded-[12px] flex gap-4 items-center font-primary font-semibold text-[16px] border border-black text-black cursor-pointer hover:bg-black/10",
+            "mb-[26px]  h-[56px] p-[16px] rounded-[12px] transition-opacity duration-300 flex gap-4 items-center font-primary font-semibold text-[16px] border border-black text-black cursor-pointer hover:bg-black/10",
             collapsed ? "w-[56px]" : "w-full"
           )}
         >
-          <img
-            src={addSolidIcon}
-            alt="toggle"
-            className="w-[36px] h-[36px]"
-          />
-          {!collapsed && "Create Order"}
+          <img src={addSolidIcon} alt="toggle" className="w-[36px] h-[36px]" />
+          {!collapsed && <span className=""> Create Order</span>}
+          
         </div>
-     </div>
-      <ul className={cn("flex flex-col", collapsed ? "justify-center items-center" : "w-full")}>
+      </div>
+      <ul
+        className={cn(
+          "flex flex-col",
+          collapsed ? "justify-center items-center" : "w-full"
+        )}
+      >
         {menuItems1.map(({ title, url, icon: Icon }) => (
-         <Link key={title} to={url} >
-             <li
-            // key={title}
-            className={cn(
-              "flex items-center gap-4 h-[56px] p-[16px] rounded-[12px] cursor-pointer transition-colors",
-              collapsed ? "w-[56px]" : "w-full",
-              location.pathname === url ? "bg-black " : "hover:bg-black/10"
-            )}
-          >
-           {collapsed ? <img src={Icon} alt={title}  className={`w-[36px] h-[36px] ${location.pathname === url ? "filter invert-0" : ""}`} /> :
-           <>
-            <img src={Icon} alt={title} className="w-[36px] h-[36px]" />
-              <div  className={`${collapsed ? "hidden" : "block"} transition-all duration-300 font-primary font-medium text-[14px] text-[#A4A5A6] ${location.pathname === url ? "text-white" : ""}`}>
-                {title}
-              </div></>}
-          </li>
-         </Link>
+          <Link key={title} to={url}>
+            <li
+              // key={title}
+              className={cn(
+                "flex items-center gap-4 h-[56px] p-[16px] rounded-[12px] cursor-pointer transition-colors",
+                collapsed ? "w-[56px]" : "w-full",
+                location.pathname === url ? "bg-black " : "hover:bg-black/10"
+              )}
+            >
+              <img src={Icon} alt={title} className="w-[36px] h-[36px]" />
+
+              {/* Wrap the text in a transition container */}
+              <div className="overflow-hidden transition-all duration-300">
+                <span
+                  className={cn(
+                    "opacity-0 transition-opacity duration-300 font-primary font-medium text-[14px] text-[#A4A5A6]",
+                    !collapsed && "opacity-100",
+                    location.pathname === url && "text-white"
+                  )}
+                >
+                  {title}
+                </span>
+              </div>
+            </li>
+          </Link>
         ))}
       </ul>
-  <hr className="my-[26px] lg:my-[36px]"/>
-  <ul className={cn("flex flex-col", collapsed ? "justify-center items-center" : "w-full")}>
+      <hr className="my-[26px] " />
+      <ul
+        className={cn(
+          "flex flex-col",
+          collapsed ? "justify-center items-center" : "w-full"
+        )}
+      >
         {menuItems2.map(({ title, url, icon: Icon }) => (
-         <Link key={title} to={url} >
-             <li
-            // key={title}
-            className={cn(
-              "flex items-center gap-4 h-[56px] p-[16px] rounded-[12px] cursor-pointer transition-colors",
-              collapsed ? "w-[56px]" : "w-full",
-              location.pathname === url ? "bg-black " : "hover:bg-black/10"
-            )}
-          >
-               {collapsed ? <img src={Icon} alt={title} className="w-[36px] h-[36px]" /> :
-           <>
-            <img src={Icon} alt={title} className="w-[36px] h-[36px]" />
-              <div  className={`${collapsed ? "hidden" : "block"} transition-all duration-300 font-primary font-medium text-[14px] text-[#A4A5A6] ${location.pathname === url ? "text-white" : ""}`}>
-                {title}
-              </div></>}
-          </li>
-         </Link>
+          <Link key={title} to={url}>
+            <li
+              // key={title}
+              className={cn(
+                "flex items-center gap-4 h-[56px] p-[16px] rounded-[12px] cursor-pointer transition-colors",
+                collapsed ? "w-[56px]" : "w-full",
+                location.pathname === url ? "bg-black " : "hover:bg-black/10"
+              )}
+            >
+              <img src={Icon} alt={title} className="w-[36px] h-[36px]" />
+
+              {/* Wrap the text in a transition container */}
+              <div className="overflow-hidden transition-all duration-300">
+                <span
+                  className={cn(
+                    "opacity-0 transition-opacity duration-300 font-primary font-medium text-[14px] text-[#A4A5A6]",
+                    !collapsed && "opacity-100",
+                    location.pathname === url && "text-white"
+                  )}
+                >
+                  {title}
+                </span>
+              </div>
+            </li>
+          </Link>
         ))}
       </ul>
       <div className="flex justify-center items-center">
         <div
           onClick={() => setCollapsed(!collapsed)}
           className={cn(
-            "mb-4 h-[56px] p-[16px] rounded-[12px] flex gap-4 items-center font-primary font-medium text-[14px] text-[#A4A5A6] cursor-pointer hover:bg-black/10",
+            " h-[56px] p-[16px] rounded-[12px] flex gap-4 transition-opacity duration-300 items-center font-primary font-medium text-[14px] text-[#A4A5A6] cursor-pointer hover:bg-black/10",
             collapsed ? "w-[56px]" : "w-full"
           )}
         >

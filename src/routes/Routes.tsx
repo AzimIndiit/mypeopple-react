@@ -6,6 +6,9 @@ import AuthPage from "@/pages/auth/Page";
 import AuthClientPage from "@/pages/auth/client/Page";
 import NotFound from "@/pages/NotFound"; // Create a proper 404 page
 import SubscriptionPage from "@/pages/subscription/Page";
+import DashboardPage from "@/pages/dashboard/Page";
+import OrdersPage from "@/pages/orders/Page";
+import UsersPage from "@/pages/hrbp/users/Page";
 
 const AppRoutes = () => {
   return (
@@ -37,10 +40,10 @@ const AppRoutes = () => {
       <Route path="/subscription" element={<SubscriptionPage/>} />
         <Route element={<DashboardLayout />}>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/dashboard" element={<div>Dashboard</div>} />
-         
-          <Route path="/users" element={<div>Users</div>} />
-          <Route path="/orders" element={<div>Orders</div>} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+           
+          <Route path="/users" element={<UsersPage showFilters={true} isDashboard={false}/>} />
+          <Route path="/orders" element={<OrdersPage showFilters={true}/>} />
           <Route path="/settings" element={<div>Settings</div>} />
           <Route path="/inbox" element={<div>Inbox</div>} />
         </Route>
