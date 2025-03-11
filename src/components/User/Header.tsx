@@ -5,7 +5,7 @@ import filterIcon from '@/assets/icons/sort.svg'
 import documentIcon from '@/assets/icons/document-solid.svg'
 const Header = () => {
   return (
-    <div className='flex justify-between w-full gap-2'>
+    <div className='flex flex-col lg:flex-row  justify-between w-full gap-4 md:gap-2'>
       <SearchInput placeholder='Search Here' onSearch={(value)=>{
         console.log("searchValue",value)
       }} />

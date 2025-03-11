@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Button } from "../ui/button";
 import connectIcon from "@/assets/icons/connect.svg";
 import viewInfoIcon from "@/assets/icons/info-pri.svg";
+import { useNavigate } from "react-router-dom";
 
 interface UserCardProps {
   id: number;
@@ -30,6 +31,7 @@ const getColor = (status: string) => {
   return colors[status as keyof typeof colors];
 };
 const UserCard: FC<UserCardProps> = ({ id, image, name, exp, status }) => {
+  const navigate = useNavigate()
   return (
     <div className="p-[15px]  flex flex-col justify-between rounded-[16px] bg-white shadow-md w-full  xl:w-[268px] gap-[16px] xl:h-[329px] border border-gray-200">
       <div className="flex items-center gap-2 h-[240px] xl:h-[200px] w-full xl:w-[238px] rounded-[16px] bg-gray-100  relative">
@@ -62,16 +64,17 @@ const UserCard: FC<UserCardProps> = ({ id, image, name, exp, status }) => {
           <img
             src={connectIcon}
             alt="connect"
-            className="w-[24px] h-[24px]"
+            className="w-[16px] h-[16px]"
           />{" "}
           Connect{" "}
         </Button>
-        <Button variant="outline" className="h-[40px] xl:w-[114px] ">
+        <Button variant="outline" className="h-[40px] xl:w-[114px] " 
+        onClick={() => navigate(`/users/${id}`)} >
           {" "}
           <img
             src={viewInfoIcon}
             alt="viewInfo"
-            className="w-[24px] h-[24px]"
+            className="w-[16px] h-[16px]"
           />{" "}
           View Info
         </Button>

@@ -1,4 +1,4 @@
-import React,{ ReactNode, useState } from "react";
+import React,{ ReactNode, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 // import { useTranslation } from "react-i18next";
 import { AppSidebar } from "@/components/Sidebar/Main"
@@ -15,7 +15,16 @@ const DashboardLayout = () => {
 const [collapsed, setCollapsed] = useState( false);
 const viewPort = useViewport()
 const isMobile = viewPort === "mobile" || viewPort === "tablet"
+const isDesktop = viewPort === "desktop" || viewPort === "laptop"
 
+useEffect(()=>{
+  if(isMobile){
+    setCollapsed(true)
+  }
+  if(isDesktop){
+    setCollapsed(false)
+  }
+},[isMobile,isDesktop])
   return (
     <div className="flex w-full   relative ">
       <AppSidebar collapsed={collapsed} setCollapsed={setCollapsed} />

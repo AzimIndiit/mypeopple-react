@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import userIcon from "@/assets/icons/user.svg";
 import logo from "@/assets/icons/logo.svg";
@@ -75,7 +75,7 @@ const menuItems2 = [
 ];
 export function AppSidebar({collapsed,setCollapsed}:{collapsed:boolean,setCollapsed:(value:boolean)=>void}) {
   const viewPort = useViewport()
-
+  const navigate = useNavigate()
   const location = useLocation(); // Get current route
 
   
@@ -84,7 +84,7 @@ export function AppSidebar({collapsed,setCollapsed}:{collapsed:boolean,setCollap
 if(isMobile){
   return  <div
     className={cn(
-      "text-white bg-white h-full absolute top-0 z-10 p-4 transition-all duration-300 border-r border-gray-200 overflow-y-auto  ", // Add bg color
+      "text-white bg-white h-full absolute top-0 z-101 p-4 transition-all duration-300 border-r border-gray-200 overflow-y-auto  ", // Add bg color
       collapsed ? "transition-all duration-300 hidden" : "w-[256px]"
     )}
   >
@@ -97,7 +97,9 @@ if(isMobile){
     </div>
     <div className="flex justify-center items-center">
       <div
-        //   onClick={() => setCollapsed(!collapsed)}
+    onClick={() => {
+      navigate("/orders/create");
+    }}
         className={cn(
           "mb-[26px]  h-[56px] p-[16px] rounded-[12px] transition-opacity duration-300 flex gap-4 items-center font-primary font-semibold text-[16px] border border-black text-black cursor-pointer hover:bg-black/10",
           collapsed ? "w-[56px]" : "w-full"
@@ -115,7 +117,11 @@ if(isMobile){
       )}
     >
       {menuItems1.map(({ title, url, icon: Icon }) => (
-        <Link key={title} to={url}>
+        <Link key={title} to={url} onClick={()=>{
+          if(isMobile){
+            setCollapsed(true)
+          }
+        }}>
           <li
             // key={title}
             className={cn(
@@ -211,7 +217,9 @@ if(isMobile){
       </div>
       <div className="flex justify-center items-center">
         <div
-          //   onClick={() => setCollapsed(!collapsed)}
+          onClick={() => {
+            navigate("/orders/create");
+          }}
           className={cn(
             "mb-[26px]  h-[56px] p-[16px] rounded-[12px] transition-opacity duration-300 flex gap-4 items-center font-primary font-semibold text-[16px] border border-black text-black cursor-pointer hover:bg-black/10",
             collapsed ? "w-[56px]" : "w-full"

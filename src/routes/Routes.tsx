@@ -9,6 +9,8 @@ import SubscriptionPage from "@/pages/subscription/Page";
 import DashboardPage from "@/pages/dashboard/Page";
 import OrdersPage from "@/pages/orders/Page";
 import UsersPage from "@/pages/hrbp/users/Page";
+import ProfilePage from "@/pages/hrbp/users/profile/Page";
+import CreateOrder from "@/pages/orders/CreateOrder";
 
 const AppRoutes = () => {
   return (
@@ -43,7 +45,9 @@ const AppRoutes = () => {
           <Route path="/dashboard" element={<DashboardPage />} />
            
           <Route path="/users" element={<UsersPage showFilters={true} isDashboard={false}/>} />
+          <Route path="/users/:id" element={<ProfilePage />} />
           <Route path="/orders" element={<OrdersPage showFilters={true}/>} />
+          <Route path="/orders/create" element={<CreateOrder />} />
           <Route path="/settings" element={<div>Settings</div>} />
           <Route path="/inbox" element={<div>Inbox</div>} />
         </Route>
