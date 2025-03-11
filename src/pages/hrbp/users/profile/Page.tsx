@@ -37,14 +37,17 @@ const ProfilePage = () => {
           <p className="text-[20px] font-regular font-primary">HRBP Details</p>
         </div>
         <Button
-            onClick={() => {
-              navigate("/orders/create");
-            }}
+          onClick={() => navigate("/orders/create")}
           variant="ghost"
-          className="text-[12px] font-regular font-primary  bg-black text-white h-[41px] rounded-[15px] w-[200px] "
+          className="group text-[12px] font-regular hover:border-1 hover:border-black hover:text-white font-primary bg-black text-white h-[41px] rounded-[15px] w-[200px] border border-transparent transition-all duration-300"
         >
-          <img src={addIcon} className="w-[16px] h-[16px] filter invert" />
-          Create Order with HRBP
+          <img
+            src={addIcon}
+            className="w-[16px] h-[16px] filter invert transition-all duration-300 group-hover:filter-none"
+          />
+          <span className="ml-2 transition-all duration-300 group-hover:text-black">
+            Create Order with HRBP
+          </span>
         </Button>
       </div>
       <div className="flex flex-col md:flex-row justify-between md:items-start items-center w-full my-4 gap-4 xl:gap-[43px]">
@@ -64,28 +67,30 @@ const ProfilePage = () => {
               {userData.exp}
             </p>
             <p className="text-[14px] font-regular font-primary flex items-center gap-2">
-             <img src={emailIcon} className="w-[16px] h-[16px]"/> {userData.email}
+              <img src={emailIcon} className="w-[16px] h-[16px]" />{" "}
+              {userData.email}
             </p>
             <p className="text-[14px] font-regular font-primary flex items-center gap-2">
-            <img src={phoneIcon} className="w-[16px] h-[16px]"/>  {userData.phone}
+              <img src={phoneIcon} className="w-[16px] h-[16px]" />{" "}
+              {userData.phone}
             </p>
           </div>
           <Button className="h-[40px]   w-full">
-          {" "}
-          <img
-            src={connectIcon}
-            alt="connect"
-            className="w-[16px] h-[16px]"
-          />{" "}
-          Connect{" "}
-        </Button>
+            {" "}
+            <img
+              src={connectIcon}
+              alt="connect"
+              className="w-[16px] h-[16px]"
+            />{" "}
+            Connect{" "}
+          </Button>
         </div>
-            <div className="w-full">
-            <p className=" text-[14px] lg:text-[14px] font-semibold font-primary w-full mb-4 uppercase text-[#1C1C1C]  ">
-          Invoices
-        </p>
-        <InvoiceTable />
-            </div>
+        <div className="w-full">
+          <p className=" text-[14px] lg:text-[14px] font-semibold font-primary w-full mb-4 uppercase text-[#1C1C1C]  ">
+            Invoices
+          </p>
+          <InvoiceTable />
+        </div>
       </div>
     </div>
   );
