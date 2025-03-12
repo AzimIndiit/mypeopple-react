@@ -89,7 +89,7 @@ const Page = () => {
 
             {/* Terms and Conditions */}
             {["register"].includes(currentPage) && (
-              <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  mt-[16px] shrink-0">
+              <div className="text-center w-full font-primary font-light text-[14px] lg:text-[16px]  mt-[16px] shrink-0">
                 <p className="mb-[24px]">
                   {t("auth.bottom-line-1")} {""}
                   <Link to="#" className="text-[#0280F9]">

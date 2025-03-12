@@ -78,14 +78,14 @@ const ForgotPasswordPage = ({
             <Button className="w-full" type="submit">
               Submit
             </Button>
-            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px] ">
+            <div className="text-center w-full font-primary font-light text-[14px] lg:text-[16px] ">
             <p className=" mb-[24px]">
             If an account exists for this email you will get an email with instructions on resetting your password. If it doesn't
             arrive, be sure to check your spam folder.
             </p>
           </div>
        
-            <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  ">
+            <div className="text-center w-full font-primary font-light text-[14px] lg:text-[16px]  ">
               <p className=" text-[#596569]  text-center w-full ">
                 Back to{" "}
                 <span

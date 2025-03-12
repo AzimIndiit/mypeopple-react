@@ -34,7 +34,7 @@ const MainCreationPage = ({ currentPage, setCurrentPage }: { currentPage: string
           <img src={email} alt="email" />
           {t(emailText)}
         </Button>
-        <div className="text-center w-full font-primary font-regular text-[14px] lg:text-[16px]  ">
+        <div className="text-center w-full font-primary font-light text-[14px] lg:text-[16px]  ">
           <p className=" text-[#596569]  text-center w-full ">
             {t(login)} <span className="text-primary" onClick={() => setCurrentPage("login")}>{t(loginLink)}</span>
           </p>

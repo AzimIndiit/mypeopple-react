@@ -9,7 +9,7 @@ import emailIcon from "@/assets/icons/email-solid.svg";
 import phoneIcon from "@/assets/icons/phone.svg";
 import connectIcon from "@/assets/icons/connect.svg";
 import InvoiceTable from "@/components/Invoice/InvoiceTable";
-const ProfilePage = () => {
+const UserProfilePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   console.log(id);
@@ -34,12 +34,12 @@ const ProfilePage = () => {
           >
             <img src={backArrow} className="w-[30px] h-[30px]" />
           </div>
-          <p className="text-[20px] font-regular font-primary">HRBP Details</p>
+          <p className="text-[20px] font-light font-primary">HRBP Details</p>
         </div>
         <Button
           onClick={() => navigate("/orders/create")}
           variant="ghost"
-          className="group text-[12px] font-regular hover:border-1 hover:border-black hover:text-white font-primary bg-black text-white h-[41px] rounded-[15px] w-[200px] border border-transparent transition-all duration-300"
+          className="group text-[12px] font-light hover:border-1 hover:border-black hover:text-white font-primary bg-black text-white h-[41px] rounded-[15px] w-[200px] border border-transparent transition-all duration-300"
         >
           <img
             src={addIcon}
@@ -63,14 +63,14 @@ const ProfilePage = () => {
             <p className="text-[16px] font-semibold font-primary">
               {userData.name}
             </p>
-            <p className="text-[14px] font-regular font-primary">
+            <p className="text-[14px] font-light font-primary">
               {userData.exp}
             </p>
-            <p className="text-[14px] font-regular font-primary flex items-center gap-2">
+            <p className="text-[14px] font-light font-primary flex items-center gap-2">
               <img src={emailIcon} className="w-[16px] h-[16px]" />{" "}
               {userData.email}
             </p>
-            <p className="text-[14px] font-regular font-primary flex items-center gap-2">
+            <p className="text-[14px] font-light font-primary flex items-center gap-2">
               <img src={phoneIcon} className="w-[16px] h-[16px]" />{" "}
               {userData.phone}
             </p>
@@ -96,4 +96,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default UserProfilePage;

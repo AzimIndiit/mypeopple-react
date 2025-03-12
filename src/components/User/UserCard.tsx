@@ -54,7 +54,7 @@ const UserCard: FC<UserCardProps> = ({ id, image, name, exp, status }) => {
       <div className="flex  justify-between items-center gap-2 font-primary">
         <div className="text-[16px] font-semibold capitalize">{name}</div>
         <div className=" w-[2px] h-full bg-[#404145]"></div>
-        <div className="text-[14px] font-regular">
+        <div className="text-[14px] font-light">
           {experienceFormatter(exp)}
         </div>
       </div>

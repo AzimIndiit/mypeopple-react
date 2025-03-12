@@ -9,8 +9,10 @@ import SubscriptionPage from "@/pages/subscription/Page";
 import DashboardPage from "@/pages/dashboard/Page";
 import OrdersPage from "@/pages/orders/Page";
 import UsersPage from "@/pages/hrbp/users/Page";
-import ProfilePage from "@/pages/hrbp/users/profile/Page";
-import CreateOrder from "@/pages/orders/CreateOrder";
+import OrderCreatePage from "@/pages/orders/OrderCreate";
+import OrderDetailsPage from "@/pages/orders/OrderDetails";
+import UserProfilePage from "@/pages/hrbp/users/UserProfile";
+import OrderDetailsInboxPage from "@/pages/orders/OrderDetailsInbox";
 
 const AppRoutes = () => {
   return (
@@ -23,6 +25,7 @@ const AppRoutes = () => {
           <Route path="login" element={<AuthPage />} />
           <Route path="otp" element={<AuthPage />} />
           <Route path="register" element={<AuthPage />} />
+          <Route path="reset-password" element={<AuthPage />} />
           <Route path="forgot-password" element={<AuthPage />} />
         </Route>
 
@@ -45,9 +48,11 @@ const AppRoutes = () => {
           <Route path="/dashboard" element={<DashboardPage />} />
            
           <Route path="/users" element={<UsersPage showFilters={true} isDashboard={false}/>} />
-          <Route path="/users/:id" element={<ProfilePage />} />
+          <Route path="/users/:id" element={<UserProfilePage />} />
           <Route path="/orders" element={<OrdersPage showFilters={true}/>} />
-          <Route path="/orders/create" element={<CreateOrder />} />
+          <Route path="/orders/create" element={<OrderCreatePage />} />
+          <Route path="/orders/:id" element={<OrderDetailsPage />} />
+          <Route path="/orders/inbox/:id" element={<OrderDetailsInboxPage />} />
           <Route path="/settings" element={<div>Settings</div>} />
           <Route path="/inbox" element={<div>Inbox</div>} />
         </Route>

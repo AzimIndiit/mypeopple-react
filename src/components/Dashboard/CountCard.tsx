@@ -20,7 +20,7 @@ const CountCard = ({
     >
       <div className="flex flex-col  font-primary">
         <div className="text-[38px] font-bold text-white ">{count}</div>
-        <div className="text-[18px] font-regular text-white">{title}</div>
+        <div className="text-[18px] font-light text-white">{title}</div>
       </div>
       <div className="flex items-center gap-2">
         <img src={icon} alt={title} className="w-[136px] h-[136px]" />

@@ -147,7 +147,7 @@ const getStatus = (status: string) => {
         style={{ backgroundColor: getColor(status) }}
         className={` rounded-full h-[5px] w-[5px]`}
       />
-      <p className="text-[14px] font-regular capitalize">
+      <p className="text-[14px] font-light capitalize">
         {status === "on-hold" ? "On Hold" : status}
       </p>
     </div>
@@ -171,7 +171,7 @@ export default function InvoiceTable({ isDashboard }: { isDashboard?: boolean })
                   key={column.key}
                   className="p-[16px] sticky top-0 z-[100]"
                 >
-                  <p className="text-[#858494] font-regular ">{column.label}</p>
+                  <p className="text-[#858494] font-light ">{column.label}</p>
                 </TableHead>
               ))}
             </TableRow>
@@ -188,7 +188,7 @@ export default function InvoiceTable({ isDashboard }: { isDashboard?: boolean })
                         className=" px-[16px] text-[#49465F] font-primary font-normal"
                       >
                         {column.key === "id" ? (
-                          <p className="text-[14px] font-regular text-black">
+                          <p className="text-[14px] font-light text-black">
                             {invoice.id}
                           </p>
                         ) :  column.key === "action" ? (
@@ -214,7 +214,7 @@ export default function InvoiceTable({ isDashboard }: { isDashboard?: boolean })
             isDashboard ? "h-[100px]" : "min-h-[65vh]"
           )}
         >
-          <p className="text-[14px] font-regular text-black">
+          <p className="text-[14px] font-light text-black">
             No Invoice found
           </p>
         </div>

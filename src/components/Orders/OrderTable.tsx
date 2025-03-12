@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import shareIcon from "@/assets/icons/share.svg";
 import vieweyeIcon from "@/assets/icons/eye-bold.svg";
 import { formatDate, parseISO } from "date-fns";
+import { useNavigate } from "react-router-dom";
 type Order = {
   id: string;
   name: string;
@@ -123,23 +124,24 @@ const columns: { key: keyof Order | "action"; label: string }[] = [
 
 // Action Component
 const getActionButton = ({ order }: { order: Order }) => {
+  const navigate = useNavigate();
   return (
     <div className="text-[14px] font-primary text-[#858494] ">
-
-<div className="flex  gap-2  text-[12px] font-semibold justify-start items-center">
-          <img
-           onClick={()=>{}}
-            src={vieweyeIcon}
-            alt="View"
-            className="w-[24px] h-[24px]"
-          />{" "}
-          <img
-            onClick={()=>{}}
-            src={shareIcon}
-            alt="share"
-            className="w-[24px] h-[24px]"
-          />{" "}
-          
+      <div className="flex  gap-2  text-[12px] font-semibold justify-start items-center">
+        <img
+          onClick={() => {
+            navigate(`/orders/${order.id}`);
+          }}
+          src={vieweyeIcon}
+          alt="View"
+          className="w-[24px] h-[24px]"
+        />{" "}
+        <img
+          onClick={() => {}}
+          src={shareIcon}
+          alt="share"
+          className="w-[24px] h-[24px]"
+        />{" "}
       </div>
     </div>
   );
@@ -155,51 +157,64 @@ const getColor = (status: string) => {
   return colors[status as keyof typeof colors];
 };
 const getStatus = (status: string) => {
-  return (<div className="flex items-center gap-2">
-    <div className={`flex justify-center items-center `} />
-    <div
-     style={{backgroundColor:getColor(
-        status
-      )}}
-      className={` rounded-full h-[5px] w-[5px]`}
-    />
-    <p className="text-[14px] font-regular capitalize">
-      {status === "on-hold" ? "On Hold" : status}
-    </p>
-  </div>)
-}
-    
-
-export default function OrderTable({isDashboard}:{isDashboard:boolean}) {
   return (
-    <div className={cn(" rounded-[20px] relative border-1 border-[#EFEEFC]  ")   }>
-   {orders.length > 0 ? <Table className={cn("w-full overflow-x-auto relative overflow-auto", isDashboard ? "h-[400px]" : "h-full")}>
-        <TableHeader className="">
-          <TableRow className=" text-[14px] font-primary text-[#858494]">
-            {columns.map((column) => (
-              <TableHead key={column.key} className="p-[16px] sticky top-0 z-[100]">
-                <p className="text-[#858494] font-regular ">{column.label}</p>
-              </TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {orders.slice(0, isDashboard ? 4 : orders.length).map((order) => {
-          
-            return (
+    <div className="flex items-center gap-2">
+      <div className={`flex justify-center items-center `} />
+      <div
+        style={{ backgroundColor: getColor(status) }}
+        className={` rounded-full h-[5px] w-[5px]`}
+      />
+      <p className="text-[14px] font-light capitalize">
+        {status === "on-hold" ? "On Hold" : status}
+      </p>
+    </div>
+  );
+};
+
+export default function OrderTable({ isDashboard }: { isDashboard: boolean }) {
+  return (
+    <div className={cn(" rounded-[20px] relative border-1 border-[#EFEEFC]  ")}>
+      {orders.length > 0 ? (
+        <Table
+          className={cn(
+            "w-full overflow-x-auto relative overflow-auto",
+            isDashboard ? "h-[400px]" : "h-full"
+          )}
+        >
+          <TableHeader className="">
+            <TableRow className=" text-[14px] font-primary text-[#858494]">
+              {columns.map((column) => (
+                <TableHead
+                  key={column.key}
+                  className="p-[16px] sticky top-0 z-[100]"
+                >
+                  <p className="text-[#858494] font-light ">{column.label}</p>
+                </TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {orders.slice(0, isDashboard ? 4 : orders.length).map((order) => {
+              return (
                 <TableRow key={order.id} className="!h-[61px] ">
                   {columns.map((column) => (
-                    <td key={column.key} className=" px-[16px] text-[#49465F] font-primary font-normal">
-                      {
-                      column.key==="id" ? (
-                        <p className="text-[14px] font-regular text-black">{order.id}</p>
-                    ): column.key==="name" ? (
-                          <p className="text-[14px] font-semibold text-black">{order.name}</p>
+                    <td
+                      key={column.key}
+                      className=" px-[16px] text-[#49465F] font-primary font-normal"
+                    >
+                      {column.key === "id" ? (
+                        <p className="text-[14px] font-light text-black">
+                          {order.id}
+                        </p>
+                      ) : column.key === "name" ? (
+                        <p className="text-[14px] font-semibold text-black">
+                          {order.name}
+                        </p>
                       ) : column.key === "action" ? (
-                        getActionButton({order})
+                        getActionButton({ order })
                       ) : column.key === "status" ? (
                         getStatus(order.status)
-                      )  : column.key === "date" ? (
+                      ) : column.key === "date" ? (
                         formatDate(parseISO(order.date), "d MMMM yyyy")
                       ) : (
                         (order as any)[column.key]
@@ -207,12 +222,20 @@ export default function OrderTable({isDashboard}:{isDashboard:boolean}) {
                     </td>
                   ))}
                 </TableRow>
-              )
-          })}
-        </TableBody>
-      </Table> : <div className={cn("flex justify-center items-center ", isDashboard ? "h-[100px]" : "min-h-[65vh]")}>
-        <p className="text-[14px] font-regular text-black">No orders found</p>
-        </div>}
+              );
+            })}
+          </TableBody>
+        </Table>
+      ) : (
+        <div
+          className={cn(
+            "flex justify-center items-center ",
+            isDashboard ? "h-[100px]" : "min-h-[65vh]"
+          )}
+        >
+          <p className="text-[14px] font-light text-black">No orders found</p>
+        </div>
+      )}
     </div>
   );
 }

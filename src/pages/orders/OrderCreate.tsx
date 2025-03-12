@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   Form,
   FormControl,
@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { boolean, z } from "zod";
 import {
   Select,
   SelectContent,
@@ -26,9 +26,52 @@ import { useNavigate } from "react-router-dom";
 import { Trash2 } from "lucide-react";
 import attachmentIcon from "@/assets/icons/attachment-soild.svg";
 import docIcon from "@/assets/icons/doc-file.svg";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getInitials } from "@/utils/helper";
+import avatar from "@/assets/images/avatar.png";
+import PopupModal from "@/components/Orders/PopupModal";
+import GetModalContent from "@/components/Orders/GetModalContent";
 
-const CreateOrder = () => {
+const serviceType = [
+  {
+    label: "Employment Contract",
+    value: "Employment Contract",
+  },
+  {
+    label: "Talent Acquisition & Recruitment",
+    value: "Talent Acquisition & Recruitment",
+  },
+  {
+    label: "Performance Management",
+    value: "Performance Management",
+  },
+  {
+    label: "Learning & Development",
+    value: "Learning & Development",
+  },
+  {
+    label: "Compensation & Benefits",
+    value: "Compensation & Benefits",
+  },
+  {
+    label: "HR Compliance & Policies",
+    value: "HR Compliance & Policies",
+  },
+];
+
+const users = [
+  { id: "1", avatar: avatar, name: "Michael" },
+  { id: "2", avatar: avatar, name: "Alice" },
+  { id: "3", avatar: avatar, name: "John" },
+];
+
+const OrderCreatePage = () => {
   const navigate = useNavigate();
+  const [orderStatus, setOrderStatus] = useState<
+    "sent" | "accepted" | "rejected"
+  >("sent");
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const CreateOrderSchema = z.object({
     serviceType: z.string().min(1, { message: "Service Type is required" }),
@@ -50,7 +93,7 @@ const CreateOrder = () => {
     resolver: zodResolver(CreateOrderSchema),
     defaultValues: {
       serviceType: "",
-      orderType: "",
+      orderType: "contact",
       description: "",
       selectedHrbp: "",
       attachment: [],
@@ -81,16 +124,19 @@ const CreateOrder = () => {
     }
   };
 
+  
+  const { title, description , showFooter} = GetModalContent({orderStatus});
+
   return (
     <div className="w-full">
-      <p className=" text-[14px] lg:text-[14px] font-semibold font-primary w-full mb-4 uppercase text-[#1C1C1C]  ">
+      <p className=" text-[14px] lg:text-[14px] font-semibold font-primary w-full uppercase text-[#1C1C1C]  ">
         New Order
       </p>
-      <div className="w-full mt-[24px]">
+      <div className="w-full my-[20px]">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-6"
+            className="w-full space-y-4"
           >
             <div className="w-full">
               <FormField
@@ -109,15 +155,11 @@ const CreateOrder = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="m@example.com">
-                          m@example.com
-                        </SelectItem>
-                        <SelectItem value="m@google.com">
-                          m@google.com
-                        </SelectItem>
-                        <SelectItem value="m@support.com">
-                          m@support.com
-                        </SelectItem>
+                        {serviceType.map((item) => (
+                          <SelectItem value={item.value} className="h-[48px]">
+                            {item.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
 
@@ -135,7 +177,7 @@ const CreateOrder = () => {
                   <FormControl>
                     <div className="w-full flex gap-[10px]">
                       <RadioGroup
-                        defaultValue="client"
+                        defaultValue="contact"
                         value={field.value}
                         onValueChange={field.onChange}
                         className="w-full flex"
@@ -145,7 +187,7 @@ const CreateOrder = () => {
                           <Label htmlFor="r1">Order to any HRBP </Label>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <RadioGroupItem value="hrbp" id="r2" />
+                          <RadioGroupItem value="contact" id="r2" />
                           <Label htmlFor="r2">Select from your Contacts</Label>
                         </div>
                       </RadioGroup>
@@ -167,22 +209,27 @@ const CreateOrder = () => {
                     >
                       <FormControl className="w-full">
                         <SelectTrigger className="w-full">
-                          <SelectValue placeholder="" />
+                          <SelectValue placeholder="Select HRBP" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
-                        <SelectItem value="m@example.com">
-                          m@example.com
-                        </SelectItem>
-                        <SelectItem value="m@google.com">
-                          m@google.com
-                        </SelectItem>
-                        <SelectItem value="m@support.com">
-                          m@support.com
-                        </SelectItem>
+                      <SelectContent className="w-full">
+                        {users.map(({ id, avatar, name }) => (
+                          <SelectItem key={id} value={id} className="h-[48px]">
+                            <div className="flex items-center gap-2">
+                              <Avatar className="w-6 h-6">
+                                <AvatarImage src={avatar} alt={name} />
+                                <AvatarFallback>
+                                  {getInitials(name)}
+                                </AvatarFallback>
+                              </Avatar>
+                              <span className="!text-[12px] !font-primary capitalize">
+                                {name}
+                              </span>
+                            </div>
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
-
                     <FormMessage />
                   </FormItem>
                 )}
@@ -260,42 +307,48 @@ const CreateOrder = () => {
               )}
             />
 
-            <div className="w-full flex justify-end gap-[21px]">
+            <div className="w-full flex flex-col-reverse md:flex-row xl:justify-end gap-4 mb-4 lg:gap-[21px]">
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => navigate(-1)}
-                className="w-[190px] border border-[#C7C7C7] text-[#F7F7F7]]"
+                className="w-full md:w-[140px] xl:w-[190px] border border-[#C7C7C7] text-[#F7F7F7] ]"
               >
                 Cancel
               </Button>
               <Button
                 type="button"
-                className="w-[190px] border text-black bg-[#C7C7C7]"
-                onClick={() => {
-                  console.log("send", form.getValues());
-                  onSubmit(form.getValues());
-                }}
+                className="w-full md:w-[140px] xl:w-[190px] border text-black bg-[#C7C7C7] hover:bg-[#C7C7C7]/80"
+                onClick={form.handleSubmit((values) => {
+                  // console.log("send", values);
+                  onSubmit(values);
+                  setOrderStatus("rejected");
+                  setIsOpen(true);
+                })}
               >
                 Reject
               </Button>
               <Button
                 type="button"
-                className="w-[190px] border border-primary text-primary bg-[rgba(252,64,6,0.08)] hover:bg-[rgba(252,64,6,0.08)]"
-                onClick={() => {
-                  console.log("send", form.getValues());
-                  onSubmit(form.getValues());
-                }}
+                className="w-full md:w-[140px] xl:w-[190px] border border-primary text-primary bg-[rgba(252,64,6,0.08)] hover:bg-[rgba(252,64,6,0.08)]"
+                onClick={form.handleSubmit((values) => {
+                  // console.log("send", values);
+                  onSubmit(values);
+                  setOrderStatus("accepted");
+                  setIsOpen(true);
+                })}
               >
                 Save as Draft
               </Button>
               <Button
                 type="submit"
-                className="w-[190px]"
-                onClick={() => {
-                  console.log("send", form.getValues());
-                  onSubmit(form.getValues());
-                }}
+                className="w-full md:w-[140px] xl:w-[190px]"
+                onClick={form.handleSubmit((values) => {
+                  // console.log("send", values);
+                  onSubmit(values);
+                  setOrderStatus("sent");
+                  setIsOpen(true);
+                })}
               >
                 Send
               </Button>
@@ -303,8 +356,20 @@ const CreateOrder = () => {
           </form>
         </Form>
       </div>
+      <PopupModal
+        isOpen={isOpen}
+        onOpenChange={setIsOpen}
+        title={title}
+        description={description}
+        onCancel={() => setIsOpen(false)}
+        showFooter={showFooter}
+        onContinue={() => {
+          console.log("send", form.getValues());
+          onSubmit(form.getValues());
+        }}
+      />
     </div>
   );
 };
 
-export default CreateOrder;
+export default OrderCreatePage;
