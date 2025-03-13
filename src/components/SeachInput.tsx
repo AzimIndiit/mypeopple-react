@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { Input } from "./ui/input";
 import searchIcon from "@/assets/icons/search.svg";
+import { cn } from "@/lib/utils";
 
 const debounce = (func: (...args: any[]) => void, delay: number) => {
   let timer: NodeJS.Timeout;
@@ -13,9 +14,10 @@ const debounce = (func: (...args: any[]) => void, delay: number) => {
 interface SearchInputProps {
   placeholder: string;
   onSearch: (query: string) => void;
+  className?:string;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({ placeholder, onSearch }) => {
+const SearchInput: React.FC<SearchInputProps> = ({ placeholder, onSearch ,className }) => {
   const [query, setQuery] = useState("");
 
   const debouncedSearch = useCallback(
@@ -36,7 +38,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder, onSearch }) => {
   };
 
   return (
-    <div className="relative w-full max-w-[749px] ">
+    <div className={cn("relative w-full max-w-[749px] ",className)}>
       <Input
         type="text"
         placeholder={placeholder}

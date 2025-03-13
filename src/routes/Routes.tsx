@@ -15,6 +15,7 @@ import UserProfilePage from "@/pages/hrbp/users/UserProfile";
 import OrderDetailsInboxPage from "@/pages/orders/OrderDetailsInbox";
 import MeetingPage from "@/pages/meetings/Page";
 import ToolBoxPage from "@/pages/tool-box/Page";
+import InboxPage from "@/pages/inbox/Page";
 
 const AppRoutes = () => {
   return (
@@ -57,7 +58,7 @@ const AppRoutes = () => {
           <Route path="/orders/:id" element={<OrderDetailsPage />} />
           <Route path="/orders/inbox/:id" element={<OrderDetailsInboxPage />} />
           <Route path="/settings" element={<div>Settings</div>} />
-          <Route path="/inbox" element={<div>Inbox</div>} />
+          <Route path="/inbox" element={<InboxPage />} />
           <Route path="/tool-box" element={<ToolBoxPage />} />
         </Route>
 
