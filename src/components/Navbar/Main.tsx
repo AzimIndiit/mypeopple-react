@@ -47,7 +47,7 @@ export default function AppNavbar({
           <img src={bellIcon} alt="bell" className="w-[24px] h-[24px]" />
         </div>
         <div className="relative flex lg:w-[152px] h-[40px]  justify-between ">
-          <div className=" hidden lg:block   text-center">
+          <div className=" hidden lg:block   text-right">
             <div className="text-[14px] font-light capitalize">
               {user.name}
             </div>
@@ -60,7 +60,7 @@ export default function AppNavbar({
           </div>
 
           <Avatar className="w-[40px] h-[40px]">
-            <AvatarImage src={user.avatar} alt={user.name} className="w-[30px] h-[30px]"/>
+            <AvatarImage src={user.avatar} alt={user.name} />
             <AvatarFallback>
               {getInitials(user.name)}
             </AvatarFallback>

@@ -34,7 +34,7 @@ const OrderDetailsInboxPage = () => {
     isOpen: false,
     data: null,
   });
-  const [reviewModal, setReviewModal] = useState<boolean>(true);
+  const [reviewModal, setReviewModal] = useState<boolean>(false);
   const [estimateStatus, setEstimateStatus] = useState<"edit" | "validated">(
     "edit"
   );

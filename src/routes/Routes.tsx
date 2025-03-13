@@ -13,6 +13,7 @@ import OrderCreatePage from "@/pages/orders/OrderCreate";
 import OrderDetailsPage from "@/pages/orders/OrderDetails";
 import UserProfilePage from "@/pages/hrbp/users/UserProfile";
 import OrderDetailsInboxPage from "@/pages/orders/OrderDetailsInbox";
+import MeetingPage from "@/pages/meetings/Page";
 
 const AppRoutes = () => {
   return (
@@ -43,6 +44,7 @@ const AppRoutes = () => {
       {/* 🔒 Protected Routes */}
       <Route element={<PrivateRoute />}>
       <Route path="/subscription" element={<SubscriptionPage/>} />
+      <Route path="/meeting" element={<MeetingPage/>} />
         <Route element={<DashboardLayout />}>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard" element={<DashboardPage />} />
@@ -55,7 +57,10 @@ const AppRoutes = () => {
           <Route path="/orders/inbox/:id" element={<OrderDetailsInboxPage />} />
           <Route path="/settings" element={<div>Settings</div>} />
           <Route path="/inbox" element={<div>Inbox</div>} />
+     
         </Route>
+
+         
       </Route>
 
       {/* 🌍 404 - Not Found */}

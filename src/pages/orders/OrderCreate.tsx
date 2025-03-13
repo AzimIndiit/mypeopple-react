@@ -312,7 +312,7 @@ const OrderCreatePage = () => {
                 type="button"
                 variant="outline"
                 onClick={() => navigate(-1)}
-                className="w-full md:w-[140px] xl:w-[190px] border border-[#C7C7C7] text-[#F7F7F7] ]"
+                className="w-full md:w-[140px] xl:w-[190px] border border-[#C7C7C7] "
               >
                 Cancel
               </Button>
