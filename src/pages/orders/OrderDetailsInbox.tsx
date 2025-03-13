@@ -26,18 +26,20 @@ import avatar from "@/assets/images/avatar.png";
 import { formatCurrency, getInitials } from "@/utils/helper";
 import PopupEstimateModal from "@/components/Orders/PopupEstimateModal";
 import PopupEstimateBillModal from "@/components/Orders/PopupEstimateBillModal";
+import PopupOrderReview from "@/components/Orders/PopupOrderReview";
 const OrderDetailsInboxPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log("id", id);
   const [isOpenBill, setIsOpenBill] = useState<any>({
     isOpen: false,
     data: null,
   });
+  const [reviewModal, setReviewModal] = useState<boolean>(true);
   const [estimateStatus, setEstimateStatus] = useState<"edit" | "validated">(
     "edit"
   );
-  console.log('isOpenBill.isOpen', isOpenBill.isOpen)
+
+  console.log('reviewModal', reviewModal)
   const [content, setContent] = useState<any>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -208,7 +210,7 @@ const OrderDetailsInboxPage = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full space-y-4"
         >
-          <div className="w-full p-[20px] flex gap-4 rounded-[20px] bg-whiter border border-[#E4E4E4] my-4">
+          <div className="w-full p-[20px] flex md:flex-row flex-col-reverse gap-4 rounded-[20px] bg-whiter border border-[#E4E4E4] my-4">
             <div className="w-full ">
               <div className="font-primary text-[16px] text-black p-[10px] rounded-[10px] bg-[#E3E3E3] w-fit">
                 Order - {id}
@@ -453,7 +455,7 @@ const OrderDetailsInboxPage = () => {
                 </Button>
               </div>
             </div>
-            <div className="  border-l border-[#E4E4E4] px-4 w-[40%] relative ">
+            <div className=" border-b py-4 md:py-0 md:border-l border-[#E4E4E4] md:px-4 md:w-[40%] w-full relative ">
               <div className=" w-full  space-y-2">
                 <div className="bg-gray-100 h-[60px] w-full flex  gap-2 rounded-[10px] p-[10px] items-center">
                   <Avatar className="w-[40px] h-[40px]">
@@ -508,7 +510,7 @@ const OrderDetailsInboxPage = () => {
                 </Button>
               </div>
 
-              <div className="space-y-2 mt-4 absolute bottom-20  w-full left-0 px-4 ">
+              <div className="space-y-2 mt-4 md:absolute bottom-20  w-full left-0 px-4 ">
                 <hr className="w-full my-4" />
                 <div
                   className="w-full h-[44px] cursor-pointer bg-black text-white text-[14px] font-primary font-light flex items-center gap-[5px] rounded-[15px] p-[10px]"
@@ -574,7 +576,22 @@ const OrderDetailsInboxPage = () => {
           onOpenChange={() => {
             setIsOpenBill({ isOpen: false, data: null });
           }}
+          onContinue={(value) => {
+            // console.log("values111111", value, estimateStatus);
+            setIsOpenBill({ isOpen: false, data: null });
+            setReviewModal(true);
+          }}
           data={isOpenBill.data}
+        />
+      )}
+
+      {reviewModal && (
+        <PopupOrderReview
+          isOpen={reviewModal}
+          onOpenChange={() => {
+            setReviewModal(!reviewModal);
+          }}
+          data={{ orderNumber: "#788947678" }}
         />
       )}
     </div>
