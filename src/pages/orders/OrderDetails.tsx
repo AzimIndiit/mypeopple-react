@@ -72,7 +72,7 @@ const OrderDetailsPage = () => {
   };
   const { title, description , showFooter} = GetModalContent({orderStatus});
   return (
-    <div>
+    <div className="">
       <div className="flex justify-between items-center w-full">
         <div className="flex items-center gap-2">
           <div

@@ -128,7 +128,7 @@ const OrderCreatePage = () => {
   const { title, description , showFooter} = GetModalContent({orderStatus});
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <p className=" text-[14px] lg:text-[14px] font-semibold font-primary w-full uppercase text-[#1C1C1C]  ">
         New Order
       </p>

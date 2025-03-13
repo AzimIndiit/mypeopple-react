@@ -33,8 +33,8 @@ const getColor = (status: string) => {
 const UserCard: FC<UserCardProps> = ({ id, image, name, exp, status }) => {
   const navigate = useNavigate()
   return (
-    <div className="p-[15px]  flex flex-col justify-between rounded-[16px] bg-white shadow-md w-full  xl:w-[268px] gap-[16px] xl:h-[329px] border border-gray-200">
-      <div className="flex items-center gap-2 h-[240px] xl:h-[200px] w-full xl:w-[238px] rounded-[16px] bg-gray-100  relative">
+    <div className="p-[15px]  flex flex-col justify-between rounded-[16px] bg-white shadow-md w-full  xl:w-[258px] gap-[16px] xl:h-[329px] border border-gray-200">
+      <div className="flex items-center gap-2 h-[240px] xl:h-[200px] w-full xl:w-[228px] rounded-[16px] bg-gray-100  relative">
         <img src={image} alt="user" className="object-cover  w-full h-full rounded-[16px]" />
         <div className="flex items-center justify-center gap-[5px] h-[26px] bg-white rounded-[25px] px-[10px] py-[7px] absolute top-[10px] right-[10px]">
           <div

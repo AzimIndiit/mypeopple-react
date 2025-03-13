@@ -37,7 +37,7 @@ const menuItems1 = [
   },
   {
     title: "My Tools Box",
-    url: "/search",
+    url: "/tool-box",
     icon: discoverIcon,
   },
   {
@@ -73,7 +73,7 @@ const menuItems2 = [
     icon: logoutIcon,
   },
 ];
-export function AppSidebar({collapsed,setCollapsed}:{collapsed:boolean,setCollapsed:(value:boolean)=>void}) {
+export function AppSidebar({collapsed,setCollapsed,className }:{collapsed:boolean,setCollapsed:(value:boolean)=>void,className?:string }) {
   const viewPort = useViewport()
   const navigate = useNavigate()
   const location = useLocation(); // Get current route
@@ -205,7 +205,8 @@ if(isMobile){
     <div
       className={cn(
         "text-white p-4 transition-all duration-300 border-r border-gray-200 overflow-y-auto  ", // Add bg color
-        collapsed ? "w-[119px]" : "w-[256px]"
+        collapsed ? "w-[119px]" : "w-[256px]",
+        className
       )}
     >
       <div className="flex justify-center items-center my-[26px] lg:my-[40px] ">

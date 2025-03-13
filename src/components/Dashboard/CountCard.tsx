@@ -14,7 +14,7 @@ const CountCard = ({
   return (
     <div
       className={cn(
-        "flex items-center justify-between w-full md:w-[356px] h-[127px]  rounded-[20px] py-[30px] px-[22px]",
+        "flex items-center justify-between w-full lg:w-[336px] xl:w-[346px] h-[127px]  rounded-[20px] py-[30px] px-[22px]",
         bg
       )}
     >

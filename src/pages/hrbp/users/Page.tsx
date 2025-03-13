@@ -71,7 +71,7 @@ const UsersPage = ({
   isDashboard: boolean;
 }) => {
   return (
-    <div className="w-full my-4">
+    <div className="w-full ">
       {showFilters && (
         <div className="flex justify-between items-center w-full mb-4">
           <Header />
@@ -90,7 +90,7 @@ const UsersPage = ({
           </Link>
         )}
       </div>
-      <div className="grid grid-cols-1  md:grid-cols-3 xl:grid-cols-4 gap-4 my-4">
+      <div className="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-4 gap-2 my-4">
         {users.slice(0, isDashboard ? 4 : users.length).map((user) => (
           <UserCard key={user.id} {...user} />
         ))}
