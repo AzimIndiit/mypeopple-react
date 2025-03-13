@@ -16,6 +16,7 @@ import OrderDetailsInboxPage from "@/pages/orders/OrderDetailsInbox";
 import MeetingPage from "@/pages/meetings/Page";
 import ToolBoxPage from "@/pages/tool-box/Page";
 import InboxPage from "@/pages/inbox/Page";
+import InboxMessagePage from "@/pages/inbox/inboxMessage";
 
 const AppRoutes = () => {
   return (
@@ -59,6 +60,7 @@ const AppRoutes = () => {
           <Route path="/orders/inbox/:id" element={<OrderDetailsInboxPage />} />
           <Route path="/settings" element={<div>Settings</div>} />
           <Route path="/inbox" element={<InboxPage />} />
+          <Route path="/inbox/:id" element={<InboxMessagePage />} />
           <Route path="/tool-box" element={<ToolBoxPage />} />
         </Route>
 

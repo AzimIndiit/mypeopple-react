@@ -4,6 +4,7 @@ import vieweyeIcon from "@/assets/icons/eye-bold.svg";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { getInitials } from "@/utils/helper";
 import avatar from "@/assets/images/avatar.png";
+import { useNavigate } from "react-router-dom";
 type Inbox = {
   id: string;
   name: string;
@@ -111,12 +112,14 @@ export default function InboxTable({
 }: {
   isDashboard?: boolean;
 }) {
+  const navigate = useNavigate();
   return (
     <div className={cn(" rounded-[20px] relative border-1 border-[#EFEEFC] p-[10px] md:p-[20px]  ")}>
       {inboxData.length > 0 ? (
         <div className="w-full space-y-2">
           {inboxData.map((item, index) => (
             <div
+            onClick={() => navigate(`/inbox/${item.id}`)}
               key={index}
               className="bg-gray-100 h-[79px] w-full flex  gap-2 rounded-[10px] p-[10px] items-center "
             >
