@@ -44,7 +44,7 @@ const DashboardPage = () => {
     <div className='w-full my-4'>
    
     <UsersPage showFilters={false} isDashboard={true} />
-    <div className='flex justify-between items-center w-full'>
+    <div className='flex justify-between items-center w-full mb-4'>
     <p className=" text-[16px] lg:text-[18px] font-semibold font-primary w-full ">
      Recent Orders
       </p>
