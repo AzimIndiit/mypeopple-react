@@ -38,7 +38,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ placeholder, onSearch ,classN
   };
 
   return (
-    <div className={cn("relative w-full max-w-[749px] ",className)}>
+    <div className={cn("relative w-full lg:w-[59%] xl:w-[71%] ",className)}>
       <Input
         type="text"
         placeholder={placeholder}

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Link as LinkIcon, ShareIcon } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+
+import {  useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import fileXlsx from "@/assets/icons/xlsx.svg";
 import filePdf from "@/assets/icons/pdf.svg";
@@ -50,8 +49,8 @@ const MyLibrary = () => {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex justify-between items-center">
+    <div className="w-full my-4 md:y-0">
+      <div className="flex justify-between items-center ">
         <p className=" text-[16px] lg:text-[20px] font-medium font-primary w-full ">
           My Library
         </p>

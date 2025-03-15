@@ -6,12 +6,12 @@ import { Link, useLocation } from "react-router-dom";
 import apple from "../../assets/icons/apple.svg";
 import android from "../../assets/icons/android.svg";
 import { useState } from "react";
-import LoginPage from "./Login"
-import MainCreationPage from "./MainCreation";
-import RegisterPage from "./Register";
-import OtpPage from "./Otp";
-import ForgotPasswordPage from "./ForgotPassword";
-import ResetPasswordPage from "./ResetPassword";
+import LoginPage from "@/pages/Auth/Login"
+import MainCreationPage from "@/pages/Auth/MainCreation";
+import RegisterPage from "@/pages/Auth/Register";
+import OtpPage from "@/pages/Auth/Otp";
+import ForgotPasswordPage from "@/pages/Auth/ForgotPassword";
+import ResetPasswordPage from "@/pages/Auth/ResetPassword";
 import { useTranslation } from "react-i18next";
 
 const Page = () => {

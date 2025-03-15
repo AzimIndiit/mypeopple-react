@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { boolean, z } from "zod";
+import {  z } from "zod";
 import {
   Select,
   SelectContent,
@@ -146,12 +146,13 @@ const OrderCreatePage = () => {
                   <FormItem className="w-full">
                     <FormLabel>What type of service do you want?</FormLabel>
                     <Select
+                  
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
                       <FormControl className="w-full">
                         <SelectTrigger className="w-full">
-                          <SelectValue placeholder="" />
+                          <SelectValue placeholder="Select Service" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -243,7 +244,7 @@ const OrderCreatePage = () => {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Textarea className="w-full" placeholder={""} {...field} />
+                    <Textarea className="w-full" placeholder={"Enter description here..."} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -253,7 +254,7 @@ const OrderCreatePage = () => {
             <FormField
               control={form.control}
               name="attachment"
-              render={({ field }) => (
+              render={({  }) => (
                 <FormItem>
                   <FormLabel>Attach Documents</FormLabel>
                   <FormControl>

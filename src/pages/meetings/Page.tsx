@@ -8,7 +8,7 @@ import { useState } from "react";
 import MeetingOne from "@/components/Meetings/MeetingOne";
 import MeetingTwo from "@/components/Meetings/MeetingTwo";
 const MeetingPage = () => {
-  const [meetingLayout, setMeetingLayout] = useState<string>("layout1");
+  const [meetingLayout] = useState<string>("layout1");
   const user = {
     name: "Tam Tran",
     avatar: avatar,

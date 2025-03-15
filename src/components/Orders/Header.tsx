@@ -1,4 +1,3 @@
-import React from 'react'
 import SearchInput from '../SeachInput'
 import { Button } from '../ui/button'
 import filterIcon from '@/assets/icons/sort.svg'
@@ -9,7 +8,7 @@ const Header = () => {
       <SearchInput placeholder='Search Here' onSearch={(value)=>{
         console.log("searchValue",value)
       }} />
-      <div className='flex gap-2 items-center'>
+      <div className='flex gap-4 items-center  justify-end '>
         <Button variant='outline' className='border-black'>
             <img src={filterIcon} alt='filter' />  Sort
         </Button>

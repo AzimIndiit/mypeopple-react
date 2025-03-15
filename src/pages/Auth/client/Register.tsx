@@ -16,9 +16,9 @@ import eyeFill from "@/assets/icons/eye-fill.svg";
 import { useTranslation } from "react-i18next";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { TFunction } from "i18next";
 
 const RegisterPage = ({
-  currentPage,
   setCurrentPage,
 }: {
   currentPage: string;
@@ -69,7 +69,7 @@ const RegisterPage = ({
   });
 
   useEffect(() => {
-    if (t) {
+    if (t as TFunction<"translation", undefined>) {
       form.clearErrors();
     }
   }, [t, form]);

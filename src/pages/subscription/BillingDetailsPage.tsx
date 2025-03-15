@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
 const BillingDetailsPage = ({
-  currentStep,
   setCurrentStep,
 }: {
   currentStep: string;

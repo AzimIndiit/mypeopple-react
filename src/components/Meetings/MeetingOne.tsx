@@ -1,9 +1,8 @@
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
+import  { useState } from "react";
 import callIcon from "@/assets/icons/call.svg";
 import { Button } from "../ui/button";
 import PopupMeetingModal from "./PopupMeetingModal";
-import { describe } from "node:test";
 interface TimeSlot {
   id: number;
   date: string;

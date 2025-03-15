@@ -1,12 +1,10 @@
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import shareIcon from "@/assets/icons/share.svg";
 import vieweyeIcon from "@/assets/icons/eye-bold.svg";
@@ -114,7 +112,7 @@ const getActionButton = ({ invoice }: { invoice: Invoice }) => {
     <div className="text-[14px] font-primary text-[#858494] ">
       <div className="flex  gap-2  text-[12px] font-semibold justify-start items-center">
         <img
-          onClick={() => {}}
+          onClick={() => {console.log('invoice', invoice)}}
           src={vieweyeIcon}
           alt="View"
           className="w-[24px] h-[24px]"

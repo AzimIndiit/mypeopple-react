@@ -14,16 +14,24 @@ const CountCard = ({
   return (
     <div
       className={cn(
-        "flex items-center justify-between w-full lg:w-[336px] xl:w-[346px] h-[127px]  rounded-[20px] py-[30px] px-[22px]",
+        "flex items-center justify-between w-full  xl:h-[127px]  rounded-[20px] px-4  xl:py-[30px] xl:px-[22px]",
         bg
       )}
     >
-      <div className="flex flex-col  font-primary">
-        <div className="text-[38px] font-bold text-white ">{count}</div>
-        <div className="text-[18px] font-light text-white">{title}</div>
+      <div className="flex flex-col  font-primary py-2 w-full">
+        <div className=" text-[26px] xl:text-[38px] font-bold text-white ">
+          {count}
+        </div>
+        <div className="text-[16px] xl:text-[18px] font-light text-white">
+          {title}
+        </div>
       </div>
       <div className="flex items-center gap-2">
-        <img src={icon} alt={title} className="w-[136px] h-[136px]" />
+        <img
+          src={icon}
+          alt={title}
+          className=" h-[100px] xl:w-[136px] xl:h-[136px]"
+        />
       </div>
     </div>
   );

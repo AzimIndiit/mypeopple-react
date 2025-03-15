@@ -40,7 +40,6 @@ const ResetPasswordSchema = z.object({
 type ResetPasswordFormValues = z.infer<typeof ResetPasswordSchema>;
 
 const ResetPasswordPage = ({
-  currentPage,
   setCurrentPage,
 }: {
   currentPage: string;

@@ -7,8 +7,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useEffect, useMemo, useState } from "react";
 import eyeFill from "@/assets/icons/eye-fill.svg";
 import { useTranslation } from "react-i18next";
+import { TFunction } from "i18next";
 
-const RegisterPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCurrentPage: (page: string) => void }) => {
+const RegisterPage = ({}: { currentPage: string; setCurrentPage: (page: string) => void }) => {
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const RegisterSchema = useMemo(() => {
@@ -42,7 +43,7 @@ const RegisterPage = ({ currentPage, setCurrentPage }: { currentPage: string; se
   });
 
   useEffect(() => {
-    if (t) {
+    if (t as TFunction<"translation", undefined>) {
  
           form.clearErrors();
     

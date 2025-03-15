@@ -1,9 +1,7 @@
-import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import backArrow from "@/assets/icons/backArrow.svg";
 import addIcon from "@/assets/icons/add-solid.svg";
 import { Button } from "@/components/ui/button";
-import OrderTable from "@/components/Orders/OrderTable";
 import user1 from "@/assets/images/users/user-1.png";
 import emailIcon from "@/assets/icons/email-solid.svg";
 import phoneIcon from "@/assets/icons/phone.svg";

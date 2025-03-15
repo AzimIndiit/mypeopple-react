@@ -1,12 +1,10 @@
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import shareIcon from "@/assets/icons/share.svg";
 import vieweyeIcon from "@/assets/icons/eye-bold.svg";

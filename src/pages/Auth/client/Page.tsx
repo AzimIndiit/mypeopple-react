@@ -6,11 +6,11 @@ import { Link, useLocation } from "react-router-dom";
 import google from "@/assets/icons/google.svg";
 import outlook from "@/assets/icons/outlook.svg";
 import { useState } from "react";
-import LoginPage from "./Login";
-import RegisterPage from "./Register";
-import OtpPage from "../Otp";
-import ForgotPasswordPage from "../ForgotPassword";
-import ResetPasswordPage from "../ResetPassword";
+import LoginPage from "@/pages/Auth/client/Login";
+import RegisterPage from "@/pages/Auth/client/Register";
+import OtpPage from "@/pages/Auth/Otp";
+import ForgotPasswordPage from "@/pages/Auth/ForgotPassword";
+import ResetPasswordPage from "@/pages/Auth/ResetPassword";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 

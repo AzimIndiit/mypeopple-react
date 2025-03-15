@@ -2,8 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { AuthLayout } from "@/layouts/AuthLayout";
 import PrivateRoute from "./PrivateRoute";
-import AuthPage from "@/pages/auth/Page";
-import AuthClientPage from "@/pages/auth/client/Page";
+import AuthPage from "@/pages/Auth/Page";
+import AuthClientPage from "@/pages/Auth/client/Page"
 import NotFound from "@/pages/NotFound"; // Create a proper 404 page
 import SubscriptionPage from "@/pages/subscription/Page";
 import DashboardPage from "@/pages/dashboard/Page";
@@ -16,7 +16,7 @@ import OrderDetailsInboxPage from "@/pages/orders/OrderDetailsInbox";
 import MeetingPage from "@/pages/meetings/Page";
 import ToolBoxPage from "@/pages/tool-box/Page";
 import InboxPage from "@/pages/inbox/Page";
-import InboxMessagePage from "@/pages/inbox/inboxMessage";
+import InboxMessagePage from "@/pages/inbox/InboxMessage";
 
 const AppRoutes = () => {
   return (

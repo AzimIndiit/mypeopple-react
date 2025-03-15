@@ -17,7 +17,6 @@ import { Button } from "../ui/button";
     onOpenChange,
     title,
     description,
-    onCancel,
     onContinue,
     showFooter = true,
   }: {

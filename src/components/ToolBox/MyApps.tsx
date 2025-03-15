@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link as LinkIcon, ShareIcon } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
@@ -58,17 +57,17 @@ const MyApps = () => {
       <div className="mt-4 space-y-4">
         <div className=" grid grid-cols-1  gap-4">
        {toolList.map((tool) => (
-          <div key={tool.name} className="flex   items-center gap-4 w-full  text-left border border-gray-200 rounded-[15px] p-4  ">
+          <div key={tool.name} className="flex  flex-col  md:flex-row  items-center md:items-start gap-4 w-full  text-left border border-gray-200 rounded-[15px] p-4  ">
             
             <img
               src={tool.icon}
               alt={tool.name}
               className="w-[139px] h-[95px]"
             />
-            <div className="w-full h-full flex flex-col items-start gap-2 ">
+            <div className="w-full h-full flex flex-col items-center md:items-start gap-2 text-center md:text-left ">
             <p className="text-[16px] font-semibold font-primary">{tool.name}</p>
-            <p className="text-[12px] font-light font-primary text-[#737373]">{tool.description}</p>
-            <div className="flex  gap-2 w-full ">
+            <p className="text-[12px] font-light font-primary  text-[#737373]">{tool.description}</p>
+            <div className="flex justify-center md:justify-start  gap-2 w-full ">
               <Link to={tool.link} target="_blank" className="flex items-center gap-1 h-[32px] bg-black text-white  text-[12px] font-semibold  p-[20px] w-[96px] rounded-[8px]">
                 <LinkIcon className="w-[16px] h-[16px]"/> Go To
               </Link>

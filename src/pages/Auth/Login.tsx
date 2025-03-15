@@ -20,9 +20,10 @@ import captchaImg from "../../assets/images/captcha.svg";
 import { Link } from "react-router-dom";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { TFunction } from "i18next";
 
-const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCurrentPage: (page: string) => void }) => {
-  const { t, i18n } = useTranslation();
+const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (page: string) => void }) => {
+  const { t} = useTranslation();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   //use memo to create the schema
@@ -50,7 +51,7 @@ const LoginPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCu
   });
 
   useEffect(() => {
-    if (t) {
+    if (t as TFunction<"translation", undefined>) {
       form.clearErrors(); // Clear validation errors on language change
     }
   }, [t, form]);

@@ -1,6 +1,4 @@
 import { cn } from "@/lib/utils";
-import shareIcon from "@/assets/icons/share.svg";
-import vieweyeIcon from "@/assets/icons/eye-bold.svg";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { getInitials } from "@/utils/helper";
 import avatar from "@/assets/images/avatar.png";

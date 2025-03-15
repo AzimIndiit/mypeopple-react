@@ -1,11 +1,10 @@
-import logo from "../../assets/icons/logo.svg";
 
 import { Button } from "@/components/ui/button";
 import google from "../../assets/icons/google.svg";
 import email from "../../assets/icons/email.svg";
 import { useTranslation } from "react-i18next";
 
-const MainCreationPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCurrentPage: (page: string) => void }) => {
+const MainCreationPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (page: string) => void }) => {
   const { t } = useTranslation();
 
   type MainCreationTextType = {

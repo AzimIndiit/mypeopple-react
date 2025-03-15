@@ -20,9 +20,7 @@ import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -35,7 +33,6 @@ import {
 } from "@/components/ui/popover";
 
 const SelectPlanPage = ({
-  currentStep,
   setCurrentStep,
 }: {
   currentStep: string;
@@ -319,7 +316,7 @@ const SelectPlanPage = ({
             <FormField
               control={form.control}
               name="items"
-              render={({ field }) => (
+              render={({  }) => (
                 <FormItem>
                   {/* <div className="mb-4"> */}
                   <FormLabel>You can choose multiple options</FormLabel>
@@ -413,7 +410,7 @@ const SelectPlanPage = ({
             <FormField
               control={form.control}
               name="items"
-              render={({ field }) => (
+              render={({  }) => (
                 <FormItem>
                   <FormLabel className="text-primary underline !font-semibold text-[14px] mb-4">
                     Compare Services

@@ -15,9 +15,10 @@ import { InputOTP, InputOTPSlot } from "@/components/ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { TFunction } from "i18next";
 
-const OtpPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCurrentPage: (page: string) => void }) => {
-  const { t, i18n } = useTranslation();
+const OtpPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (page: string) => void }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const OtpSchema = z.object({
@@ -35,7 +36,7 @@ const OtpPage = ({ currentPage, setCurrentPage }: { currentPage: string; setCurr
   });
 
   useEffect(() => {
-    if (t) {
+    if (t as TFunction<"translation", undefined>) {
       form.clearErrors(); // Clear validation errors on language change
     }
   }, [t, form]);

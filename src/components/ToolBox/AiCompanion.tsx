@@ -46,12 +46,12 @@ const AiCompanion = () => {
           </span>
         </Button>
       </div>
-      <div className="my-4 space-y-4">
+      <div className="my-4 space-y-4 w-full">
         <p className=" text-[14px] font-light font-primary w-full text-[#737373] ">
           Any HR question ? Please ask your Ai Companion and reach your HRBP for
           more in depth query.
         </p>
-        <div className="flex gap-4">
+        <div className="flex flex-col md:flex-row w-full gap-4">
           <div className="w-full  space-y-4 ">
             <Textarea
               className="w-full h-[197px] bg-white"
@@ -61,7 +61,7 @@ const AiCompanion = () => {
                 setPrompt(e.target.value);
               }}
             />
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col md:flex-row justify-between gap-2 md:items-cente">
               <div className="flex gap-1">
                 {renderIcon(speakerIcon, (e: React.MouseEvent<HTMLElement>) => {
                   e.preventDefault();
@@ -96,8 +96,8 @@ const AiCompanion = () => {
               disabled
               //   onChange={(e) => setResponse(e.target.value)}
             />
-            <div className="flex justify-between items-center">
-              <div className="flex gap-1">
+            <div className="flex flex-col md:flex-row  justify-between gap-2 md:items-center">
+              <div className="flex gap-1 ">
                 {renderIcon(speakerIcon, (e: React.MouseEvent<HTMLElement>) => {
                   e.preventDefault();
                   console.log("clicked");

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import backArrow from "@/assets/icons/backArrow.svg";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import checkSolidIcon from "@/assets/icons/check-solid.svg";
 import attachmentIcon from "@/assets/icons/attachment-soild.svg";
 import videoFillIcon from "@/assets/icons/video-filled.svg";
 import docIcon from "@/assets/icons/doc-file.svg";
@@ -15,7 +14,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 // import PopupModal from "@/components/Orders/PopupModal";
@@ -27,9 +25,20 @@ import { formatCurrency, getInitials } from "@/utils/helper";
 import PopupEstimateModal from "@/components/Orders/PopupEstimateModal";
 import PopupEstimateBillModal from "@/components/Orders/PopupEstimateBillModal";
 import PopupOrderReview from "@/components/Orders/PopupOrderReview";
+
+interface MessageProps {
+  id: number;
+  type: string;
+  message: string;
+  date: string;
+  sender: any;
+  attachment: any[];
+  estimateContent: any;
+}
+
 const InboxMessagePage = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  // const { id } = useParams();
   const [isOpenBill, setIsOpenBill] = useState<any>({
     isOpen: false,
     data: null,
@@ -39,7 +48,7 @@ const InboxMessagePage = () => {
     "edit"
   );
 
-  console.log('reviewModal', reviewModal)
+  console.log("reviewModal", reviewModal);
   const [content, setContent] = useState<any>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -60,7 +69,7 @@ const InboxMessagePage = () => {
     avatar: avatar,
   };
 
-  const dummyMessages = [
+  const dummyMessages: MessageProps[] = [
     {
       id: 1,
       type: "text",
@@ -68,7 +77,7 @@ const InboxMessagePage = () => {
         "Hello, I would like an employment contract for an employee arriving next Tuesday. You will find all the necessary information in the attached documents.",
       date: "November 28, 2024 12:00 PM",
       sender: currentUser,
-      estimateContent:null,
+      estimateContent: null,
       attachment: [
         {
           id: 1,
@@ -95,7 +104,7 @@ const InboxMessagePage = () => {
       date: "November 28, 2024 12:00 PM",
       sender: otherUser,
       attachment: [],
-      estimateContent:null,
+      estimateContent: null,
     },
     {
       id: 3,
@@ -105,7 +114,7 @@ const InboxMessagePage = () => {
       date: "November 28, 2024 12:00 PM",
       sender: currentUser,
       attachment: [],
-      estimateContent:null,
+      estimateContent: null,
     },
     {
       id: 4,
@@ -115,11 +124,11 @@ const InboxMessagePage = () => {
       date: "November 28, 2024 12:00 PM",
       sender: otherUser,
       attachment: [],
-      estimateContent:null,
+      estimateContent: null,
     },
   ];
 
-  const [messages, setMessages] = useState<typeof dummyMessages>(dummyMessages);
+  const [messages, setMessages] = useState<MessageProps[]>(dummyMessages);
 
   const OrderInvoiceDetails = z.object({
     newMessage: z.string().min(1, { message: "Message is required" }),
@@ -161,6 +170,7 @@ const InboxMessagePage = () => {
         sender: currentUser,
         attachment: attachment,
         type: "text",
+        estimateContent: null,
       },
     ]);
     form.reset();
@@ -220,10 +230,8 @@ const InboxMessagePage = () => {
         >
           <div className="w-full p-[20px] flex md:flex-row flex-col-reverse gap-4 rounded-[20px] bg-whiter border border-[#E4E4E4] my-4">
             <div className="w-full ">
-             
-
               <div className="text-[14px] font-primary my-4 space-y-4 h-[60vh] overflow-y-auto">
-                {messages.map((message) => (
+                {messages.map((message: MessageProps) => (
                   <div key={message.id} className="space-y-2 " ref={messageRef}>
                     {message.type === "estimate" ? (
                       // Render estimate messages with a different style or extra info
@@ -257,7 +265,7 @@ const InboxMessagePage = () => {
                               >
                                 {formatCurrency(
                                   message?.estimateContent
-                                    ?.additionalTranslation
+                                    ?.additionalTranslation ?? 0
                                 )}
                               </p>
                             </div>
@@ -405,7 +413,7 @@ const InboxMessagePage = () => {
                 <FormField
                   control={form.control}
                   name="attachment"
-                  render={({ field }) => (
+                  render={({}) => (
                     <FormItem>
                       <FormControl>
                         <Input
@@ -577,7 +585,7 @@ const InboxMessagePage = () => {
           onOpenChange={() => {
             setIsOpenBill({ isOpen: false, data: null });
           }}
-          onContinue={(value) => {
+          onContinue={() => {
             // console.log("values111111", value, estimateStatus);
             setIsOpenBill({ isOpen: false, data: null });
             setReviewModal(true);

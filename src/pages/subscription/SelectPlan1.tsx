@@ -28,7 +28,6 @@ const items = [
 ] as const;
 
 const SelectPlanPage = ({
-  currentStep,
   setCurrentStep,
 }: {
   currentStep: string;
@@ -36,7 +35,6 @@ const SelectPlanPage = ({
 }) => {
   //   const { t, i18n } = useTranslation();
   const [durationType, setDurationType] = useState("days");
-  const [workingDaysType, setWorkingDaysType] = useState("days");
 
   //use memo to create the schema
   const SelectPlanSchema = z.object({

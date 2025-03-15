@@ -6,7 +6,6 @@ import paypalIcon from "@/assets/icons/paypal.svg";
 import sepaIcon from "@/assets/icons/sepa.svg";
 import { format } from "date-fns";
 import { z } from "zod";
-import { cn } from "@/lib/utils";
 import {
   Form,
   FormControl,
@@ -86,8 +85,6 @@ const getDefaultValues = (paymentMethod: "credit_debit" | "paypal" | "sepa") => 
 
 
 const PaymentMethodPage = ({
-  currentStep,
-  setCurrentStep,
 }: {
   currentStep: string;
   setCurrentStep: (step: string) => void;

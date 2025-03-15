@@ -7,7 +7,7 @@ import MyLibrary from "@/components/ToolBox/MyLibrary";
 const ToolBoxPage = () => {
 
   return (
-    <div className="w-full h-full ">
+    <div className="w-full h-full  ">
         <AiCompanion />
         <hr className="my-4"/>
         <GenricTool/>

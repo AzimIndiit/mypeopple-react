@@ -24,7 +24,6 @@ const ForgotPasswordSchema = z.object({
 type ForgotPasswordFormValues = z.infer<typeof ForgotPasswordSchema>;
 
 const ForgotPasswordPage = ({
-  currentPage,
   setCurrentPage,
 }: {
   currentPage: string;

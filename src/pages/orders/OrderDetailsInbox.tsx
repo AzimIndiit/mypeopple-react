@@ -15,7 +15,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 // import PopupModal from "@/components/Orders/PopupModal";
@@ -404,7 +403,7 @@ const OrderDetailsInboxPage = () => {
                 <FormField
                   control={form.control}
                   name="attachment"
-                  render={({ field }) => (
+                  render={({  }) => (
                     <FormItem>
                       <FormControl>
                         <Input
@@ -576,7 +575,7 @@ const OrderDetailsInboxPage = () => {
           onOpenChange={() => {
             setIsOpenBill({ isOpen: false, data: null });
           }}
-          onContinue={(value) => {
+          onContinue={() => {
             // console.log("values111111", value, estimateStatus);
             setIsOpenBill({ isOpen: false, data: null });
             setReviewModal(true);

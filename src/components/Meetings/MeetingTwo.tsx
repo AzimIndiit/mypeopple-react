@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
+import  { useState } from "react";
 import callIcon from "@/assets/icons/call.svg";
 import { Button } from "../ui/button";
 interface TimeSlot {

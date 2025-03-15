@@ -9,14 +9,12 @@ import {
 
 import closeIcon from "@/assets/icons/close-fill.svg";
 import logo from "@/assets/icons/logo.svg";
-import { ReactNode } from "react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 const PopupMeetingModal = ({
   isOpen,
   data,
   onOpenChange,
-  onCancel,
   onContinue,
   type,
 }: {

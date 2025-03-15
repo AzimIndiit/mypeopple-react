@@ -1,5 +1,4 @@
 import CountCard from '@/components/Dashboard/CountCard'
-import React from 'react'
 import newMessageIcon from "@/assets/icons/new-message.svg"
 import pendingOrdersIcon from "@/assets/icons/pending-orders.svg"
 import myListIcon from "@/assets/icons/my-plan.svg"
@@ -35,8 +34,8 @@ const DashboardPage = () => {
    console.log('viewPort', viewPort)
 
   return (
-    <div className='w-full '>
-        <div className='grid  grid-cols-1  md:grid-cols-2  xl:grid-cols-3 gap-[8px]'>
+    <div className='w-full'>
+        <div className='grid  grid-cols-1  md:grid-cols-3  xl:grid-cols-3 gap-[8px]'>
      {CountCardData.map((item,index)=>(
         <CountCard key={index} {...item} />
      ))}
