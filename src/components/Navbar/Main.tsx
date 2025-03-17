@@ -40,7 +40,7 @@ export default function AppNavbar({
       }}
     >
       {/* Left Side: Greeting */}
-        <div className="flex justify-between items-center w-full xl:px-4 bg-white border-b border-gray-200 h-full md:pt-4  ">
+        <div className="flex justify-between items-center w-full bg-white border-b border-gray-200 h-full md:pt-4  ">
           <div className="flex items-center justify-between w-full gap-2">
             {isMobile && (
               <MenuIcon

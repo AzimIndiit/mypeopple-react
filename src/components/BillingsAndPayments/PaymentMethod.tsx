@@ -127,7 +127,10 @@ const PaymentMethodPage = ({}: {
   return (
     <div className="w-full my-5">
       <p className="text-lg lg:text-xl font-semibold mb-4">
-        Select a payment method
+        Please select the payment method you would like to use to pay for your
+        subscriptions and orders. Payments get deducted from your default
+        payment method if there are no available funds in your Mypeople Balance.
+        You can change your default payment method at any time
       </p>
 
       <Form {...form}>
@@ -407,11 +410,12 @@ const PaymentMethodPage = ({}: {
               </FormItem>
             )}
           />
-          <div className="flex justify-end">
-            <Button className="w-full md:w-[315px] " type="submit">
-              Continue
-            </Button>
-          </div>
+
+      <div className="flex justify-end">
+      <Button className="w-full md:w-[315px] " type="submit">
+            Update
+          </Button>
+      </div>
         </form>
       </Form>
     </div>

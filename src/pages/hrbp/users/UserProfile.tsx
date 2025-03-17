@@ -7,6 +7,7 @@ import emailIcon from "@/assets/icons/email-solid.svg";
 import phoneIcon from "@/assets/icons/phone.svg";
 import connectIcon from "@/assets/icons/connect.svg";
 import InvoiceTable from "@/components/Invoice/InvoiceTable";
+import { PageHeader } from "@/components/PageHeader";
 const UserProfilePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,35 +23,10 @@ const UserProfilePage = () => {
   };
   return (
     <div>
-      <div className="flex justify-between items-center w-full">
-        <div className="flex items-center gap-2">
-          <div
-            className="cursor-pointer w-[30px]"
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            <img src={backArrow} className="w-[30px] h-[30px]" />
-          </div>
-          <p className="text-[20px] font-light font-primary">HRBP Details</p>
-        </div>
-        <Button
-          onClick={() => navigate("/orders/create")}
-          variant="ghost"
-          className="group text-[12px] font-light hover:border-1 hover:border-black hover:text-white font-primary bg-black text-white h-[41px] rounded-[15px] w-[200px] border border-transparent transition-all duration-300"
-        >
-          <img
-            src={addIcon}
-            className="w-[16px] h-[16px] filter invert transition-all duration-300 group-hover:filter-none"
-          />
-          <span className="ml-2 transition-all duration-300 group-hover:text-black">
-            Create Order with HRBP
-          </span>
-        </Button>
-      </div>
+      <PageHeader title="HRBP Details"  onAdd={() => navigate("/orders/create")} buttonText="Create Order with HRBP" />
       <div className="flex flex-col md:flex-row justify-between md:items-start items-center w-full my-4 gap-4 xl:gap-[43px]">
-        <div className="flex flex-col items-center gap-2 w-[278px]">
-          <div className="flex items-center gap-2 h-[240px] xl:h-[200px] w-full xl:w-[238px] rounded-[16px] bg-gray-100  relative">
+        <div className="flex flex-col items-center gap-2 w-full  xl:w-[278px]">
+          <div className="flex items-center gap-2 md:h-[200px]  xl:h-[200px] w-full  rounded-[16px] bg-gray-100  relative">
             <img
               src={userData.image}
               alt="user"

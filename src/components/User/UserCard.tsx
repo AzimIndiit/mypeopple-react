@@ -69,7 +69,12 @@ const UserCard: FC<UserCardProps> = ({ id, image, name, exp, status }) => {
           Connect{" "}
         </Button>
         <Button variant="outline" className="h-[40px] xl:w-[114px] " 
-        onClick={() => navigate(`/users/${id}`)} >
+        onClick={() => {
+          const formattedId = id.toString().replace(/\s+/g, "-");
+          if(formattedId){
+            navigate(`/users/${formattedId}`)
+          }
+        }} >
           {" "}
           <img
             src={viewInfoIcon}

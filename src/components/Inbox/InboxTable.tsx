@@ -117,7 +117,12 @@ export default function InboxTable({
         <div className="w-full space-y-2">
           {inboxData.map((item, index) => (
             <div
-            onClick={() => navigate(`/inbox/${item.id}`)}
+            onClick={() => {
+              const formattedId = item.id.replace(/\s+/g, "-");
+              if(formattedId){
+                navigate(`/inbox/${formattedId}`)
+              }
+            }}
               key={index}
               className="bg-gray-100 h-[79px] w-full flex  gap-2 rounded-[10px] p-[10px] items-center "
             >
