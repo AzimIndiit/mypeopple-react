@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/form";
 import { useEffect, useMemo, useState } from "react";
 import eyeFill from "@/assets/icons/eye-fill.svg";
+import eyeHide from "@/assets/icons/eye-closed.svg";
 import { useTranslation } from "react-i18next";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -190,7 +191,7 @@ const RegisterPage = ({
                         onClick={() => setShowPassword((prev) => !prev)}
                       >
                         <img
-                          src={eyeFill}
+                          src={showPassword ? eyeHide : eyeFill}
                           className="w-[25px] h-[24px]"
                           alt="toggle password visibility"
                         />

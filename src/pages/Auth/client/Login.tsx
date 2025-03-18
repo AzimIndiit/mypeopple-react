@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form";
 import { useState, useEffect } from "react";
 import eyeFill from "@/assets/icons/eye-fill.svg";
-
+import eyeHide from "@/assets/icons/eye-closed.svg";
 import { Link } from "react-router-dom";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
@@ -120,7 +120,7 @@ const LoginPage = ({
                         className="absolute right-0 px-[20px] top-1/2 -translate-y-1/2 cursor-pointer"
                         onClick={() => setShowPassword((prev) => !prev)}
                       >
-                        <img src={eyeFill} className="w-[25px] h-[24px]" />
+                        <img src={showPassword ? eyeHide : eyeFill} className="w-[25px] h-[24px]" />
                       </div>
                     </div>
                   </FormControl>

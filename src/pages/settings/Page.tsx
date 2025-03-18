@@ -12,10 +12,16 @@ import cardOutlineIcon from "@/assets/icons/card-outline.svg";
 import lockPasswordIcon from "@/assets/icons/lock-password.svg";
 import laptopSecureIcon from "@/assets/icons/laptop-secure.svg";
 import privacyPolicyIcon from "@/assets/icons/privacy-policy.svg";
-import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import LanguageModal from "@/components/Settings/LanguageModal";
 import CurrencyModal from "@/components/Settings/CurrencyModal";
 import { useEffect, useState } from "react";
+import ChangePassword from "@/components/Settings/ChangePassword";
 
 const CountCardData = [
   {
@@ -42,7 +48,7 @@ const settingsData = [
   {
     icon: myPlanIcon,
     title: "My Plan",
-    link: "/settings/my-plan",
+    link: "/settings/my-plans",
   },
 
   {
@@ -84,22 +90,25 @@ const SettingsPage = () => {
     joined: "5 Oct 2022",
   };
 
-  const [isModalOpen, setIsModalOpen] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState("");
   useEffect(() => {
     if (id === "language") {
-      setIsModalOpen('language');
+      setIsModalOpen("language");
     }
     if (id === "currency") {
-      setIsModalOpen('currency');
+      setIsModalOpen("currency");
+    }
+    if (id === "change-password") {
+      setIsModalOpen("change-password");
     }
     return () => {
-      setIsModalOpen('');
+      setIsModalOpen("");
     };
   }, [id]);
   return (
     <div className="w-full space-y-4 mb-4">
-      <div className="flex  items-center gap-4 w-full ">
-        <div className="flex  xl:w-[278px]  items-center gap-2 md:h-[200px]  xl:h-[200px] w-full  rounded-[16px] bg-gray-100  relative">
+      <div className="flex flex-col md:flex-row  items-center gap-4 w-full ">
+        <div className="flex  xl:w-[278px]  items-center gap-2 h-[180px] md:h-[200px]  xl:h-[200px] w-full  rounded-[16px] bg-gray-100  relative">
           <img
             src={userData.image}
             alt="user"
@@ -144,19 +153,27 @@ const SettingsPage = () => {
           </Link>
         ))}
       </div>
-        {isModalOpen === 'language' && (
+      {isModalOpen === "language" && (
         <LanguageModal
-          isOpen={isModalOpen === 'language'}
-          onOpenChange={()=>{
-            navigate('/settings');
+          isOpen={isModalOpen === "language"}
+          onOpenChange={() => {
+            navigate("/settings");
           }}
         />
       )}
-            {isModalOpen === 'currency' && (
-        <CurrencyModal
-          isOpen={isModalOpen === 'currency'}
-          onOpenChange={()=>{
-            navigate('/settings');
+        {isModalOpen === "currency" && (
+          <CurrencyModal
+            isOpen={isModalOpen === "currency"}
+            onOpenChange={() => {
+              navigate("/settings");
+            }}
+          />
+        )}
+      {isModalOpen === "change-password" && (
+        <ChangePassword
+          isOpen={isModalOpen === "change-password"}
+          onOpenChange={() => {
+            navigate("/settings");
           }}
         />
       )}

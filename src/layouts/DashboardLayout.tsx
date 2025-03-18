@@ -25,7 +25,7 @@ const DashboardLayout = () => {
   if (isMobile) {
     return (
       <div className="flex w-full    ">
-        <AppSidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+        <AppSidebar collapsed={collapsed} setCollapsed={setCollapsed}  />
         <header className="">
           <AppNavbar
             isMobile={isMobile}

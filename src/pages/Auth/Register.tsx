@@ -6,6 +6,7 @@ import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useEffect, useMemo, useState } from "react";
 import eyeFill from "@/assets/icons/eye-fill.svg";
+import eyeHide from "@/assets/icons/eye-closed.svg";
 import { useTranslation } from "react-i18next";
 import { TFunction } from "i18next";
 
@@ -134,7 +135,7 @@ const RegisterPage = ({}: { currentPage: string; setCurrentPage: (page: string) 
                     <div className="relative">
                       <Input type={showPassword ? "text" : "password"} placeholder={t("auth.register.placeholder.password")} {...field} className="pr-10" />
                       <div className="absolute right-0 px-[20px] top-1/2 -translate-y-1/2 cursor-pointer" onClick={() => setShowPassword((prev) => !prev)}>
-                        <img src={eyeFill} className="w-[25px] h-[24px]" alt="toggle password visibility" />
+                        <img src={showPassword ? eyeHide : eyeFill} className="w-[25px] h-[24px]" alt="toggle password visibility" />
                       </div>
                     </div>
                   </FormControl>

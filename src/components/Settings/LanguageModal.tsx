@@ -29,7 +29,7 @@ const LanguageModal = ({
   onOpenChange: (open: boolean) => void;
 }) => {
   const { t } = useTranslation();
-  const { user,updateUser } = useAuth();
+  const { user, updateUser } = useAuth();
   const scheduledMeetingSchema = z.object({
     selectedLanguage: z.enum(["en", "fr"], {
       message: t("auth.languageModal.required"),
@@ -42,9 +42,7 @@ const LanguageModal = ({
     resolver: zodResolver(scheduledMeetingSchema),
     defaultValues: {
       selectedLanguage:
-        (user?.language as "en" | "fr" | null) === "fr"
-          ? "fr"
-          : "en",
+        (user?.language as "en" | "fr" | null) === "fr" ? "fr" : "en",
     },
   });
 
@@ -96,10 +94,15 @@ const LanguageModal = ({
                         ].map((lang) => (
                           <div
                             key={lang.id}
-                            className="flex items-center space-x-2"
+                            className="flex items-center space-x-2 my-2"
                           >
                             <RadioGroupItem value={lang.id} id={lang.id} />
-                            <Label htmlFor={lang.id}>{lang.label}</Label>
+                            <Label
+                              htmlFor={lang.id}
+                              className="!text-[14px] !font-light !text-black"
+                            >
+                              {lang.label}
+                            </Label>
                           </div>
                         ))}
                       </RadioGroup>

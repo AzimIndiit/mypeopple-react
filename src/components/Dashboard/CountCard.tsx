@@ -14,7 +14,7 @@ const CountCard = ({
   return (
     <div
       className={cn(
-        "flex items-center justify-between w-full  xl:h-[127px]  rounded-[20px] pl-4   xl:pl-[22px]",
+        "flex items-center justify-between w-full  h-[100px] overflow-hidden md:h-[127px]  rounded-[20px] pl-4   xl:pl-[22px]",
         bg
       )}
     >
@@ -26,7 +26,7 @@ const CountCard = ({
           {title}
         </div>
       </div>
-      <div className="flex items-center gap-2  w-[136px] h-[136px]">
+      <div className="flex items-center gap-2  w-[100px] h-[100px] md:w-[136px] md:h-[136px]">
         <div className="relative h-32 w-32 overflow-hidden">
           <img
             src={icon}

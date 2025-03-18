@@ -21,6 +21,12 @@ import BillingPage from "@/pages/billings/Page";
 import ReferralPage from "@/pages/referral/Page";
 import LanguageModal from "@/components/Settings/CurrencyModal";
 import SettingsPage from "@/pages/settings/Page";
+import MyPlans from "@/components/Settings/MyPlans";
+import TransactionHistoryPage from "@/components/Settings/TransactionHistoryTable";
+import SavedPaymentMethods from "@/components/Settings/SavedPaymentMethods";
+import PrivacyPolicyPage from "@/pages/privacy-policy/Page";
+import TermsOfUsePage from "@/pages/termsofuse/Page";
+import ChangePlan from "@/components/Settings/ChangePlan/ChangePlan";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -57,18 +63,28 @@ const AppRoutes = () => {
            
           <Route path="/users" element={<UsersPage showFilters={true} isDashboard={false}/>} />
           <Route path="/users/:id" element={<UserProfilePage />} />
+
           <Route path="/orders" element={<OrdersPage showFilters={true}/>} />
           <Route path="/orders/create" element={<OrderCreatePage />} />
           <Route path="/orders/:id" element={<OrderDetailsPage />} />
           <Route path="/orders/inbox/:id" element={<OrderDetailsInboxPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/settings/:id" element={<SettingsPage />} />
+        
           <Route path="/inbox" element={<InboxPage />} />
           <Route path="/inbox/:id" element={<InboxMessagePage />} />
 
           <Route path="/tool-box" element={<ToolBoxPage />} />
+
           <Route path="/billings" element={<BillingPage />} />
           <Route path="/billings/referral" element={<ReferralPage />} />
+
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/settings/:id" element={<SettingsPage />} />
+          <Route path="/settings/my-plans" element={<MyPlans />} />
+          <Route path="/settings/saved-payment-methods" element={<SavedPaymentMethods/>} />
+          <Route path="/settings/change-plan" element={<ChangePlan/>} />
+          <Route path="/settings/transaction-history/:id" element={<TransactionHistoryPage/>} />
+          <Route path="/settings/privacy-policy" element={<PrivacyPolicyPage/>} />
+          <Route path="/settings/terms-of-use" element={<TermsOfUsePage />} />
      
         </Route>
 

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import eyeFill from "@/assets/icons/eye-fill.svg";
+import eyeHide from "@/assets/icons/eye-closed.svg";
 import infoIcon from "@/assets/icons/info.svg";
 import {
   Form,
@@ -16,26 +17,30 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-const ResetPasswordSchema = z.object({
-  newPassword: z
-    .string()
-    .min(15, { message: "Password must be at least 15 characters long." })
-    .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter." })
-    .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter." })
-    .regex(/[0-9]/, { message: "Password must contain at least one number." })
-    .regex(/[^A-Za-z0-9]/, { message: "Password must contain at least one special character." }),
+const ResetPasswordSchema = z
+  .object({
+    newPassword: z
+      .string()
+      .min(15, { message: "Password must be at least 15 characters long." })
+      .regex(/[A-Z]/, {
+        message: "Password must contain at least one uppercase letter.",
+      })
+      .regex(/[a-z]/, {
+        message: "Password must contain at least one lowercase letter.",
+      })
+      .regex(/[0-9]/, { message: "Password must contain at least one number." })
+      .regex(/[^A-Za-z0-9]/, {
+        message: "Password must contain at least one special character.",
+      }),
 
-  confirmPassword: z
-    .string()
-    .min(15, { message: "Password must be at least 15 characters long." }),
-}).refine((data) => data.newPassword === data.confirmPassword, {
-  message: "Passwords do not match.",
-  path: ["confirmPassword"],
-});
-
-
-
-
+    confirmPassword: z
+      .string()
+      .min(15, { message: "Password must be at least 15 characters long." }),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: "Passwords do not match.",
+    path: ["confirmPassword"],
+  });
 
 type ResetPasswordFormValues = z.infer<typeof ResetPasswordSchema>;
 
@@ -46,6 +51,8 @@ const ResetPasswordPage = ({
   setCurrentPage: (page: string) => void;
 }) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState<boolean>(false);
   const form = useForm<ResetPasswordFormValues>({
     resolver: zodResolver(ResetPasswordSchema),
     defaultValues: {
@@ -53,7 +60,6 @@ const ResetPasswordPage = ({
       confirmPassword: "",
     },
   });
-  
 
   const onSubmit = (values: z.infer<typeof ResetPasswordSchema>) => {
     console.log(`Form Submitted`, values);
@@ -69,10 +75,11 @@ const ResetPasswordPage = ({
   return (
     <div className="w-full  ">
       <h1 className="text-[24px] lg:text-[26px] font-bold font-primary ">
-      Reset Your Password
+        Reset Your Password
       </h1>
       <p className=" text-[#596569] text-[14px] lg:text-[16px]   w-full ">
-      Enter a new password to reset the password on your account. We’ll ask for this password whenever you log in.
+        Enter a new password to reset the password on your account. We’ll ask
+        for this password whenever you log in.
       </p>
       <div className="w-full mt-[24px]">
         <Form {...form}>
@@ -80,7 +87,7 @@ const ResetPasswordPage = ({
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-6"
           >
-               <FormField
+            <FormField
               control={form.control}
               name="newPassword"
               render={({ field }) => (
@@ -102,7 +109,7 @@ const ResetPasswordPage = ({
                         onClick={() => setShowPassword((prev) => !prev)}
                       >
                         {showPassword ? (
-                          <img src={eyeFill} className="w-[25px] h-[24px]" />
+                          <img src={eyeHide} className="w-[25px] h-[24px]" />
                         ) : (
                           <img src={eyeFill} className="w-[25px] h-[24px]" />
                         )}
@@ -117,11 +124,13 @@ const ResetPasswordPage = ({
               {passwordCriteria.map((criteria, index) => (
                 <div key={index} className="flex items-center gap-[12px]">
                   <img src={infoIcon} className="w-[20px] h-[20px]" />
-                  <p className="text-[12px] lg:text-[14px] text-[#596569]">{criteria}</p>
+                  <p className="text-[12px] lg:text-[14px] text-[#596569]">
+                    {criteria}
+                  </p>
                 </div>
               ))}
             </div>
-               <FormField
+            <FormField
               control={form.control}
               name="confirmPassword"
               render={({ field }) => (
@@ -133,17 +142,17 @@ const ResetPasswordPage = ({
                   <FormControl>
                     <div className="relative">
                       <Input
-                        type={showPassword ? "text" : "password"}
+                        type={showConfirmPassword ? "text" : "password"}
                         placeholder="Enter Password "
                         {...field}
                         className="pr-10"
                       />
                       <div
                         className="absolute   right-0 px-[20px] top-1/2 -translate-y-1/2 "
-                        onClick={() => setShowPassword((prev) => !prev)}
+                        onClick={() => setShowConfirmPassword((prev) => !prev)}
                       >
-                        {showPassword ? (
-                          <img src={eyeFill} className="w-[25px] h-[24px]" />
+                        {showConfirmPassword ? (
+                          <img src={eyeHide} className="w-[25px] h-[24px]" />
                         ) : (
                           <img src={eyeFill} className="w-[25px] h-[24px]" />
                         )}
@@ -158,12 +167,12 @@ const ResetPasswordPage = ({
               Reset Password
             </Button>
             <div className="text-center w-full font-primary font-light text-[14px] lg:text-[16px]  ">
-            <p className=" mb-[24px]">
-            If you do not want to change your password or didn't
-            request a reset, you can ignore and delete this email.
-            </p>
-          </div>
-       
+              <p className=" mb-[24px]">
+                If you do not want to change your password or didn't request a
+                reset, you can ignore and delete this email.
+              </p>
+            </div>
+
             <div className="text-center w-full font-primary font-light text-[14px] lg:text-[16px]   ">
               <p className=" text-[#596569]  text-center w-full ">
                 Back to{" "}

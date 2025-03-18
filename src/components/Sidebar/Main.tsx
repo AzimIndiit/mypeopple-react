@@ -102,7 +102,7 @@ const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPat
     return (
       <aside
         className={cn(
-          "   fixed  h-screen top-0 z-101 overscroll-auto ",
+          "   fixed  h-screen top-0 z-50 overscroll-auto ",
           collapsed
             ? "transition-all duration-300 hidden"
             : "w-full bg-[rgba(0,0,0,0.5)] overscroll-contain "
@@ -151,9 +151,11 @@ const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPat
                   key={title}
                   to={url}
                   onClick={() => {
-                    if (isMobile) {
-                      setCollapsed(true);
+                    if (title === "Logout") {
+                      localStorage.clear(); // Clear localStorage
                     }
+                      setCollapsed(!collapsed);
+                    
                   }}
                 >
                   <li
@@ -199,6 +201,8 @@ const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPat
                     if (title === "Logout") {
                       localStorage.clear(); // Clear localStorage
                     }
+                    setCollapsed(!collapsed);
+
                   }}
                 >
                   <li

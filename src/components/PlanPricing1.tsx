@@ -82,9 +82,9 @@ function PricingCard({
   return (
     <div
       className={cn(
-        "p-4 min-w-[232px] font-primary transition-all flex flex-col  ",
+        " min-w-[174px] font-primary transition-all flex flex-col  ",
         isPopular
-          ? "bg-black text-white bg-cover bg-center shadow-2xl rounded-3xl  lg:mt-[-46px] "
+          ? "bg-black text-white bg-cover bg-center shadow-2xl rounded-3xl p-2  lg:w-[188px] "
           : "",
         className
       )}
@@ -99,16 +99,10 @@ function PricingCard({
           : {}
       }
     >
-      {isPopular && (
-        <div className="flex justify-end">
-          <span className="inline-block px-4 py-1 rounded-full text-sm font-medium bg-white text-primary mb-2 h-[27px]">
-            MOST POPULAR
-          </span>
-        </div>
-      )}
+    
 
       <div className="flex items-baseline">
-        <span className="text-[36px] font-bold">€{price}</span>
+        <span className="text-[26px] font-bold">€{price}</span>
         <span
           className={cn(
             "text-[17px] font-medium",
@@ -119,11 +113,18 @@ function PricingCard({
         </span>
       </div>
 
-      <h3 className="text-[28px] font-bold mt-4">{title}</h3>
+
+        <div className={cn("mb-2",isPopular ? "block" : 'opacity-0')}>
+          <span className="w-fit px-2 py-1 rounded-full text-[8px] font-medium bg-white text-primary mb-2 h-[18px]">
+            MOST POPULAR
+          </span>
+        </div>
+     
+      <h3 className="text-[22px] font-bold ">{title}</h3>
 
       <p
         className={cn(
-          "mt-2 mb-6 text-[15px] font-medium",
+          "mt-2 mb-2 text-[13px] font-medium",
           isPopular ? "text-white" : "text-[#848199]"
         )}
       >
@@ -131,12 +132,12 @@ function PricingCard({
       </p>
 
       {/* Ensure this div expands to push the button down */}
-      <div className="flex-grow">
-        <ul className="space-y-4">
+      <div className="flex-grow mb-2">
+        <ul className="space-y-2">
           {features.map((feature, index) => (
             <li
               key={index}
-              className="flex items-center gap-[10px] text-[15px]"
+              className="flex items-center gap-[10px] text-[12px]"
             >
               <img
                 src={isPopular ? check2 : check1}
@@ -156,7 +157,7 @@ function PricingCard({
           type="button"
           onClick={()=>handleSubmit({plan:title,planId})}
           className={cn(
-            "w-[207px] h-[45px] rounded-full py-6 text-lg font-medium mt-auto my-4 lg:my-0",
+            "w-[174px] h-[45px] rounded-full py-6 text-[13px] font-medium mt-auto my-4 lg:my-0",
             isPopular
               ? "bg-primary hover:bg-primary/90 text-black"
               : "bg-[#FFF1EE] hover:bg-[#FFF1EE]/90 text-primary"
@@ -173,9 +174,9 @@ function PlanPricing({screen,  onSubmit }: {  screen?:string,onSubmit: (data: an
   const [isMonthly, setIsMonthly] = useState<string>("MONTHLY");
 
   return (
-    <div className="min-h-screen ">
+    <div className=" ">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-left mb-4">
         {screen!=="1" &&  <h2 className="text-[18px] font-semibold font-primary mb-4">
             Choose a Plan
           </h2>}
@@ -201,7 +202,7 @@ function PlanPricing({screen,  onSubmit }: {  screen?:string,onSubmit: (data: an
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 bg-[#F9F9F9] rounded-3xl   p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 bg-[#F9F9F9] rounded-3xl gap-2  p-4">
           {pricingPlans.map((plan, index) => (
             <PricingCard
               handleSubmit={onSubmit}

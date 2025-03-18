@@ -2,12 +2,12 @@ import { useState } from "react";
 import logo from "@/assets/icons/logo.svg";
 import logo1 from "@/assets/icons/logo1.svg";
 import backArrow from "@/assets/icons/backArrow.svg";
-import SelectPlanPage from "./SelectPlan";
+import SelectPlanPage from "./SelectPlan1";
 import BillingDetailsPage from "./BillingDetailsPage";
 import PayementMethodPage from "./PaymentMethod";
 
 function SubscriptionPage() {
-  const [currentStep, setCurrentStep] = useState("payement-method");
+  const [currentStep, setCurrentStep] = useState("select-plan");
 
   // Define steps array
   const steps = [

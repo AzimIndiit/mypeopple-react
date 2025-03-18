@@ -34,7 +34,7 @@ export default function AppNavbar({
       style={{
         position:"fixed",
         backgroundColor:"white",
-        zIndex:50,
+        zIndex:49,
         top:0,
 
       }}

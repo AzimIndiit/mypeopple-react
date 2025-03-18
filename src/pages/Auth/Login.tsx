@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import eyeHide from "@/assets/icons/eye-closed.svg";
 import { z } from "zod";
 import {
   Form,
@@ -105,7 +106,7 @@ const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (
                         className="absolute right-0 px-[20px] top-1/2 -translate-y-1/2 cursor-pointer"
                         onClick={() => setShowPassword((prev) => !prev)}
                       >
-                        <img src={eyeFill} className="w-[25px] h-[24px]" />
+                        <img src={showPassword ? eyeHide : eyeFill} className="w-[25px] h-[24px]" />
                       </div>
                     </div>
                   </FormControl>
