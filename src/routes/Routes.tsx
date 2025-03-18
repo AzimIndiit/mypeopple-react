@@ -19,6 +19,8 @@ import InboxPage from "@/pages/inbox/Page";
 import InboxMessagePage from "@/pages/inbox/InboxMessage";
 import BillingPage from "@/pages/billings/Page";
 import ReferralPage from "@/pages/referral/Page";
+import LanguageModal from "@/components/Settings/CurrencyModal";
+import SettingsPage from "@/pages/settings/Page";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -59,13 +61,15 @@ const AppRoutes = () => {
           <Route path="/orders/create" element={<OrderCreatePage />} />
           <Route path="/orders/:id" element={<OrderDetailsPage />} />
           <Route path="/orders/inbox/:id" element={<OrderDetailsInboxPage />} />
-          <Route path="/settings" element={<div>Settings</div>} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/settings/:id" element={<SettingsPage />} />
           <Route path="/inbox" element={<InboxPage />} />
           <Route path="/inbox/:id" element={<InboxMessagePage />} />
 
           <Route path="/tool-box" element={<ToolBoxPage />} />
           <Route path="/billings" element={<BillingPage />} />
           <Route path="/billings/referral" element={<ReferralPage />} />
+     
         </Route>
 
          

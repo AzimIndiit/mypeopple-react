@@ -98,6 +98,12 @@
           "numeric": "Le code OTP doit contenir uniquement des chiffres."
         }
       }
+    },
+    "languageModal": {
+      "title": "Définissez votre langue par défaut",
+      "description": "Choisissez votre langue préférée pour améliorer votre expérience et naviguer facilement sur la plateforme.",
+      "required": "La langue est requise",
+      "save": "Enregistrer"
     }
   }
 }

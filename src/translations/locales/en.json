@@ -97,6 +97,12 @@
           "numeric": "OTP must contain only numbers."
         }
       }
+    },
+    "languageModal": {
+      "title": "Set Your Default Language",
+      "description": "Choose your preferred language to enhance your experience and navigate seamlessly across the platform.",
+      "required": "Language is required",
+      "save": "Save"
     }
   }
 }

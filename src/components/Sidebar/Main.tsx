@@ -53,12 +53,12 @@ const menuItems1 = [
 const menuItems2 = [
   {
     title: "Language",
-    url: "/language",
+    url: "/settings/language",
     icon: languageIcon,
   },
   {
     title: "Currency",
-    url: "/currency",
+    url: "/settings/currency",
     icon: currencyIcon,
   },
   {
@@ -320,7 +320,7 @@ const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPat
                 <img
                   src={Icon}
                   alt={title}
-                  className="w-[24px] h-[24px] xl:w-[36px] xl:h-[36px]"
+                  className={cn("w-[24px] h-[24px] xl:w-[36px] xl:h-[36px]",  updatedPath === url ? "stroke-white" : "stroke-black")}
                 />
 
                 {/* Wrap the text in a transition container */}
@@ -363,7 +363,7 @@ const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPat
                 <img
                   src={Icon}
                   alt={title}
-                  className="w-[24px] h-[24px] xl:w-[36px] xl:h-[36px]"
+                  className="w-[24px] h-[24px] xl:w-[36px] xl:h-[36px] "
                 />
 
                 {/* Wrap the text in a transition container */}

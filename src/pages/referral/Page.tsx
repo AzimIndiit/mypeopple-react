@@ -20,7 +20,10 @@ import linkedinIcon from "@/assets/icons/linkedin.svg";
 import discountIcon from "@/assets/icons/discount.svg";
 import inviteIcon from "@/assets/icons/invite.svg";
 import moneyHandIcon from "@/assets/icons/money-hand.svg";
-
+import ThankyouModal from "@/components/Referral/ThankyouModal";
+import { useState } from "react";
+import PreviewEmailModal from "@/components/Referral/PreviewEmailModal";
+import userAvatar from "@/assets/images/user.png";
 const socials = [
   {
     name: "Facebook",
@@ -62,6 +65,14 @@ const benifits = [
 ];
 
 const ReferralPage = () => {
+  const [isThankyouModalOpen, setIsThankyouModalOpen] = useState(false);
+  const [isPreviewEmailModalOpen, setIsPreviewEmailModalOpen] = useState(false);
+  const thankyouData = {
+    name: "Tran",
+    amount: "500",
+    profile: userAvatar,
+    promoCode: "TY202512568",
+  };
   const ReferralSchema = z.object({
     email: z.string().email({ message: "Please enter a valid email" }),
   });
@@ -86,17 +97,17 @@ const ReferralPage = () => {
         className="w-full h-[236px] bg-cover bg-center rounded-[16px] my-4 flex flex-col justify-center items-start md:pl-[60px] pl-4"
         style={{ backgroundImage: `url(${referralBackground}) ` }}
       >
-        <h1 className="text-[24px] font-primary font-medium text-black">
+        <h1 className="text-[24px] font-primary font-medium text-white">
           From Referral To Reward
         </h1>
         <p className="text-[14px] font-primary font-semibold text-white">
           It's easy to earn with referrals
         </p>
-        <p className="text-[14px] font-primary font-light text-white">
+        <p className="text-[14px] font-primary font-light text-white opacity-60">
           Tran, you deserve recognition for referring friends to Mypeople <br />
           Earn up to ? 500 in Mypeople Credits - Up to ?100 from each referral{" "}
           <br />
-          Terms and Conditions apply
+          <p className="underline">     Terms and Conditions apply</p>
         </p>
       </div>
       <div>
@@ -199,6 +210,19 @@ const ReferralPage = () => {
           ))}
         </div>
       </div>
+
+     {isThankyouModalOpen && <ThankyouModal
+        isOpen={isThankyouModalOpen}
+        onOpenChange={setIsThankyouModalOpen}
+        data={thankyouData}
+      />}
+
+    {isPreviewEmailModalOpen && <PreviewEmailModal
+        onContinue={handleSend}
+        isOpen={isPreviewEmailModalOpen}
+        onOpenChange={setIsPreviewEmailModalOpen}
+        data={thankyouData}
+      />}
     </div>
   );
 };

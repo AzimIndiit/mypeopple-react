@@ -12,7 +12,7 @@ import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import videoCall from "@/assets/icons/videoCall.svg";
 
-const PopupMeetingScheduled = ({
+const MeetingScheduledModal = ({
   isOpen,
   data,
   onOpenChange,
@@ -71,12 +71,12 @@ const PopupMeetingScheduled = ({
               </h1>
             </div>
             <p className="text-[18px] font-primary font-light text-center">
-              Hi Tran, your meeting is scheduled with your HRBP  <br />
+              Hi Tran, your meeting is scheduled with your HRBP <br />
               <span className="font-semibold">
                 {data.selectedDate} {data.selectedTimeSlot}
               </span>
               <br />
-               The HRBP will contact you soon 
+              The HRBP will contact you soon
               <br />
               Keep an eye on your Inbox
             </p>
@@ -96,4 +96,4 @@ const PopupMeetingScheduled = ({
   );
 };
 
-export default PopupMeetingScheduled;
+export default MeetingScheduledModal;

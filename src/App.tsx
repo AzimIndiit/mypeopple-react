@@ -2,6 +2,9 @@ import React, { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import AppRoutes from "./routes/Routes";
+import AuthProvider from "./context/AuthContext";
+
+
 
 function App() {
   // function adjustZoom() {
@@ -18,9 +21,12 @@ function App() {
     <React.StrictMode>
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
+          <AuthProvider>
           <AppRoutes />
+          </AuthProvider>
         </Suspense>
       </BrowserRouter>
+     
     </React.StrictMode>
   );
 }

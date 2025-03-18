@@ -4,7 +4,6 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import en from "./locales/en.json";
 import fr from "./locales/fr.json";
 
-
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -13,9 +12,13 @@ i18n
       en: { translation: en },
       fr: { translation: fr },
     },
-    lng: "en",
+    lng: localStorage.getItem("i18nextLng") || "en", // ✅ Load saved language or fallback to English
     fallbackLng: "en",
     interpolation: { escapeValue: false },
+    detection: {
+      order: ["localStorage", "navigator"],
+      caches: ["localStorage"],
+    },
   });
 
 export default i18n;

@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 
 
 
-const PopupScheduleMeetingModal = ({
+const ScheduleMeetingModal = ({
   isOpen,
   onOpenChange,
   onContinue,
@@ -166,4 +166,4 @@ const timeSlots = generateTimeSlots(12, 16) || []
   );
 };
 
-export default PopupScheduleMeetingModal;
+export default ScheduleMeetingModal;

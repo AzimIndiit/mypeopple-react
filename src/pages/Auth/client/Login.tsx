@@ -46,7 +46,7 @@ const LoginPage = ({
       .regex(/[^A-Za-z0-9]/, {
         message: t("auth.login.validation.password.special"),
       }),
-    captcha: z.string().min(1, { message: t("auth.login.validation.captcha") }),
+    // captcha: z.string().min(1, { message: t("auth.login.validation.captcha") }),
   });
 
   const form = useForm({
@@ -55,6 +55,7 @@ const LoginPage = ({
       email: "",
       password: "",
       rememberMe: false,
+      // captcha: "",
     },
   });
 

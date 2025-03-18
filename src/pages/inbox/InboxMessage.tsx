@@ -13,8 +13,8 @@ import { MessageInput } from "@/components/InboxMessage/MessageInput";
 import { SidePanel } from "@/components/InboxMessage/SidePanel";
 import { PageHeader } from "@/components/PageHeader";
 import { useNavigate } from "react-router-dom";
-import PopupScheduleMeetingModal from "@/components/InboxMessage/PopupScheduleMeetingModal";
-import PopupMeetingScheduled from "@/components/InboxMessage/PopupMeetingScheduledModal";
+import PopupScheduleMeetingModal from "@/components/InboxMessage/ScheduleMeetingModal";
+import PopupMeetingScheduled from "@/components/InboxMessage/MeetingScheduledModal";
 
 const createDummyMessages = () => {
   const currentUser = {
