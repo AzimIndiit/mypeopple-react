@@ -4,8 +4,10 @@ import card1 from "@/assets/images/card1.png";
 import card2 from "@/assets/images/card2.png";
 import editIcon from "@/assets/icons/edit.svg";
 import deleteIcon from "@/assets/icons/outline-delete.svg";
+import { useNavigate } from "react-router-dom";
 
 const SavedPaymentMethods = () => {
+  const navigate = useNavigate();
   const savedPaymentMethods = [
     {
       id: 1,
@@ -22,7 +24,7 @@ const SavedPaymentMethods = () => {
   ];
   return (
     <div className="">
-      <PageHeader title="Saved Payment Methods" buttonText="Add New" />
+      <PageHeader title="Saved Payment Methods" buttonText="Add New" onBack={() => navigate(-1)} />
       <div className="mt-4 space-y-4">
         <div className="flex flex-col md:flex-row gap-4">
           {savedPaymentMethods.map((method) => (

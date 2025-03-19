@@ -54,46 +54,64 @@ const plans = [
   },
 ];
 
-const SelectPlanPage = ({
+const Step1 = ({
   setCurrentStep,
+  setStepData,
+  stepData,
+  setIsCompare,
 }: {
   currentStep: string;
   setCurrentStep: (step: string) => void;
+  setStepData: (data: any) => void;
+  stepData: any;
+  setIsCompare: (value: boolean) => void;
 }) => {
   //   const { t, i18n } = useTranslation();
 
   //use memo to create the schema
-  const SelectPlanSchema = z.object({
+  const Step1Schema = z.object({
     numberOfEmployees: z
-      .number()
+      .string()
       .min(1, { message: "Number of Employees is required" }),
     promoCode: z.string().min(1, { message: "Promo Code is required" }),
 
     items: z.array(z.string()).refine((value) => value.some((item) => item), {
       message: "You have to select at least one item.",
     }),
-    // plan: z.string().min(1, { message: "Plan is required" }),
-    // contractDuration: z
-    //   .string()
-    //   .min(1, { message: "Contract Duration is required" }),
+    plan: z
+      .object({
+        planId: z.number().min(1, { message: "Plan is required" }),
+        price: z.string().min(1, { message: "Price is required" }),
+        title: z.string().min(1, { message: "Title is required" }),
+        isMonthly: z.boolean(),
+      })
+      .optional(),
+    contractDuration: z
+      .string()
+      .min(1, { message: "Contract Duration is required" }),
     isConfirm: z.boolean(),
   });
 
   const form = useForm({
-    resolver: zodResolver(SelectPlanSchema),
+    resolver: zodResolver(Step1Schema),
     defaultValues: {
-      isConfirm: false,
-      numberOfEmployees: 0,
-      items: [],
-      plan: "2",
-      promoCode: "",
-      contractDuration: "yearly",
+      isConfirm: stepData?.isConfirm || false,
+      numberOfEmployees: stepData?.numberOfEmployees || "0",
+      items: stepData?.items || [],
+      plan: stepData?.plan || undefined,
+      promoCode: stepData?.promoCode || "",
+      contractDuration: stepData?.contractDuration || "yearly",
     },
   });
 
   const onSubmit = (values: any) => {
     console.log(`Form Submitted`, values);
     setCurrentStep("2");
+    // setStepData({ step1: values });
+    setStepData((prev:any) => ({
+        ...prev,
+        step1: values,
+      }));
   };
 
   return (
@@ -132,7 +150,7 @@ const SelectPlanPage = ({
                               onClick={() =>
                                 form.setValue(
                                   "numberOfEmployees",
-                                  Number(field.value) + 1
+                                  String(Number(field.value) + 1)
                                 )
                               }
                             >
@@ -143,7 +161,7 @@ const SelectPlanPage = ({
                               onClick={() =>
                                 form.setValue(
                                   "numberOfEmployees",
-                                  Math.max(0, Number(field.value) - 1)
+                                  String(Math.max(0, Number(field.value) - 1))
                                 )
                               }
                             >
@@ -255,12 +273,23 @@ const SelectPlanPage = ({
 
             <PlanPricing
               onSubmit={(value) => {
-                form.setValue("plan", value.planId);
-                // onSubmit(form.getValues());
+                form.setValue("plan", value);
               }}
             />
             <div className="flex justify-center my-4">
-              <p className="underline text-primary font-primary text-[14px] font-medium">
+              <p
+                className="underline text-primary font-primary text-[14px] font-medium"
+                onClick={() => {
+                  console.log("isCompare");
+                  setIsCompare(true);
+
+                  setStepData({
+                    step1: {
+                      ...form.getValues(),
+                    },
+                  });
+                }}
+              >
                 Compare Services
               </p>
             </div>
@@ -438,9 +467,9 @@ const SelectPlanPage = ({
             />
             <hr className="my-4" />
             <div className="flex justify-end">
-            <Button className="w-full md:w-[376px]" type="submit">
-              Confirm and go to Extras
-            </Button>
+              <Button className="w-full md:w-[376px]" type="submit">
+                Confirm and go to Extras
+              </Button>
             </div>
           </form>
         </Form>
@@ -449,4 +478,4 @@ const SelectPlanPage = ({
   );
 };
 
-export default SelectPlanPage;
+export default Step1;

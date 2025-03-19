@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 import check1 from "@/assets/icons/check1.svg";
 import check2 from "@/assets/icons/check2.svg";
 import popular from "@/assets/images/premium.svg";
@@ -8,57 +7,36 @@ import popular from "@/assets/images/premium.svg";
 const pricingPlans = [
   {
     id: 1,
-    price: "20",
-    title: "Basic",
-    description: "For small startups just starting with HR needs.",
-    features: [
-      "HR policy templates",
-      "Employee contract drafting",
-      "Basic compliance guidance",
-    ],
-    buttonText: "Choose plan",
-  },
-  {
-    id: 2,
-    price: "50",
-    title: "Essential",
-    description: "For growing businesses requiring regular HR support.",
-    features: [
-      "Regular HR support",
-      "Leave and attendance management",
-      "Payroll assistance",
-    ],
-    buttonText: "Choose plan",
-  },
-  {
-    id: 3,
-    price: "100",
-    title: "Premium",
-    description: "For businesses focused on enhanced HR support.",
+    price: "3620",
+    title: "Invest in France",
+    duration: "month",
+    description: "Our HR package to settle right",
     features: [
       "Recruitment and onboarding support",
       "Performance evaluation systems",
       "HR strategy consultations",
     ],
-    isPopular: true,
     buttonText: "Choose plan",
+    isPopular: true,
   },
   {
-    id: 4,
-    price: "200",
-    title: "Advanced",
-    description: "For large enterprises with complex HR needs.",
+    id: 2,
+    price: "520",
+    title: "Change Management",
+    duration: "day",
+    description:
+      "To manage a one time key strategic project or transition period.",
     features: [
-      "Full HR outsourcing",
-      "Compliance with complex labor laws",
-      "Workforce analytics and reporting",
+      "Recruitment and onboarding support",
+      "Performance evaluation systems",
+      "HR strategy consultations",
     ],
-    buttonText: "Get Quote",
+    buttonText: "Choose plan",
   },
 ];
 function PricingCard({
   planId,
-  isMonthly,
+  duration,
   price,
   title,
   description,
@@ -69,7 +47,7 @@ function PricingCard({
   handleSubmit,
 }: {
   planId: number;
-  isMonthly: string;
+  duration: string;
   price: string;
   title: string;
   description: string;
@@ -82,10 +60,10 @@ function PricingCard({
   return (
     <div
       className={cn(
-        " min-w-[174px] font-primary transition-all flex flex-col  ",
+        " w-full font-primary transition-all flex flex-col p-4 shadow-md rounded-3xl ",
         isPopular
-          ? "bg-black text-white bg-cover bg-center shadow-2xl rounded-3xl p-2  lg:w-[188px] "
-          : "",
+          ? "bg-black text-white bg-cover bg-center shadow-2xl rounded-3xl  "
+          : "  border border-[#E3E5E8]",
         className
       )}
       style={
@@ -106,7 +84,7 @@ function PricingCard({
             isPopular ? "text-white" : "text-[#848199]"
           )}
         >
-          /{isMonthly === "MONTHLY" ? "month" : "year"}
+          /{duration}
         </span>
       </div>
 
@@ -148,7 +126,7 @@ function PricingCard({
       </div>
 
       {/* Button stays at the bottom */}
-      <div className="mx-auto">
+      <div className="w-full">
         <Button
           type="button"
           onClick={() =>
@@ -156,11 +134,11 @@ function PricingCard({
               planId,
               price,
               title,
-              isMonthly: isMonthly === "MONTHLY",
+              duration,
             })
           }
           className={cn(
-            "w-[174px] h-[45px] rounded-full py-6 text-[13px] font-medium mt-auto my-4 lg:my-0",
+            "w-full h-[45px] rounded-full py-6 text-[13px] font-medium mt-auto my-4 lg:my-0",
             isPopular
               ? "bg-primary hover:bg-primary/90 text-black"
               : "bg-[#FFF1EE] hover:bg-[#FFF1EE]/90 text-primary"
@@ -173,53 +151,16 @@ function PricingCard({
   );
 }
 
-function PlanPricing({
-  screen,
-  onSubmit,
-}: {
-  screen?: string;
-  onSubmit: (data: any) => void;
-}) {
-  const [isMonthly, setIsMonthly] = useState<string>("MONTHLY");
-
+function ExtraPlanPricing({ onSubmit }: { onSubmit: (data: any) => void }) {
   return (
     <div className=" ">
       <div className="max-w-6xl mx-auto">
-        <div className="text-left mb-4">
-          {screen !== "1" && (
-            <h2 className="text-[18px] font-semibold font-primary mb-4">
-              Choose a Plan
-            </h2>
-          )}
-          <div className="inline-flex items-center  rounded-full p-1 ">
-            {["MONTHLY", "YEARLY"].map((value) => {
-              console.log(value, "value");
-              return (
-                <button
-                  key={value}
-                  type="button"
-                  className={`cursor-pointer flex justify-center items-center h-[44px] w-[100px] rounded-full text-[10px] font-primary font-bold transition-all
-                ${
-                  isMonthly === value
-                    ? "bg-gradient-to-b from-[#000000] to-[#3B3B3B] text-white"
-                    : "text-[#848199]"
-                }`}
-                  onClick={() => setIsMonthly(value)}
-                >
-                  {value}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 bg-[#F9F9F9] rounded-3xl gap-2  p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2  rounded-3xl gap-5 ">
           {pricingPlans.map((plan, index) => (
             <PricingCard
               handleSubmit={onSubmit}
               planId={plan.id}
-              key={plan.title}
-              isMonthly={isMonthly}
+              key={index}
               className={`
         ${index === 0 ? "rounded-tl-3xl rounded-bl-3xl" : ""} 
         ${
@@ -237,4 +178,4 @@ function PlanPricing({
   );
 }
 
-export default PlanPricing;
+export default ExtraPlanPricing;

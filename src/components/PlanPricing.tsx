@@ -94,7 +94,6 @@ function PricingCard({
               backgroundImage: `url(${popular})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-            
             }
           : {}
       }
@@ -154,7 +153,10 @@ function PricingCard({
       <div className="mx-auto">
         <Button
           type="button"
-          onClick={()=>handleSubmit({plan:title,planId})}
+          onClick={() => handleSubmit({  planId,
+            price,
+            title,
+            isMonthly: isMonthly === "MONTHLY", })}
           className={cn(
             "w-[207px] h-[45px] rounded-full py-6 text-lg font-medium mt-auto my-4 lg:my-0",
             isPopular
@@ -169,16 +171,31 @@ function PricingCard({
   );
 }
 
-function PlanPricing({screen,  onSubmit }: {  screen?:string,onSubmit: (data: any) => void }) {
+function PlanPricing({
+  screen,
+  onSubmit,
+  className,
+}: {
+  screen?: string;
+  onSubmit: (data: any) => void;
+  className?: string;
+}) {
   const [isMonthly, setIsMonthly] = useState<string>("MONTHLY");
 
   return (
     <div className="min-h-screen ">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-        {screen!=="1" &&  <h2 className="text-[18px] font-semibold font-primary mb-4">
-            Choose a Plan
-          </h2>}
+        <div className={cn("text-center mb-12", className)}>
+          {screen === "1" && (
+            <h2 className="text-[18px] font-semibold font-primary mb-4">
+              Choose a Plan
+            </h2>
+          )}
+          {screen == "2" && (
+            <h2 className="text-[18px] font-semibold font-primary">
+              Compare Our HRBP Outsourcing Plans
+            </h2>
+          )}
           <div className="inline-flex items-center  rounded-full p-1 ">
             {["MONTHLY", "YEARLY"].map((value) => {
               console.log(value, "value");

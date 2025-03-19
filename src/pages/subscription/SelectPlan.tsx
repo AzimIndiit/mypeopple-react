@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -42,6 +42,7 @@ const SelectPlanPage = ({
   const [durationType, setDurationType] = useState("days");
   const [workingDaysType, setWorkingDaysType] = useState("days");
   const [selectedService, setSelectedService] = useState("1");
+  const compareRef = useRef<HTMLHRElement>(null);
   //use memo to create the schema
   const SelectPlanSchema = z.object({
     duration: z.number().min(1, { message: "Duration is required" }),
@@ -316,7 +317,7 @@ const SelectPlanPage = ({
             <FormField
               control={form.control}
               name="items"
-              render={({  }) => (
+              render={({}) => (
                 <FormItem>
                   {/* <div className="mb-4"> */}
                   <FormLabel>You can choose multiple options</FormLabel>
@@ -410,9 +411,16 @@ const SelectPlanPage = ({
             <FormField
               control={form.control}
               name="items"
-              render={({  }) => (
+              render={({}) => (
                 <FormItem>
-                  <FormLabel className="text-primary underline !font-semibold text-[14px] mb-4">
+                  <FormLabel
+                    className="text-primary underline !font-semibold text-[14px] mb-4 cursor-pointer"
+                    onClick={() => {
+                      if (compareRef.current) {
+                        compareRef.current.scrollIntoView({ behavior: "smooth" });
+                      } 
+                    }}
+                  >
                     Compare Services
                   </FormLabel>
                   <div className="flex flex-col gap-[10px]">
@@ -470,7 +478,7 @@ const SelectPlanPage = ({
                         <p
                           className={`text-[14px] w-full text-left h-[48px] py-[14px] px-[16px] flex justify-start items-center text-[#454B54]`}
                         >
-                         On Site
+                          On Site
                         </p>
                         <p
                           className={`text-[16px] text-[#454B54] font-primary font-bold w-full text-left  h-[48px]py-[14px] px-[16px] flex justify-start items-center`}
@@ -483,7 +491,7 @@ const SelectPlanPage = ({
                         <p
                           className={`text-[14px] w-full text-left h-[48px] py-[14px] px-[16px] flex justify-start items-center text-[#454B54]`}
                         >
-                         Special Discount
+                          Special Discount
                         </p>
                         <p
                           className={`text-[16px] text-[#454B54] font-primary font-bold w-full text-left  h-[48px]py-[14px] px-[16px] flex justify-start items-center`}
@@ -495,7 +503,7 @@ const SelectPlanPage = ({
                         <p
                           className={`text-[14px] w-full text-left h-[48px] py-[14px] px-[16px] flex justify-start items-center text-[#454B54]`}
                         >
-                        Total Before VAT
+                          Total Before VAT
                         </p>
                         <p
                           className={`text-[16px] text-[#454B54] font-primary font-bold w-full text-left  h-[48px]py-[14px] px-[16px] flex justify-start items-center`}
@@ -507,7 +515,7 @@ const SelectPlanPage = ({
                         <p
                           className={`text-[14px] w-full text-left h-[48px] py-[14px] px-[16px] flex justify-start items-center text-[#454B54]`}
                         >
-                       VAT
+                          VAT
                         </p>
                         <p
                           className={`text-[16px] text-[#454B54] font-primary font-bold w-full text-left  h-[48px]py-[14px] px-[16px] flex justify-start items-center`}
@@ -519,7 +527,7 @@ const SelectPlanPage = ({
                         <p
                           className={`text-[14px] w-full text-left h-[48px] py-[14px] px-[16px] flex justify-start items-center text-[#454B54]`}
                         >
-                      Total Including VAT
+                          Total Including VAT
                         </p>
                         <p
                           className={`text-[16px] text-primary font-primary font-bold w-full text-left  h-[48px]py-[14px] px-[16px] flex justify-start items-center`}
@@ -536,22 +544,21 @@ const SelectPlanPage = ({
             />
             <div className="flex flex-col lg:flex-row  gap-[20px] justify-between items-center">
               <p className="text-[14px] w-full text-left">
-              Compared to hiring an HR manager you save €2000
+                Compared to hiring an HR manager you save €2000
               </p>
               <Button className="w-full lg:w-[315px]" type="button">
                 Buy
-
               </Button>
             </div>
-            <hr className="w-full" />
+            <hr className="w-full" ref={compareRef} />
             <h2 className="text-[16px] lg:text-[18px] font-semibold font-primary my-4">
-            Our HRBP Outsourcing Plans to Switch to Anytime
-          </h2>
-            <PlanPricing
+              Our HRBP Outsourcing Plans to Switch to Anytime
+            </h2>
+           <PlanPricing
               screen="1"
               onSubmit={(value) => {
                 form.setValue("plan", value.planId);
-              onSubmit(form.getValues())
+                onSubmit(form.getValues());
               }}
             />
             {/* <Button className="w-full" type="submit">

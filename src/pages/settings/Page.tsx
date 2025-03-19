@@ -16,7 +16,7 @@ import {
   Link,
   useNavigate,
   useParams,
-  useSearchParams,
+  // useSearchParams,
 } from "react-router-dom";
 import LanguageModal from "@/components/Settings/LanguageModal";
 import CurrencyModal from "@/components/Settings/CurrencyModal";
@@ -91,6 +91,7 @@ const SettingsPage = () => {
   };
 
   const [isModalOpen, setIsModalOpen] = useState("");
+
   useEffect(() => {
     if (id === "language") {
       setIsModalOpen("language");
@@ -105,6 +106,7 @@ const SettingsPage = () => {
       setIsModalOpen("");
     };
   }, [id]);
+
   return (
     <div className="w-full space-y-4 mb-4">
       <div className="flex flex-col md:flex-row  items-center gap-4 w-full ">
@@ -161,14 +163,14 @@ const SettingsPage = () => {
           }}
         />
       )}
-        {isModalOpen === "currency" && (
-          <CurrencyModal
-            isOpen={isModalOpen === "currency"}
-            onOpenChange={() => {
-              navigate("/settings");
-            }}
-          />
-        )}
+      {isModalOpen === "currency" && (
+        <CurrencyModal
+          isOpen={isModalOpen === "currency"}
+          onOpenChange={() => {
+            navigate("/settings");
+          }}
+        />
+      )}
       {isModalOpen === "change-password" && (
         <ChangePassword
           isOpen={isModalOpen === "change-password"}

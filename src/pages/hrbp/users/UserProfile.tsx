@@ -23,7 +23,7 @@ const UserProfilePage = () => {
   };
   return (
     <div>
-      <PageHeader title="HRBP Details"  onAdd={() => navigate("/orders/create")} buttonText="Create Order with HRBP" />
+      <PageHeader title="HRBP Details"  onAdd={() => navigate("/orders/create")} buttonText="Create Order with HRBP"  onBack={() => navigate(-1)} />
       <div className="flex flex-col md:flex-row justify-between md:items-start items-center w-full my-4 gap-4 xl:gap-[43px]">
         <div className="flex flex-col items-center gap-2 w-full  xl:w-[278px]">
           <div className="flex items-center gap-2 md:h-[200px]  xl:h-[200px] w-full  rounded-[16px] bg-gray-100  relative">

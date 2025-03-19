@@ -1,24 +1,24 @@
 import { Button } from "@/components/ui/button";
 import backArrow from "@/assets/icons/backArrow.svg";
 import addIcon from "@/assets/icons/add-solid.svg";
-import switchIcon from "@/assets/icons/outline_switch.svg";
-import { useNavigate } from "react-router-dom";
 export const PageHeader = ({
   title,
   onAdd,
   buttonText,
   icon = addIcon,
+  onBack,
 }: {
   title: string;
   onAdd?: () => void;
   buttonText?: string;
   icon?: any;
+  onBack?: () => void;
 }) => {
-  const navigate = useNavigate();
+
   return (
     <div className="flex justify-between items-center w-full">
       <div className="flex items-center gap-2">
-        <div className="cursor-pointer w-[30px]" onClick={() => navigate(-1)}>
+        <div className="cursor-pointer w-[30px]" onClick={onBack}>
           <img src={backArrow} className="w-[30px] h-[30px]" alt="Back" />
         </div>
         <p className="md:text-[20px] text-[16px] font-light font-primary">

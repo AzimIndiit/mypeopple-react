@@ -241,6 +241,7 @@ const InboxMessagePage = () => {
         title="Client Inbox"
         onAdd={() => navigate("/orders/create")}
         buttonText="Create Order with HRBP"
+        onBack={() => navigate(-1)}
       />
 
       <Form {...form}>

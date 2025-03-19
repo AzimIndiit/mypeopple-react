@@ -2,7 +2,7 @@ import { useState } from "react";
 import logo from "@/assets/icons/logo.svg";
 import logo1 from "@/assets/icons/logo1.svg";
 import backArrow from "@/assets/icons/backArrow.svg";
-import SelectPlanPage from "./SelectPlan1";
+import SelectPlanPage from "./SelectPlan";
 import BillingDetailsPage from "./BillingDetailsPage";
 import PayementMethodPage from "./PaymentMethod";
 

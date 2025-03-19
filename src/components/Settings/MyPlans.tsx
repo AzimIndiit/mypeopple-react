@@ -15,7 +15,7 @@ const MyPlans = () => {
   };
   return (
     <div className="">
-      <PageHeader title="My Plans" buttonText="Change Plan" icon={switchIcon} onAdd={() => navigate("/settings/change-plan")} />
+      <PageHeader title="My Plans" buttonText="Change Plan" icon={switchIcon} onAdd={() => navigate("/settings/change-plan")} onBack={() => navigate(-1)} />
       <div className="mt-4 space-y-4">
         <div className="flex flex-col md:flex-row justify-between md:items-center items-end bg-[#FFF4F0] px-[19px] py-[10px] rounded-[6px] gap-4">
           <div className="grid grid-cols-2 md:grid-cols-4 md:items-center w-full gap-4 xl:gap-[45px]">

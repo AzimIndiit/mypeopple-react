@@ -4,8 +4,10 @@ import { useRef, useState } from "react";
 import BillingDetailsPage from "@/components/BillingsAndPayments/BillingDetails";
 import PaymentMethodPage from "@/components/BillingsAndPayments/PaymentMethod";
 import Balances from "@/components/BillingsAndPayments/Balances";
+import { useNavigate } from "react-router-dom";
 
 const BillingPage = () => {
+  const navigate = useNavigate();
   const [currentTab, setCurrentTab] = useState<string>("billing-history");
   const tabRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
@@ -42,7 +44,7 @@ const BillingPage = () => {
 
   return (
     <div>
-      <PageHeader title="Billings & Payment" onAdd={() => {}} />
+      <PageHeader title="Billings & Payment" onAdd={() => {}} onBack={() => navigate(-1)} />
       <div className="w-full overflow-auto">
         <div className="flex gap-4 my-4 w-full">
           {tabs.map((tab) => (

@@ -1,9 +1,10 @@
 import { PageHeader } from '@/components/PageHeader'
-
+import { useNavigate } from 'react-router-dom';
 function PrivacyPolicyPage() {
+  const navigate = useNavigate();
   return (
     <div className="w-full">
-        <PageHeader title="Privacy Policy" />
+        <PageHeader title="Privacy Policy" onBack={() => navigate(-1)} />
         <div className="w-full my-4 font-primary text-[#414042] text-[16px]">
           <p>
           Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate and disclose and make use of personal information. The following outlines our privacy policy.

@@ -24,6 +24,7 @@ import ThankyouModal from "@/components/Referral/ThankyouModal";
 import { useState } from "react";
 import PreviewEmailModal from "@/components/Referral/PreviewEmailModal";
 import userAvatar from "@/assets/images/user.png";
+import { useNavigate } from "react-router-dom";
 const socials = [
   {
     name: "Facebook",
@@ -65,6 +66,7 @@ const benifits = [
 ];
 
 const ReferralPage = () => {
+  const navigate = useNavigate();
   const [isThankyouModalOpen, setIsThankyouModalOpen] = useState(false);
   const [isPreviewEmailModalOpen, setIsPreviewEmailModalOpen] = useState(false);
   const thankyouData = {
@@ -92,7 +94,7 @@ const ReferralPage = () => {
 
   return (
     <div>
-      <PageHeader title="Refer a Friend" />
+      <PageHeader title="Refer a Friend" onBack={() => navigate(-1)} />
       <div
         className="w-full h-[236px] bg-cover bg-center rounded-[16px] my-4 flex flex-col justify-center items-start md:pl-[60px] pl-4"
         style={{ backgroundImage: `url(${referralBackground}) ` }}

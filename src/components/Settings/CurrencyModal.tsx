@@ -49,12 +49,12 @@ const CurrencyModal = ({
     resolver: zodResolver(scheduledMeetingSchema),
     defaultValues: {
       selectedCurrency:
-        (localStorage.getItem("currency") as "euro" | "usd" | null) === "euro"
-          ? "euro"
-          : "usd",
+        (localStorage.getItem("currency") as "usd" | "euro" | null) === "usd"
+          ? "usd"
+          : "euro",
     },
   });
-
+console.log('form.getValues(', form.getValues())
   const onSubmit = (values: ScheduleMeetingType) => {
     // console.log("Language Changed:", values);
     updateUser({ currency: values.selectedCurrency });

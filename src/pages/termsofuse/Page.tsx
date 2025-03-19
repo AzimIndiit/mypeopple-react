@@ -1,9 +1,11 @@
 import { PageHeader } from "@/components/PageHeader";
+import { useNavigate } from "react-router-dom";
 
 function TermsOfUsePage() {
+  const navigate = useNavigate();
   return (
     <div className="w-full">
-      <PageHeader title="Terms of Use" />
+      <PageHeader title="Terms of Use" onBack={() => navigate(-1)} />
       <div className="w-full my-4 font-primary text-[#414042] text-[16px]">
         <p>
           By accessing this web site, you are agreeing to be bound by these web
