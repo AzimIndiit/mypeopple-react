@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import check1 from "@/assets/icons/check1.svg";
 import check2 from "@/assets/icons/check2.svg";

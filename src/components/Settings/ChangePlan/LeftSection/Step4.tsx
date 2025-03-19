@@ -165,7 +165,7 @@ const Step4 = ({
                     ].map((option) => {
                       return (
                         <div key={option.value} className="mb-2 ">
-                          <label className="flex items-center text-sm font-medium space-x-2 cursor-pointer h-14 p-4 rounded-md bg-black text-white">
+                          <label className="flex items-center text-sm font-light space-x-2 cursor-pointer h-14 p-4 rounded-md bg-black text-white">
                             <RadioGroupItem
                               value={option.value}
                               id={option.value}
@@ -336,7 +336,7 @@ const Step4 = ({
                                     />
                                     <label
                                       htmlFor="isSecure"
-                                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                      className="text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                     >
                                       Secure card for future payments
                                     </label>

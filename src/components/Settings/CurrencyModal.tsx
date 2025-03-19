@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next";
-import i18n from "@/translations/i18n";
+// import { useTranslation } from "react-i18next";
+// import i18n from "@/translations/i18n";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -17,8 +17,6 @@ import {
 } from "@/components/ui/form";
 import closeIcon from "@/assets/icons/close-fill.svg";
 import { Button } from "../ui/button";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Label } from "../ui/label";
 import {
   Select,
   SelectContent,
@@ -35,7 +33,7 @@ const CurrencyModal = ({
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
 }) => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const { updateUser } = useAuth();
   const scheduledMeetingSchema = z.object({
     selectedCurrency: z.enum(["euro", "usd"], {

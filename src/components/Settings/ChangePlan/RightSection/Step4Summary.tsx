@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import check2 from "@/assets/icons/check3.svg";
+import { Checkbox } from "@/components/ui/checkbox";
 const Step4Summary = () => {
-
   const features = [
     "Services are activated after Credit/debit Card payment or SEPA transfer",
     "Choose Credit/Debit Card payment method for immediate activation",
@@ -72,31 +72,37 @@ const Step4Summary = () => {
       </div>
 
       <Card className="px-4 py-[10px] bg-[#FC40060F] shadow-none rounded-[10px] gap-2">
-        <h3 className="font-semibold  font-primary text-[16px]">
-      Notes
-        </h3>
+        <h3 className="font-semibold  font-primary text-[16px]">Notes</h3>
         <div className="flex-grow my-2">
-        <ul className="space-y-4">
-          {features.map((feature, index) => (
-            <li
-              key={index}
-              className="flex items-center gap-[10px] text-[15px]"
-            >
-              <img
-                src={ check2}
-                className="w-[20px] h-[20px] "
-              />
-              <span className={ "text-gray-500"}>
-                {feature}
+          <ul className="space-y-4">
+            {features.map((feature, index) => (
+              <li
+                key={index}
+                className="flex items-center gap-[10px] text-[15px]"
+              >
+                <img src={check2} className="w-[20px] h-[20px] " />
+                <span className={"text-gray-500"}>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Card>
 
-                
-              </span>
-            </li>
-          ))}
-        </ul>
+      <div className="space-x-2">
+
+      <Checkbox
+        id="isAuthorized"
+        checked={true}
+        // onCheckedChange={field.onChange}
+      />
+      <label
+        htmlFor="isAuthorized"
+        className="text-[14px] font-light !leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-primary"
+      >
+        I hereby authorize automatic SEPA-payments
+      </label>
       </div>
 
-      </Card>
     </div>
   );
 };

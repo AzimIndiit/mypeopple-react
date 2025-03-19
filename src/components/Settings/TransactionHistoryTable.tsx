@@ -6,10 +6,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import shareIcon from "@/assets/icons/share.svg";
-import vieweyeIcon from "@/assets/icons/eye-bold.svg";
 import { formatDate, parseISO } from "date-fns";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 type TransactionHistory = {
   id: string;
   date: string;
@@ -106,7 +104,7 @@ const columns: { key: keyof TransactionHistory | "action"; label: string }[] = [
 
 // Action Component
 const getActionButton = ({  trans }: {  trans: TransactionHistory }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <div className="text-[14px] font-primary text-[#858494] ">
      <Link to={`/settings/transaction-history/${trans.id}`} className="text-[14px] font-primary text-[#858494] underline">

@@ -580,7 +580,7 @@ const Step3 = ({
                         />
                         <label
                           htmlFor="isAddressDiff"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                          className="text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-primary"
                         >
                           if Postal Address Diffrent from Company Address
                         </label>
@@ -690,7 +690,7 @@ const Step3 = ({
                         />
                         <label
                           htmlFor="isBillingChecked"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                          className="text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-primary"
                         >
                           Same as Company Infos
                         </label>
@@ -933,7 +933,7 @@ const Step3 = ({
                           />
                           <label
                             htmlFor="isCompanyInProcess"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            className="text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-primary"
                           >
                             Company in the process of being incorporated{" "}
                           </label>
@@ -969,7 +969,7 @@ const Step3 = ({
                             />
                             <label
                               htmlFor="invoiceEmail"
-                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              className="text-sm font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-primary"
                             >
                               I want to get invoices via email as well
                             </label>

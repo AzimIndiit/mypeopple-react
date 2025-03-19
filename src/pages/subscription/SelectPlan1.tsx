@@ -15,8 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import infoIcon from "@/assets/icons/info.svg";
 import { cn } from "@/lib/utils";
 const items = [
   "I have Work Council and/or In-House Unions",

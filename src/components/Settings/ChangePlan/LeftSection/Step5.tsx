@@ -3,7 +3,7 @@ import userAvatar from "@/assets/images/user.png";
 import emailIcon from "@/assets/icons/email-solid.svg";
 import phoneIcon from "@/assets/icons/phone.svg";
 const Step5 = ({
-  setCurrentStep,
+  // setCurrentStep,
   setStepData,
 }: // stepData,
 {

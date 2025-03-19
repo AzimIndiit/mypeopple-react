@@ -36,14 +36,14 @@ const MeetingScheduledModal = ({
     },
   });
 
-  const { watch, handleSubmit } = form;
+  const { watch } = form;
 
   console.log("watch", watch("rating"), watch("review"));
 
-  const onSubmit = (values: ReviewOrderDetails) => {
-    console.log("Form Submitted", values);
-    onOpenChange(false);
-  };
+  // const onSubmit = (values: ReviewOrderDetails) => {
+  //   console.log("Form Submitted", values);
+  //   onOpenChange(false);
+  // };
 
   return (
     <AlertDialog open={isOpen} onOpenChange={onOpenChange}>

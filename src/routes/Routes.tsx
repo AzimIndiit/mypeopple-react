@@ -19,7 +19,6 @@ import InboxPage from "@/pages/inbox/Page";
 import InboxMessagePage from "@/pages/inbox/InboxMessage";
 import BillingPage from "@/pages/billings/Page";
 import ReferralPage from "@/pages/referral/Page";
-import LanguageModal from "@/components/Settings/CurrencyModal";
 import SettingsPage from "@/pages/settings/Page";
 import MyPlans from "@/components/Settings/MyPlans";
 import TransactionHistoryPage from "@/components/Settings/TransactionHistoryTable";

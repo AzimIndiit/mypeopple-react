@@ -53,7 +53,7 @@ const timeSlots = generateTimeSlots(12, 16) || []
   });
 
   // Destructure watch and handleSubmit from the form
-  const { watch, handleSubmit } = form;
+  const {  handleSubmit } = form;
 
   const onSubmit = (values: ScheduleMeetingType) => {
     console.log("Form Submitted", values);

@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import check2 from "@/assets/icons/check3.svg";
+import { Checkbox } from "@/components/ui/checkbox";
 const Step3Summary = () => {
   const features = [
     "Infos can always be modified from your Dashboard after your subscription is completed",
@@ -95,6 +96,35 @@ const Step3Summary = () => {
           </ul>
         </div>
       </Card>
+      <div className="space-x-2">
+        <Checkbox
+          id="isPromotions"
+          checked={true}
+          // onCheckedChange={field.onChange}
+        />
+        <label
+          htmlFor="isPromotions"
+          className="text-[14px] font-light !leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-primary "
+        >
+          Yes, I would like to receive promotions regarding other services from
+          Mypeople and their partners
+        </label>
+        </div>
+        <div className="space-x-2">
+        <Checkbox
+          id="isInterst"
+          checked={true}
+          // onCheckedChange={field.onChange}
+        />
+        <label
+          htmlFor="isInterst"
+          className="text-[14px] font-light !leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70  font-primary"
+        >
+          Yes, I would like to make optimal use of my Mypeople services and
+          accept to receive information that is based on my interest or
+          preferences
+        </label>
+      </div>
     </div>
   );
 };
