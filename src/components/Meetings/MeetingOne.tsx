@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import  { useState } from "react";
 import callIcon from "@/assets/icons/call.svg";
 import { Button } from "../ui/button";
-import PopupMeetingModal from "../Dashboard/DashboardModal";
+import PopupMeetingModal from "./MeetingModal";
 interface TimeSlot {
   id: number;
   date: string;
