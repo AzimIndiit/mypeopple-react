@@ -187,7 +187,7 @@ export default function OrderTable({ isDashboard }: { isDashboard: boolean }) {
               {columns.map((column) => (
                 <TableHead
                   key={column.key}
-                  className="p-[16px] sticky top-0 z-[49]"
+                  className={cn("p-[16px] sticky top-0 z-[49] min-w-[100px] ",["type","date"].includes(column.key) && "min-w-[200px]")}
                 >
                   <p className="text-[#858494] font-light ">{column.label}</p>
                 </TableHead>

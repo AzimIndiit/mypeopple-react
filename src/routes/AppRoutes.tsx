@@ -1,5 +1,5 @@
 // import { Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import NotFound from "@/pages/NotFound";
 
@@ -17,6 +17,7 @@ import ToolBoxRoutes from "./ToolBoxRoutes";
 
 const AppRoutes = () => {
   
+
   return (
     <Routes>
       {/* Auth Routes */}

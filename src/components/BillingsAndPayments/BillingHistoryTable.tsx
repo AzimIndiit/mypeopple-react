@@ -185,7 +185,7 @@ export default function BillingHistoryTable({}) {
               {columns.map((column) => (
                 <TableHead
                   key={column.key}
-                  className="p-[16px] sticky top-0 z-[49]"
+                  className="p-[16px] sticky top-0 z-[49] min-w-[100px]"
                 >
                   <p className="text-[#858494] font-light ">{column.label}</p>
                 </TableHead>

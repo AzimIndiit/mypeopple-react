@@ -7,18 +7,19 @@ import React, {
 } from "react";
 import { useNavigate } from "react-router-dom";
 
-type LoginType = {
-  email: string;
-  password: string;
-  remember_me?: boolean;
-};
+// type LoginType = {
+//   name?:string,
+//   email: string;
+//   password: string;
+//   remember_me?: boolean;
+// };
 
 // Define the shape of the context
 interface AuthContextType {
   user: any | null;
-  login: (data: LoginType) => void;
+  login: (data: any) => void;
   logout: () => void;
-  updateUser:(data:any)=>void
+  updateUser: (data: any) => void;
 }
 
 // Create the context with a default value
@@ -51,7 +52,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const parsedInfo = storedInfo ? JSON.parse(storedInfo) : null;
 
   const [user, setUser] = useState<any | null>(parsedInfo || null);
-  const login = (data: LoginType) => {
+  const login = (data: any) => {
     const t = randomAlphaNumeric(50);
     setTimeout(() => {
       const obj = { ...data, token: t };
@@ -62,9 +63,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const logout = () => {
+    let nav = user.role === "lead" ? "/auth" : "/auth/client";
     setUser(null);
     localStorage.removeItem("user");
-    navigate("/login");
+    localStorage.clear();
+    console.log("nav,user", nav, user);
+    navigate(nav);
   };
 
   useEffect(() => {
@@ -76,16 +80,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const updateUser = (data: any) => {
-    console.log('data', data);
-    
-    setUser((prev: any) => {
-        console.log('prev', prev)
-        const updatedUser = { ...prev, ...data };
-        localStorage.setItem("user", JSON.stringify(updatedUser));
-        return updatedUser;
-    });
-};
+    console.log("data", data);
 
+    setUser((prev: any) => {
+      console.log("prev", prev);
+      const updatedUser = { ...prev, ...data };
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      return updatedUser;
+    });
+  };
 
   return (
     <AuthContext.Provider value={{ user, login, logout, updateUser }}>

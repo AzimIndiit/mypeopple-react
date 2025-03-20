@@ -167,7 +167,7 @@ export default function InvoiceTable({ isDashboard }: { isDashboard?: boolean })
               {columns.map((column) => (
                 <TableHead
                   key={column.key}
-                  className="p-[16px] sticky top-0 z-[49] "
+                  className={cn("p-[16px] sticky top-0 z-[49] min-w-[100px] min-w-[125px]",["type","date"].includes(column.key) && "min-w-[200px]")}
                 >
                   <p className="text-[#858494] font-light ">{column.label}</p>
                 </TableHead>
@@ -183,7 +183,7 @@ export default function InvoiceTable({ isDashboard }: { isDashboard?: boolean })
                     {columns.map((column) => (
                       <td
                         key={column.key}
-                        className=" px-[16px] text-[#49465F] font-primary font-normal"
+                        className={" px-[16px] text-[#49465F] font-primary font-normal"}
                       >
                         {column.key === "id" ? (
                           <p className="text-[14px] font-light text-black">

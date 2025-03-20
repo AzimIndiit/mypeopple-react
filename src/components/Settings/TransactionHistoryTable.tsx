@@ -130,7 +130,7 @@ export default function TransactionHistoryPage({}) {
               {columns.map((column) => (
                 <TableHead
                   key={column.key}
-                  className={cn("p-[16px] sticky top-0 z-[49]",column.key==="title" && "min-w-[300px]")}
+                  className={cn("p-[16px] sticky top-0 z-[49] min-w-[100px]",column.key==="title" && "min-w-[300px]")}
                 >
                   <p className="text-[#858494] font-light ">{column.label}</p>
                 </TableHead>

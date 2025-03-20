@@ -16,11 +16,12 @@ import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { TFunction } from "i18next";
+import { useAuth } from "@/context/AuthContext";
 
 const OtpPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  const { login } = useAuth();
   const OtpSchema = z.object({
     otp: z
       .string()
@@ -43,7 +44,8 @@ const OtpPage = () => {
 
   const onSubmit = (values: any) => {
     console.log(`Form Submitted`, values);
-    navigate("/dashboard");
+    login({ name: "Tam Tarn", email: "tamtan09@gmail.com" ,role:"lead"});
+    // navigate("/dashboard");
   };
 
   return (

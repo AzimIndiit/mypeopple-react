@@ -16,6 +16,7 @@ import coinIcon from "@/assets/icons/coin.svg";
 import messageIcon from "@/assets/icons/message.svg";
 import discoverIcon from "@/assets/icons/Discovery.svg";
 import { useViewport } from "@/hooks/use-mobile";
+import { useAuth } from "@/context/AuthContext";
 
 // Menu items.
 const menuItems1 = [
@@ -50,28 +51,7 @@ const menuItems1 = [
     icon: coinIcon,
   },
 ];
-const menuItems2 = [
-  {
-    title: "Language",
-    url: "/settings/language",
-    icon: languageIcon,
-  },
-  {
-    title: "Currency",
-    url: "/settings/currency",
-    icon: currencyIcon,
-  },
-  {
-    title: "Settings",
-    url: "/settings",
-    icon: settingIcon,
-  },
-  {
-    title: "Logout",
-    url: "/auth/client",
-    icon: logoutIcon,
-  },
-];
+
 export function AppSidebar({
   collapsed,
   setCollapsed,
@@ -82,7 +62,33 @@ export function AppSidebar({
 }) {
   const viewPort = useViewport();
   const navigate = useNavigate();
+  const {user,logout} = useAuth()
   const location = useLocation(); // Get current route
+
+
+  const menuItems2 = [
+    {
+      title: "Language",
+      url: "/settings/language",
+      icon: languageIcon,
+    },
+    {
+      title: "Currency",
+      url: "/settings/currency",
+      icon: currencyIcon,
+    },
+    {
+      title: "Settings",
+      url: "/settings",
+      icon: settingIcon,
+    },
+    {
+      title: "Logout",
+      url:user && user.role!=="lead" && "/auth/client" || "/auth",
+      icon: logoutIcon,
+    },
+  ];
+
 
   const getParentPath = (path: string) => {
     const parts = path.split("/").filter(Boolean); // Remove empty parts
@@ -98,6 +104,10 @@ export function AppSidebar({
   // console.log('updatedPath', updatedPath)
   const isMobile = viewPort === "mobile" || viewPort === "tablet";
 
+
+  const handleLogout=()=>{
+    logout()
+  }
   if (isMobile) {
     return (
       <aside
@@ -197,7 +207,8 @@ export function AppSidebar({
                   to={url}
                   onClick={() => {
                     if (title === "Logout") {
-                      localStorage.clear(); // Clear localStorage
+                      // localStorage.clear(); // Clear localStorage
+                      handleLogout()
                     }
                     setCollapsed(!collapsed);
                   }}
@@ -350,7 +361,8 @@ export function AppSidebar({
               to={url}
               onClick={() => {
                 if (title === "Logout") {
-                  localStorage.clear(); // Clear localStorage
+                  // localStorage.clear(); // Clear localStorage
+                  handleLogout()
                 }
               }}
             >
