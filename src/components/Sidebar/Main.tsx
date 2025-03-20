@@ -245,7 +245,7 @@ export function AppSidebar({
             </div>
           </div>
           <div
-            className="w-[10%]"
+            className="w-[40%]"
             onClick={() => setCollapsed(!collapsed)}
             onTouchEnd={() => setCollapsed(!collapsed)}
           >

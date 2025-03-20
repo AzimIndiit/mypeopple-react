@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "@/assets/icons/logo.svg";
 import logo1 from "@/assets/icons/logo1.svg";
 import backArrow from "@/assets/icons/backArrow.svg";
@@ -14,27 +14,38 @@ function SubscriptionPage() {
     { id: "select-plan", name: "Select Plan" },
     { id: "billing-details", name: "Billing Details" },
     { id: "payement-method", name: "Payment Method" },
-  
   ];
 
   // Define page components
-  const pageComponents: Record<string, React.FC<{ currentStep: string; setCurrentStep: (step: string) => void }>> = {
+  const pageComponents: Record<
+    string,
+    React.FC<{ currentStep: string; setCurrentStep: (step: string) => void }>
+  > = {
     "select-plan": SelectPlanPage,
     "billing-details": BillingDetailsPage,
     "payement-method": PayementMethodPage,
-    
   };
 
   // Render current step component
   const renderSteps = () => {
     const Component = pageComponents[currentStep];
-    return Component ? <Component currentStep={currentStep} setCurrentStep={setCurrentStep} /> : null;
+    return Component ? (
+      <Component currentStep={currentStep} setCurrentStep={setCurrentStep} />
+    ) : null;
   };
+
+  const ScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    ScrollToTop();
+  }, [currentStep]);
 
   return (
     <div className="min-h-screen bg-white text-black w-full">
       {/* Logo */}
-    
+
       <div className="w-full h-[100px] flex items-center justify-between mb-[16px] bg-black px-[20px] md:px-[50px] lg:px-[90px]">
         <div className=" hidden  md:flex justify-start items-center shrink-0">
           <img
@@ -44,7 +55,7 @@ function SubscriptionPage() {
           />
         </div>
         <div className=" flex justify-start items-center shrink-0  md:hidden">
-        <img
+          <img
             src={logo1}
             alt="Logo"
             className="h-[30px] w-full sm:w-[181px] block"
@@ -103,13 +114,19 @@ function SubscriptionPage() {
           {/* Step Indicators */}
           <div className="flex flex-col w-full lg:flex-row space-x-[10px]">
             {steps.map((s, index) => {
-               const currentIndex = steps.findIndex(s=>s.id===currentStep)
-               console.log('currentIndex', currentIndex,index)
+              const currentIndex = steps.findIndex((s) => s.id === currentStep);
+              console.log("currentIndex", currentIndex, index);
               return (
                 <div
                   key={s.id}
                   className={`flex p-[10px] w-full lg:w-[357px] h-[50px] font-[20px] font-primary font-base items-center justify-start
-                  ${index < currentIndex ? "bg-black text-white hidden lg:flex" : index === currentIndex ? "bg-black text-primary" : "bg-[rgba(0,0,0,0.2)] text-white hidden lg:flex"}
+                  ${
+                    index < currentIndex
+                      ? "bg-black text-white hidden lg:flex"
+                      : index === currentIndex
+                      ? "bg-black text-primary"
+                      : "bg-[rgba(0,0,0,0.2)] text-white hidden lg:flex"
+                  }
                   ${
                     index === 0
                       ? "rounded-tl-[10px] rounded-bl-[10px] rounded-tr-[5px] rounded-br-[5px]" // First step
@@ -120,7 +137,7 @@ function SubscriptionPage() {
                 >
                   {s.name}
                 </div>
-              )
+              );
             })}
           </div>
         </div>

@@ -18,8 +18,9 @@ const MyPlans = () => {
       <PageHeader title="My Plans" buttonText="Change Plan" icon={switchIcon} onAdd={() => navigate("/settings/change-plan")} onBack={() => navigate(-1)} />
       <div className="mt-4 space-y-4">
         <div className="flex flex-col md:flex-row justify-between md:items-center items-end bg-[#FFF4F0] px-[19px] py-[10px] rounded-[6px] gap-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 md:items-center w-full gap-4 xl:gap-[45px]">
-            <div className="pr-6">
+          <div className="flex flex-col md:flex-row md:items-center w-full gap-4 xl:gap-[45px] ">
+           <div className="flex justify-between gap-4 xl:gap-[45px]">
+           <div className="pr-6">
               <p className="text-[14px] font-primary font-light">Plan</p>
               <p className="text-[16px] font-primary font-semibold">
                 {subscription.name}{" "}
@@ -37,8 +38,10 @@ const MyPlans = () => {
                 {subscription.lastBilled}
               </p>
             </div>
+           </div>
 
-            <div className="md:border-l border-gray-300 h-full md:px-6">
+           <div className="flex justify-between gap-4 xl:gap-[45px]">
+           <div className="md:border-l border-gray-300 h-full md:px-6">
               <p className="text-[14px] font-primary font-light">Days Left</p>
               <p className="text-[16px] font-primary font-semibold">
                 {subscription.daysLeft}
@@ -53,6 +56,7 @@ const MyPlans = () => {
                 {subscription.nextBilling}
               </p>
             </div>
+           </div>
           </div>
 
           <div className="">

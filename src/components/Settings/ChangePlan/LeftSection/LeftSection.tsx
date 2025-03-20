@@ -6,24 +6,24 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
 
-const renderStepContent = (value: string, currentStepData: any) => {
+const renderStepContent = (value: string, currentStepData: any,isActive:boolean) => {
   switch (Number(value)) {
     case 1:
       return (
-        <span className="text-[16px] font-primary text-black font-semibold w-full ml-2">
+        <span className={cn("text-[16px] font-primary text-black font-semibold w-full ml-2",isActive && "text-white")}>
           <span className="text-primary">|</span> {currentStepData?.plan?.title}{" "}
           {currentStepData?.plan?.isMonthly ? "Monthly" : "Yearly"}
         </span>
       );
     case 2:
       return (
-        <span className="text-[16px] font-primary text-black font-semibold w-full ml-2">
+        <span className={cn("text-[16px] font-primary text-black font-semibold w-full ml-2",isActive && "text-white")}>
           <span className="text-primary">|</span> No Extras were Selected
         </span>
       );
     case 3:
       return (
-        <span className="text-[16px] font-primary text-black font-semibold w-full ml-2">
+        <span className={cn("text-[16px] font-primary text-black font-semibold w-full ml-2",isActive && "text-white")}>
           <span className="text-primary">|</span>{" "}
           {`${currentStepData?.userInfos?.firstName} ${currentStepData?.userInfos?.lastName}`}{" "}
           , from {currentStepData?.companyInfos.name}
@@ -77,7 +77,7 @@ const StepAccordion = ({
           <p className="font-primary text-[16px] w-full ">
             {title}
 
-            {isExist && renderStepContent(value, currentStepData)}
+            {isExist && renderStepContent(value, currentStepData,isActive)}
           </p>
         </div>
 

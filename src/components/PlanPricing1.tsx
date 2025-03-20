@@ -84,7 +84,7 @@ function PricingCard({
       className={cn(
         " min-w-[174px] font-primary transition-all flex flex-col  ",
         isPopular
-          ? "bg-black text-white bg-cover bg-center shadow-2xl rounded-3xl p-2  lg:w-[188px] "
+          ? "bg-black text-white bg-cover bg-center shadow-2xl rounded-3xl p-2  xl:w-[188px] "
           : "",
         className
       )}
@@ -213,7 +213,7 @@ function PlanPricing({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 bg-[#F9F9F9] rounded-3xl gap-2  p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 bg-[#F9F9F9] rounded-3xl gap-2  p-4 justify-center items-center">
           {pricingPlans.map((plan, index) => (
             <PricingCard
               handleSubmit={onSubmit}

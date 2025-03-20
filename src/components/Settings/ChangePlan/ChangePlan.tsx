@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/PageHeader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StepIndicator from "./RightSection/RightSection";
 import StepAccordion from "./LeftSection/LeftSection";
 import Step1Summary from "./RightSection/DefaultSummary";
@@ -25,6 +25,13 @@ const ChangePlan = () => {
   ];
   console.log(stepData, "stepData");
   const navigate = useNavigate();
+  const ScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    ScrollToTop();
+  }, [activeStep]);
   return (
     <div className="w-ful h-fit">
       <PageHeader
@@ -53,7 +60,7 @@ const ChangePlan = () => {
           }}
         />
       ) : (
-        <div className="flex gap-4  flex-col xl:flex-row w-full">
+        <div className="flex gap-4  flex-col md:flex-row w-full">
           {/* Left side - Steps */}
           <div className="  w-full">
             <div className="mt-4 space-y-4 shadow-none border-none ">
@@ -74,7 +81,7 @@ const ChangePlan = () => {
           </div>
 
           {/* Right side - Summary */}
-          <div className=" invisible xl:visible  w-full md:w-[376px]">
+          <div className="   w-full md:w-[376px]">
             <StepIndicator activeStep={activeStep} />
             {activeStep === "" && <DefaultSummary />}
             {activeStep === "1" && <Step1Summary />}
