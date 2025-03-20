@@ -102,7 +102,7 @@ export function AppSidebar({
     return (
       <aside
         className={cn(
-          "   fixed  h-screen top-0 z-999 overscroll-auto ",
+          "   fixed  h-[100dvh] top-0 z-999 overscroll-auto ",
           collapsed
             ? "transition-all duration-300 hidden"
             : "w-full bg-[rgba(0,0,0,0.5)] overscroll-contain "
@@ -111,7 +111,7 @@ export function AppSidebar({
         <div className="flex w-full   ">
           <div
             className={cn(
-              "text-white bg-white  h-screen p-4 transition-all duration-300 border-r border-gray-200 overflow-auto  ", // Add bg color
+              "text-white bg-white  h-[100dvh] p-4 transition-all duration-300 border-r border-gray-200 overflow-auto  ", // Add bg color
               "w-[256px]"
             )}
           >
@@ -126,6 +126,7 @@ export function AppSidebar({
               <div
                 onClick={() => {
                   navigate("/orders/create");
+                  setCollapsed(!collapsed);
                 }}
                 className={cn(
                   "mb-[26px]  h-[56px] p-[16px] rounded-[12px] transition-opacity duration-300 flex gap-4 items-center font-primary font-semibold text-[16px] border border-black text-black cursor-pointer hover:bg-black/10",
@@ -280,6 +281,7 @@ export function AppSidebar({
           <div
             onClick={() => {
               navigate("/orders/create");
+              setCollapsed(!collapsed);
             }}
             className={cn(
               "mb-[26px]  h-[56px] p-[16px] rounded-[12px] transition-opacity duration-300 flex gap-4 items-center font-primary font-semibold text-[14px] xl:text-[16px] border border-black text-black cursor-pointer hover:bg-black/10",

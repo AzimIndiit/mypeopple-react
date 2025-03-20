@@ -80,7 +80,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full h-full">
       <h1 className="text-[24px] lg:text-[26px] font-bold font-primary">
         {t("auth.register.create-account")}
       </h1>

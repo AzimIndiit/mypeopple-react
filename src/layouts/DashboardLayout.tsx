@@ -24,7 +24,7 @@ const DashboardLayout = () => {
 
   if (isMobile) {
     return (
-      <div className="flex w-full    ">
+      <div className="flex w-full     ">
         <AppSidebar collapsed={collapsed} setCollapsed={setCollapsed}  />
         <header className="">
           <AppNavbar
@@ -33,7 +33,7 @@ const DashboardLayout = () => {
             collapsed={collapsed}
           />
         </header>
-        <main className=" w-full px-[2%] mt-[12vh] md:mt-[14vh] bg-white h-screen xl:h-full overflow-auto">
+        <main className=" w-full px-[2%] mt-[12vh] md:mt-[14vh] bg-white min-h-[100dvh] xl:h-full overflow-auto">
           <Outlet />
         </main>
       </div>

@@ -17,8 +17,8 @@ const AuthPage = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <div className="w-full h-screen flex justify-center items-center overflow-y-auto py-4 sm:p-3">
-      <div className="flex flex-col w-full max-w-[613px] h-full">
+    <div className="w-full flex justify-center items-center py-4 sm:p-3">
+      <div className="flex flex-col w-full max-w-[613px] ">
         <div className="flex-1 bg-white bg-opacity-95 p-[16px] sm:p-[32px] rounded-[30px] lg:rounded-[60px]">
           <div className="flex flex-col h-full">
             <div className="flex justify-center shrink-0 mb-[40px]">
@@ -76,7 +76,7 @@ const AuthPage = () => {
           </div>
         </div>
       </div>
-    </div>
+     </div>
   );
 };
 

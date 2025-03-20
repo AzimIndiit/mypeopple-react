@@ -18,14 +18,14 @@ export const AuthLayout = () => {
   const [index, setIndex] = useState(0);
 
   return (
-    <div className="flex min-h-screen w-full items-center justify-center relative bg-gray-100 ">
+    <div className="flex  min-h-[100dvh] w-full items-center justify-center relative bg-gray-100 ">
       {/* Carousel Section */}
       <div className="hidden lg:block min-h-screen w-full">
         <Carousel images={images} setIndex={setIndex} index={index} />
       </div>
 
       {/* Content Section */}
-      <div className="lg:absolute z-10   w-full lg:flex ">
+      <div className="lg:absolute z-10   w-full lg:flex h-full">
         <div className="w-full relative ">
       
           <div className="hidden sm:flex sm:flex-col absolute bottom-8 w-full justify-center items-center gap-[24px] ">
@@ -55,8 +55,10 @@ export const AuthLayout = () => {
         </div>
 
         {/* Outlet Section with Scrollable Content */}
-       
-          <Outlet />
+       <div className=" overflow-y-auto w-full  my-auto max-h-[100dvh]">
+       <Outlet />
+
+       </div>
      
       </div>
     </div>

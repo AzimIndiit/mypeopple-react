@@ -31,8 +31,8 @@ const CountCardData = [
 ];
 
 const DashboardPage = () => {
-    const [isOpen,setIsOpen]=useState(true)
-    const navigate=useNavigate()
+  const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
   const viewPort = useViewport();
   console.log("viewPort", viewPort);
 
@@ -59,12 +59,14 @@ const DashboardPage = () => {
 
         <OrdersPage showFilters={false} />
       </div>
-   {isOpen &&   <DashboardModal
-        isOpen={isOpen}
-        onOpenChange={()=>setIsOpen(false)}
-        data={{name:"Tran"}}
-        onContinue={()=>navigate("/tutorial")}
-      />}
+      {isOpen && (
+        <DashboardModal
+          isOpen={isOpen}
+          onOpenChange={() => setIsOpen(false)}
+          data={{ name: "Tran" }}
+          onContinue={() => navigate("/tutorial")}
+        />
+      )}
     </div>
   );
 };
