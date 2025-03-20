@@ -128,7 +128,10 @@ const getActionButton = ({ order }: { order: Order }) => {
       <div className="flex  gap-2  text-[12px] font-semibold justify-start items-center">
         <img
           onClick={() => {
-            navigate(`/orders/${order.id}`);
+            const formattedId = order.id.replace(/\s+/g, "-");
+              if(formattedId){
+                navigate(`/orders/${formattedId}`)
+              }
           }}
           src={vieweyeIcon}
           alt="View"
@@ -184,7 +187,7 @@ export default function OrderTable({ isDashboard }: { isDashboard: boolean }) {
               {columns.map((column) => (
                 <TableHead
                   key={column.key}
-                  className="p-[16px] sticky top-0 z-[100]"
+                  className="p-[16px] sticky top-0 z-[49]"
                 >
                   <p className="text-[#858494] font-light ">{column.label}</p>
                 </TableHead>

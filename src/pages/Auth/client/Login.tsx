@@ -15,18 +15,14 @@ import {
 import { useState, useEffect } from "react";
 import eyeFill from "@/assets/icons/eye-fill.svg";
 import eyeHide from "@/assets/icons/eye-closed.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { TFunction } from "i18next";
 
-const LoginPage = ({
-  setCurrentPage,
-}: {
-  currentPage: string;
-  setCurrentPage: (page: string) => void;
-}) => {
+const LoginPage = () => {
   const { t } = useTranslation();
+  const navigate=useNavigate()
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   //use memo to create the schema
@@ -52,8 +48,8 @@ const LoginPage = ({
   const form = useForm({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "tamtran98@gmail.com",
+      password: "12345678@12345Ty",
       rememberMe: false,
       // captcha: "",
     },
@@ -67,7 +63,7 @@ const LoginPage = ({
 
   const onSubmit = (values: any) => {
     console.log(`Form Submitted`, values);
-    setCurrentPage("otp");
+    navigate("/auth/client/otp");
   };
 
   return (
@@ -150,8 +146,7 @@ const LoginPage = ({
                   </div>
                   <p className="w-full text-right text-[14px] lg:text-[16px]">
                     <Link
-                      to="#"
-                      onClick={() => setCurrentPage("forgot-password")}
+                      to="/auth/client/forgot-password"
                       className="text-[#0280F9]"
                     >
                       {t("auth.login.forgotPassword")}
@@ -170,7 +165,7 @@ const LoginPage = ({
                 {t("auth.login.noAccount")}{" "}
                 <span
                   className="text-primary cursor-pointer"
-                  onClick={() => setCurrentPage("register")}
+                  onClick={() => navigate("/auth/client/register")}
                 >
                   {t("auth.login.joinHere")}
                 </span>

@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import google from "../../assets/icons/google.svg";
 import email from "../../assets/icons/email.svg";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-const MainCreationPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (page: string) => void }) => {
+const MainCreationPage = () => {
   const { t } = useTranslation();
-
+const navigate =useNavigate()
   type MainCreationTextType = {
     title: string;
     google: string;
@@ -29,13 +30,13 @@ const MainCreationPage = ({  setCurrentPage }: { currentPage: string; setCurrent
           <img src={google} alt="google" />
           {t(googleText)}
         </Button>
-        <Button className="w-full font-primary font-semibold text-[16px]" onClick={() => setCurrentPage("register")}>
+        <Button className="w-full font-primary font-semibold text-[16px]" onClick={() => navigate("/auth/register")}>
           <img src={email} alt="email" />
           {t(emailText)}
         </Button>
         <div className="text-center w-full font-primary font-light text-[14px] lg:text-[16px]  ">
           <p className=" text-[#596569]  text-center w-full ">
-            {t(login)} <span className="text-primary" onClick={() => setCurrentPage("login")}>{t(loginLink)}</span>
+            {t(login)} <span className="text-primary" onClick={() => navigate("/auth/login")}>{t(loginLink)}</span>
           </p>
         </div>
       </div>

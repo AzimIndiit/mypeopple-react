@@ -12,7 +12,7 @@ import Step4Summary from "./RightSection/Step4Summary";
 import Step5Summary from "./RightSection/Step5Summary";
 
 const ChangePlan = () => {
-  const [activeStep, setActiveStep] = useState<string>("5");
+  const [activeStep, setActiveStep] = useState<string>("");
   const [stepData, setStepData] = useState<any>(null);
   const [isCompare, setIsCompare] = useState<boolean>(false);
 

@@ -76,11 +76,11 @@ const getDefaultValues = (
 
   if (paymentMethod === "credit_debit") {
     Object.assign(defaults, {
-      cardNumber: "",
-      cardHolderName: "",
-      expiryDate: undefined,
-      cvv: "",
-      isSecure: false,
+      cardNumber: "1111 1111 1111 1111",
+      cardHolderName: "John Doe",
+      expiryDate: new Date(),
+      cvv: "233",
+      isSecure: true,
     });
   } else if (paymentMethod === "paypal") {
     Object.assign(defaults, { paypalEmail: "" });

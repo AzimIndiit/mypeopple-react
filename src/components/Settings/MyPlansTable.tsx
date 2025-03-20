@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import shareIcon from "@/assets/icons/share.svg";
 import vieweyeIcon from "@/assets/icons/eye-bold.svg";
 import { formatDate, parseISO } from "date-fns";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 type MyPlans = {
   id: string;
   date: string;
@@ -83,14 +83,19 @@ const columns: { key: keyof MyPlans | "action"; label: string }[] = [
 ];
 
 // Action Component
-const getActionButton = ({ myPlan }: { myPlan: MyPlans }) => {
-  const navigate = useNavigate();
+const getActionButton = (
+  { 
+    // myPlan 
+
+  }: { myPlan?: MyPlans }
+) => {
+  // const navigate = useNavigate();
   return (
     <div className="text-[14px] font-primary text-[#858494] ">
       <div className="flex  gap-2  text-[12px] font-semibold justify-start items-center">
         <img
           onClick={() => {
-            navigate(`/settings/my-plans/${myPlan.id}`);
+            // navigate(`/settings/my-plans/${myPlan.id}`);
           }}
           src={vieweyeIcon}
           alt="View"
@@ -125,7 +130,7 @@ export default function MyPlansTable({}) {
               {columns.map((column) => (
                 <TableHead
                   key={column.key}
-                  className="p-[16px] sticky top-0 z-[100]"
+                  className="p-[16px] sticky top-0 z-[49]"
                 >
                   <p className="text-[#858494] font-light ">{column.label}</p>
                 </TableHead>

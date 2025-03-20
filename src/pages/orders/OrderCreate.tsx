@@ -92,10 +92,10 @@ const OrderCreatePage = () => {
   const form = useForm<CreateOrderFormValues>({
     resolver: zodResolver(CreateOrderSchema),
     defaultValues: {
-      serviceType: "",
+      serviceType: "Talent Acquisition & Recruitment",
       orderType: "contact",
-      description: "",
-      selectedHrbp: "",
+      description: "This is demo",
+      selectedHrbp: "3",
       attachment: [],
     },
   });

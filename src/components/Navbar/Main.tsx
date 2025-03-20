@@ -70,7 +70,7 @@ export default function AppNavbar({
                   {user.name}
                 </div>
                 <Link
-                  to="/profile"
+                  to="/settings"
                   className="text-primary font-light hover:bg-gray-100 underline"
                 >
                   View Profile

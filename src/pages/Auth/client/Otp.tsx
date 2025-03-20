@@ -109,7 +109,7 @@ const OtpPage = () => {
                 {t("auth.otp.backTo")}{" "}
                 <span
                   className="text-primary cursor-pointer"
-                  onClick={() => navigate("/auth/login")}
+                  onClick={() => navigate("/auth/client/login")}
                 >
                   {t("auth.otp.login")}
                 </span>

@@ -158,14 +158,56 @@ const Step2 = ({
   const form = useForm({
     resolver: zodResolver(Step2Schema),
     defaultValues: {
-      duration: stepData?.duration || 0,
-      workingDays: stepData?.workingDays || 0,
+      duration: stepData?.duration || "23",
+      workingDays: stepData?.workingDays || "12",
       assignmentDate: stepData?.assignmentDate || new Date(),
-      promoCode: stepData?.promoCode || "",
-      assignmentType: stepData?.assignmentType || "",
-      items: stepData?.items || [],
-      plan: stepData?.plan || undefined,
-      contractDuration: stepData?.contractDuration || [],
+      promoCode: stepData?.promoCode || "KHJGJKYHG78687865",
+      assignmentType: stepData?.assignmentType || "Settle in France",
+      items: stepData?.items || [
+        "Payroll Outsourcing",
+        "Bilingual Services",
+        "Tailored HR communication"
+    ],
+      plan: stepData?.plan || {
+        "planId": 1,
+        "price": "3620",
+        "title": "Invest in France",
+        "duration": "month"
+    },
+      contractDuration: stepData?.contractDuration || [
+        {
+            "id": "Payroll Services",
+            "quantity": 1,
+            "label": "Payroll Services",
+            "description": "Efficient payroll processing, ensuring compliance with tax laws, accurate salary disbursement, and benefits administration.",
+            "amount": "€20",
+            "duration": [
+                "pay slip"
+            ]
+        },
+        {
+            "id": "HIRS",
+            "quantity": 1,
+            "label": "HIRS",
+            "description": "A centralized system for managing employee records, tracking performance, handling benefits, and streamlining HR operations.",
+            "amount": "€20",
+            "duration": [
+                "month",
+                "employee"
+            ]
+        },
+        {
+            "id": "AI Short",
+            "quantity": 1,
+            "label": "AI Short",
+            "description": "AI-generated video content for HR training, employee engagement, and policy explanations, making HR communication more interactive and accessible.",
+            "amount": "€480",
+            "duration": [
+                "short"
+            ],
+            "selected": true
+        }
+    ],
     },
   });
 

@@ -18,13 +18,14 @@ import eyeFill from "@/assets/icons/eye-fill.svg";
 
 import refreshIcon from "../../assets/icons/refresh.svg";
 import captchaImg from "../../assets/images/captcha.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { TFunction } from "i18next";
 
-const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (page: string) => void }) => {
-  const { t} = useTranslation();
+const LoginPage = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   //use memo to create the schema
@@ -34,20 +35,26 @@ const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (
     password: z
       .string()
       .min(15, { message: t("auth.login.validation.password.min") })
-      .regex(/[A-Z]/, { message: t("auth.login.validation.password.uppercase") })
-      .regex(/[a-z]/, { message: t("auth.login.validation.password.lowercase") })
+      .regex(/[A-Z]/, {
+        message: t("auth.login.validation.password.uppercase"),
+      })
+      .regex(/[a-z]/, {
+        message: t("auth.login.validation.password.lowercase"),
+      })
       .regex(/[0-9]/, { message: t("auth.login.validation.password.number") })
-      .regex(/[^A-Za-z0-9]/, { message: t("auth.login.validation.password.special") }),
+      .regex(/[^A-Za-z0-9]/, {
+        message: t("auth.login.validation.password.special"),
+      }),
     captcha: z.string().min(1, { message: t("auth.login.validation.captcha") }),
   });
 
   const form = useForm({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "tamtran98@gmail.com",
+      password: "12345678@12345Ty",
       rememberMe: false,
-      captcha: "",
+      captcha: "FoxLearn",
     },
   });
 
@@ -59,7 +66,7 @@ const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (
 
   const onSubmit = (values: any) => {
     console.log(`Form Submitted`, values);
-    setCurrentPage("otp");
+    navigate("/auth/otp");
   };
 
   return (
@@ -73,7 +80,10 @@ const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (
 
       <div className="w-full my-[24px]">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full space-y-6"
+          >
             <FormField
               control={form.control}
               name="email"
@@ -81,7 +91,10 @@ const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (
                 <FormItem>
                   <FormLabel>{t("auth.login.email")}</FormLabel>
                   <FormControl>
-                    <Input placeholder={t("auth.login.placeholder.email")} {...field} />
+                    <Input
+                      placeholder={t("auth.login.placeholder.email")}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -93,7 +106,7 @@ const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel >{t("auth.login.password")}</FormLabel>
+                  <FormLabel>{t("auth.login.password")}</FormLabel>
                   <FormControl>
                     <div className="relative">
                       <Input
@@ -106,7 +119,10 @@ const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (
                         className="absolute right-0 px-[20px] top-1/2 -translate-y-1/2 cursor-pointer"
                         onClick={() => setShowPassword((prev) => !prev)}
                       >
-                        <img src={showPassword ? eyeHide : eyeFill} className="w-[25px] h-[24px]" />
+                        <img
+                          src={showPassword ? eyeHide : eyeFill}
+                          className="w-[25px] h-[24px]"
+                        />
                       </div>
                     </div>
                   </FormControl>
@@ -114,7 +130,7 @@ const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (
                 </FormItem>
               )}
             />
- <FormField
+            <FormField
               control={form.control}
               name="rememberMe"
               render={({ field }) => (
@@ -129,13 +145,16 @@ const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (
                     </FormControl>
                     <Label
                       htmlFor="rememberMe"
-                     className="text-[#596569] !text-[14px] lg:!text-[16px]"
+                      className="text-[#596569] !text-[14px] lg:!text-[16px]"
                     >
-                        {t("auth.login.rememberMe")}
+                      {t("auth.login.rememberMe")}
                     </Label>
                   </div>
                   <p className="w-full text-right text-[14px] lg:text-[16px]">
-                    <Link to="#" onClick={()=>setCurrentPage('forgot-password')} className="text-[#0280F9]">
+                    <Link
+                      to="/auth/forgot-password"
+                      className="text-[#0280F9]"
+                    >
                       {t("auth.login.forgotPassword")}
                     </Link>
                   </p>
@@ -148,13 +167,20 @@ const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (
               render={({ field }) => (
                 <FormItem>
                   <div className="flex flex-col sm:flex-row justify-between items-end sm:items-center gap-[10px] mb-[16px]">
-                    <img src={captchaImg} alt="captcha" className="w-full md:w-[499px] h-[64px]" />
+                    <img
+                      src={captchaImg}
+                      alt="captcha"
+                      className="w-full md:w-[499px] h-[64px]"
+                    />
                     <div className="cursor-pointer">
                       <img src={refreshIcon} className="w-[25px] h-[24px]" />
                     </div>
                   </div>
                   <FormControl>
-                    <Input placeholder={t("auth.login.placeholder.captcha")} {...field} />
+                    <Input
+                      placeholder={t("auth.login.placeholder.captcha")}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -168,7 +194,10 @@ const LoginPage = ({  setCurrentPage }: { currentPage: string; setCurrentPage: (
             <div className="text-center w-full text-[14px] lg:text-[16px]">
               <p className="text-[#596569]">
                 {t("auth.login.noAccount")}{" "}
-                <span className="text-primary cursor-pointer" onClick={() => setCurrentPage("register")}>
+                <span
+                  className="text-primary cursor-pointer"
+                  onClick={() => navigate("/auth/register")}
+                >
                   {t("auth.login.joinHere")}
                 </span>
               </p>

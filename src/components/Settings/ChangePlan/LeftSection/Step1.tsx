@@ -94,11 +94,19 @@ const Step1 = ({
   const form = useForm({
     resolver: zodResolver(Step1Schema),
     defaultValues: {
-      isConfirm: stepData?.isConfirm || false,
-      numberOfEmployees: stepData?.numberOfEmployees || "0",
-      items: stepData?.items || [],
-      plan: stepData?.plan || undefined,
-      promoCode: stepData?.promoCode || "",
+      isConfirm: stepData?.isConfirm || true,
+      numberOfEmployees: stepData?.numberOfEmployees || "24",
+      items: stepData?.items || [
+        "I have Work Council and/or In-House Unions",
+        "My topics and needs are more about individual relations"
+    ],
+      plan: stepData?.plan || {
+        isMonthly: true,
+        planId: 3,
+        price: "100",
+        title: "Premium",
+      },
+      promoCode: stepData?.promoCode || "KHJGJKYHG78687865",
       contractDuration: stepData?.contractDuration || "yearly",
     },
   });
@@ -107,10 +115,10 @@ const Step1 = ({
     console.log(`Form Submitted`, values);
     setCurrentStep("2");
     // setStepData({ step1: values });
-    setStepData((prev:any) => ({
-        ...prev,
-        step1: values,
-      }));
+    setStepData((prev: any) => ({
+      ...prev,
+      step1: values,
+    }));
   };
 
   return (

@@ -1,4 +1,4 @@
-import logo from "../../assets/icons/logo.svg";
+import logo from "@/assets/icons/logo.svg";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -32,7 +32,7 @@ const ForgotPasswordPage = () => {
 
   const onSubmit = (values: z.infer<typeof ForgotPasswordSchema>) => {
     console.log(`Form Submitted`, values);
-    navigate("/auth/login");
+    navigate("/auth/client/login");
   };
   console.log("logo", logo);
   return (
@@ -82,7 +82,7 @@ const ForgotPasswordPage = () => {
                 Back to{" "}
                 <span
                   className="text-primary"
-                  onClick={() => navigate("/auth/login")}
+                  onClick={() => navigate("/auth/client/login")}
                 >
                   Login
                 </span>

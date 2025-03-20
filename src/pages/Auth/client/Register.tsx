@@ -18,14 +18,11 @@ import { useTranslation } from "react-i18next";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { TFunction } from "i18next";
+import { useNavigate } from "react-router-dom";
 
-const RegisterPage = ({
-  setCurrentPage,
-}: {
-  currentPage: string;
-  setCurrentPage: (page: string) => void;
-}) => {
+const RegisterPage = () => {
   const { t } = useTranslation();
+  const navigate =useNavigate()
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const RegisterSchema = useMemo(() => {
     return z.object({
@@ -36,7 +33,9 @@ const RegisterPage = ({
       lastName: z
         .string()
         .min(2, { message: t("auth.register.validation.lastName") }),
-      accountType: z.string().min(1, { message: t("auth.register.validation.accountType") }),
+      accountType: z
+        .string()
+        .min(1, { message: t("auth.register.validation.accountType") }),
       password: z
         .string()
         .min(15, { message: t("auth.register.validation.password.min") })
@@ -60,10 +59,10 @@ const RegisterPage = ({
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
+      firstName: "Tam",
+      lastName: "Tran",
+      email: "tamtran98@gmail.com",
+      password: "12345678@12345Ty",
       accountType: "client",
     },
     // mode: "onBlur", // Validate on blur
@@ -77,6 +76,7 @@ const RegisterPage = ({
 
   const onSubmit = (values: RegisterFormValues) => {
     console.log(`Form Submitted`, values);
+    navigate("/auth/client/login")
   };
 
   return (
@@ -140,7 +140,12 @@ const RegisterPage = ({
                   <FormLabel>{t("auth.register.accountType")}</FormLabel>
                   <FormControl>
                     <div className="w-full flex gap-[10px]">
-                      <RadioGroup defaultValue="client" value={field.value} onValueChange={field.onChange} className="w-full flex">
+                      <RadioGroup
+                        defaultValue="client"
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        className="w-full flex"
+                      >
                         <div className="flex items-center space-x-2">
                           <RadioGroupItem value="client" id="r1" />
                           <Label htmlFor="r1">Client</Label>
@@ -212,7 +217,7 @@ const RegisterPage = ({
                 {t("auth.register.haveAccount")}{" "}
                 <span
                   className="text-primary cursor-pointer"
-                  onClick={() => setCurrentPage("login")}
+                  onClick={() => navigate("/auth/client/login")}
                 >
                   {t("auth.register.signIn")}
                 </span>

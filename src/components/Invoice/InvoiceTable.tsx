@@ -167,7 +167,7 @@ export default function InvoiceTable({ isDashboard }: { isDashboard?: boolean })
               {columns.map((column) => (
                 <TableHead
                   key={column.key}
-                  className="p-[16px] sticky top-0 z-[100]"
+                  className="p-[16px] sticky top-0 z-[49] "
                 >
                   <p className="text-[#858494] font-light ">{column.label}</p>
                 </TableHead>

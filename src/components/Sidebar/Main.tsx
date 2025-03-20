@@ -84,31 +84,31 @@ export function AppSidebar({
   const navigate = useNavigate();
   const location = useLocation(); // Get current route
 
-  const getParentPath = (path:string) => {
+  const getParentPath = (path: string) => {
     const parts = path.split("/").filter(Boolean); // Remove empty parts
     return parts.length > 1 ? `/${parts[0]}` : path; // Return parent or root path
   };
-  
+
   var currentPath = location.pathname;
   const parentPath = getParentPath(currentPath);
-  
-  
 
-const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPath;
-// console.log('updatedPath', updatedPath)
+  const updatedPath = currentPath.startsWith(parentPath)
+    ? parentPath
+    : currentPath;
+  // console.log('updatedPath', updatedPath)
   const isMobile = viewPort === "mobile" || viewPort === "tablet";
 
   if (isMobile) {
     return (
       <aside
         className={cn(
-          "   fixed  h-screen top-0 z-50 overscroll-auto ",
+          "   fixed  h-screen top-0 z-999 overscroll-auto ",
           collapsed
             ? "transition-all duration-300 hidden"
             : "w-full bg-[rgba(0,0,0,0.5)] overscroll-contain "
         )}
       >
-        <div className="flex w-full   " >
+        <div className="flex w-full   ">
           <div
             className={cn(
               "text-white bg-white  h-screen p-4 transition-all duration-300 border-r border-gray-200 overflow-auto  ", // Add bg color
@@ -154,8 +154,7 @@ const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPat
                     if (title === "Logout") {
                       localStorage.clear(); // Clear localStorage
                     }
-                      setCollapsed(!collapsed);
-                    
+                    setCollapsed(!collapsed);
                   }}
                 >
                   <li
@@ -163,9 +162,7 @@ const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPat
                     className={cn(
                       "flex items-center gap-4 h-[56px] p-[16px] rounded-[12px] cursor-pointer transition-colors",
                       collapsed ? "w-[56px]" : "w-full",
-                      updatedPath === url
-                        ? "bg-black "
-                        : "hover:bg-black/10"
+                      updatedPath === url ? "bg-black " : "hover:bg-black/10"
                     )}
                   >
                     <img src={Icon} alt={title} className="w-[36px] h-[36px]" />
@@ -202,16 +199,13 @@ const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPat
                       localStorage.clear(); // Clear localStorage
                     }
                     setCollapsed(!collapsed);
-
                   }}
                 >
                   <li
                     className={cn(
                       "flex items-center gap-4 h-[56px] p-[16px] rounded-[12px] cursor-pointer transition-colors",
                       collapsed ? "w-[56px]" : "w-full",
-                      updatedPath === url
-                        ? "bg-black "
-                        : "hover:bg-black/10"
+                      updatedPath === url ? "bg-black " : "hover:bg-black/10"
                     )}
                   >
                     <img src={Icon} alt={title} className="w-[36px] h-[36px]" />
@@ -274,12 +268,7 @@ const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPat
         left: 0,
       }}
     >
-      <div
-        className={cn(
-          "text-white p-4  ",
-          "overflow-y-auto h-screen"
-        )}
-      >
+      <div className={cn("text-white p-4  ", "overflow-y-auto h-screen")}>
         <div className="flex justify-center items-center my-[26px] lg:my-[40px] ">
           {!collapsed ? (
             <img src={logo} alt="logo" className="h-[32px] w-[176px] " />
@@ -324,7 +313,10 @@ const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPat
                 <img
                   src={Icon}
                   alt={title}
-                  className={cn("w-[24px] h-[24px] xl:w-[36px] xl:h-[36px]",  updatedPath === url ? "stroke-white" : "stroke-black")}
+                  className={cn(
+                    "w-[24px] h-[24px] xl:w-[36px] xl:h-[36px]",
+                    updatedPath === url ? "stroke-white" : "stroke-black"
+                  )}
                 />
 
                 {/* Wrap the text in a transition container */}
@@ -351,11 +343,15 @@ const updatedPath = currentPath.startsWith(parentPath) ? parentPath : currentPat
           )}
         >
           {menuItems2.map(({ title, url, icon: Icon }) => (
-            <Link key={title} to={url}     onClick={() => {
-              if (title === "Logout") {
-                localStorage.clear(); // Clear localStorage
-              }
-            }}>
+            <Link
+              key={title}
+              to={url}
+              onClick={() => {
+                if (title === "Logout") {
+                  localStorage.clear(); // Clear localStorage
+                }
+              }}
+            >
               <li
                 // key={title}
                 className={cn(
