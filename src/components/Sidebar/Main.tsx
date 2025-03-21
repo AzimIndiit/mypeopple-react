@@ -18,39 +18,8 @@ import discoverIcon from "@/assets/icons/Discovery.svg";
 import { useViewport } from "@/hooks/use-mobile";
 import { useAuth } from "@/context/AuthContext";
 
-// Menu items.
-const menuItems1 = [
-  {
-    title: "Dashboard",
-    url: "/dashboard",
-    icon: dashboardIcon,
-  },
-  {
-    title: "My HRBP",
-    url: "/users",
-    icon: userIcon,
-  },
-  {
-    title: "My Orders",
-    url: "/orders",
-    icon: chartIcon,
-  },
-  {
-    title: "My Tools Box",
-    url: "/tool-box",
-    icon: discoverIcon,
-  },
-  {
-    title: "Inbox",
-    url: "/inbox",
-    icon: messageIcon,
-  },
-  {
-    title: "Billing & Payments",
-    url: "/billings",
-    icon: coinIcon,
-  },
-];
+
+
 
 export function AppSidebar({
   collapsed,
@@ -62,9 +31,42 @@ export function AppSidebar({
 }) {
   const viewPort = useViewport();
   const navigate = useNavigate();
-  const {user,logout} = useAuth()
   const location = useLocation(); // Get current route
+  const {user,logout} = useAuth()
 
+  const menuItems1 = [
+    {
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: dashboardIcon,
+    },
+    {
+      title: user?.role === "hrbp" ? "User Management" : "My HRBP",
+      url: user?.role === "hrbp" ? "/clients":"/users",
+      icon: userIcon,
+    },
+    {
+      title: "My Orders",
+      url: "/orders",
+      icon: chartIcon,
+    },
+    {
+      title: "My Tools Box",
+      url: "/tool-box",
+      icon: discoverIcon,
+    },
+ 
+    {
+      title: "Inbox",
+      url: "/inbox",
+      icon: messageIcon,
+    },
+    {
+      title: "Billing & Payments",
+      url: "/billings",
+      icon: coinIcon,
+    },
+  ];
 
   const menuItems2 = [
     {
@@ -292,7 +294,7 @@ export function AppSidebar({
           <div
             onClick={() => {
               navigate("/orders/create");
-              setCollapsed(!collapsed);
+              // setCollapsed(!collapsed);
             }}
             className={cn(
               "mb-[26px]  h-[56px] p-[16px] rounded-[12px] transition-opacity duration-300 flex gap-4 items-center font-primary font-semibold text-[14px] xl:text-[16px] border border-black text-black cursor-pointer hover:bg-black/10",

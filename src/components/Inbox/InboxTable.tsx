@@ -154,7 +154,7 @@ export default function InboxTable({
             isDashboard ? "h-[100px]" : "min-h-[65vh]"
           )}
         >
-          <p className="text-[14px] font-light text-black">No Invoice found</p>
+          <p className="text-[14px] font-light text-black">No Invoice Found</p>
         </div>
       )}
     </div>

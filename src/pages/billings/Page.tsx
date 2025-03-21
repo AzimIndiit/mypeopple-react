@@ -33,7 +33,6 @@ const BillingPage = () => {
   const handleClick = (tabValue: string) => {
     setCurrentTab(tabValue);
 
-
     // Scroll into view
     tabRefs.current[tabValue]?.scrollIntoView({
       behavior: "smooth",
@@ -44,7 +43,11 @@ const BillingPage = () => {
 
   return (
     <div>
-      <PageHeader title="Billings & Payment" onAdd={() => {}} onBack={() => navigate(-1)} />
+      <PageHeader
+        title="Billings & Payment"
+        onAdd={() => {}}
+        onBack={() => navigate(-1)}
+      />
       <div className="w-full overflow-auto">
         <div className="flex gap-4 my-4 w-full">
           {tabs.map((tab) => (
@@ -59,7 +62,7 @@ const BillingPage = () => {
               ? "bg-black text-white"
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
-                onClick={() => handleClick(tab.value)}
+              onClick={() => handleClick(tab.value)}
             >
               {tab.label}
             </div>
@@ -75,14 +78,8 @@ const BillingPage = () => {
           />
         )}
         {currentTab === "billing-info" && <BillingDetailsPage />}
-        {currentTab === "balances" && (
-          <Balances/>
-        )}
-        {currentTab === "payment-methods" && (
-          <PaymentMethodPage
-            
-          />
-        )}
+        {currentTab === "balances" && <Balances />}
+        {currentTab === "payment-methods" && <PaymentMethodPage />}
       </div>
     </div>
   );

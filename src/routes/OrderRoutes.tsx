@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 
 const OrdersPage = lazy(() => import("@/pages/orders/Page"));
 const OrderCreatePage = lazy(() => import("@/pages/orders/OrderCreate"));
-const OrderDetailsPage = lazy(() => import("@/pages/orders/OrderDetails"));
+const OrderDetailsPage = lazy(() => import("@/pages/orders/OrderDetails/Page"));
 const OrderDetailsInboxPage = lazy(() => import("@/pages/orders/OrderDetailsInbox"));
 
 const OrderRoutes = () => (

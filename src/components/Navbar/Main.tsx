@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { MenuIcon } from "lucide-react";
 import { getGreeting, getInitials } from "@/utils/helper";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/context/AuthContext";
 // import moonIcon from "@/assets/icons/moon.svg";
 // import cloudIcon from "@/assets/icons/cloud.svg";
 
@@ -20,7 +21,9 @@ export default function AppNavbar({
   setCollapsed: (value: boolean) => void;
   className?: string;
 }) {
-  const user = {
+  const {user}=useAuth()
+  const currentUser = {
+    ...user,
     name: "tam tran",
     avatar: avatar,
   };
@@ -54,8 +57,9 @@ export default function AppNavbar({
                 {getGreeting()}
               </span>
               <div className="text-black font-medium text-[18px] md:text-[24px] xl:text-[30px] capitalize">
-                {user.name}
+                {currentUser.name}  {currentUser.role==="hrbp" && <span className="text-[12px] text-primary text-medium uppercase">{currentUser.role}</span>}
               </div>
+            
             </div>
           </div>
 
@@ -67,7 +71,7 @@ export default function AppNavbar({
             <div className="relative flex lg:w-[152px] h-[40px] justify-between">
               <div className="hidden lg:block text-right">
                 <div className="text-[14px] font-light capitalize">
-                  {user.name}
+                  {currentUser.name}
                 </div>
                 <Link
                   to="/settings"
@@ -78,8 +82,8 @@ export default function AppNavbar({
               </div>
 
               <Avatar className="w-[40px] h-[40px]">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+                <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+                <AvatarFallback>{getInitials(currentUser.name)}</AvatarFallback>
               </Avatar>
             </div>
           </div>

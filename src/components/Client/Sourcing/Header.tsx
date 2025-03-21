@@ -1,0 +1,47 @@
+import { Button } from "@/components/ui/button";
+import addIcon from "@/assets/icons/add-solid.svg";
+const Header = ({
+  title,
+  onAdd,
+  buttonText,
+  icon = addIcon,
+  // onBack,
+}: {
+  title: string;
+  onAdd?: () => void;
+  buttonText?: string;
+  icon?: any;
+  onBack?: () => void;
+}) => {
+  return (
+    <div className="flex justify-between items-center w-full">
+      <div className="flex items-center gap-2">
+        {/* <div className="cursor-pointer w-[30px]" onClick={onBack}>
+          <img src={backArrow} className="w-[30px] h-[30px]" alt="Back" />
+        </div> */}
+        <p className="md:text-[20px] text-[16px] font-light font-primary">
+          {title}
+        </p>
+      </div>
+
+      {buttonText && (
+        <Button
+          onClick={onAdd}
+          variant="ghost"
+          className="group text-[12px] font-light hover:border-1 hover:text-white  hover:bg-primary font-primary bg-primary text-white h-[41px] rounded-[15px] w-fit border border-transparent transition-all duration-300"
+        >
+          <img
+            src={icon}
+            className="w-[16px] h-[16px] filter invert transition-all duration-300 "
+            alt={buttonText}
+          />
+          <span className="ml-2 transition-all duration-300 ">
+            {buttonText}
+          </span>
+        </Button>
+      )}
+    </div>
+  );
+};
+
+export default Header;

@@ -14,6 +14,7 @@ import SubscriptionRoutes from "./SubscriptionRoutes";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import UserRoutes from "./UserRoutes";
 import ToolBoxRoutes from "./ToolBoxRoutes";
+import ClientRoutes from "./ClientRoutes";
 
 const AppRoutes = () => {
   
@@ -33,6 +34,7 @@ const AppRoutes = () => {
           {/* <Suspense fallback={<SuspenseLoader/>}> */}
           {DashboardRoutes()}
           {UserRoutes()}
+          {ClientRoutes()}
           {OrderRoutes()}
           {InboxRoutes()}
           {ToolBoxRoutes()}

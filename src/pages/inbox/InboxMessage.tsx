@@ -15,8 +15,9 @@ import { PageHeader } from "@/components/PageHeader";
 import { useNavigate } from "react-router-dom";
 import PopupScheduleMeetingModal from "@/components/InboxMessage/ScheduleMeetingModal";
 import PopupMeetingScheduled from "@/components/InboxMessage/MeetingScheduledModal";
+import { useAuth } from "@/context/AuthContext";
 
-const createDummyMessages = () => {
+const createDummyMessages = (role: string) => {
   const currentUser = {
     id: 1,
     role: "client",
@@ -122,9 +123,14 @@ const createDummyMessages = () => {
 following documents required for processing. This concerns the employee John
 Kelly. Please do not hesitate to contact me if you need any assistance`,
       date: "November 28, 2024 12:00 PM",
-      sender: otherUser,
+      sender: role === "hrbp" ? currentUser : otherUser,
       attachment: [],
-      tags: ["Employment contract", "Employee Phone number","Employee ID","Health Care Company Agreement"],
+      tags: [
+        "Employment contract",
+        "Employee Phone number",
+        "Employee ID",
+        "Health Care Company Agreement",
+      ],
       estimateContent: null,
     },
   ];
@@ -132,13 +138,14 @@ Kelly. Please do not hesitate to contact me if you need any assistance`,
 
 const InboxMessagePage = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const messageRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(
     null
   ) as React.MutableRefObject<HTMLInputElement>;
 
   // State management
-  const [messages, setMessages] = useState(createDummyMessages());
+  const [messages, setMessages] = useState(createDummyMessages(user.role));
   const [content, setContent] = useState(null);
   const [estimateStatus, setEstimateStatus] = useState("edit");
   const [isOpen, setIsOpen] = useState(false);
@@ -257,7 +264,7 @@ const InboxMessagePage = () => {
                 onEstimateAction={handleEstimateAction}
                 currentUserId={1}
               />
-
+              <hr className="my-4" />
               <MessageInput
                 form={form}
                 files={files}
@@ -266,13 +273,15 @@ const InboxMessagePage = () => {
               />
 
               <div className="flex md:flex-row flex-col-reverse  justify-end mt-4 gap-2">
-                <Button
-                  type="button"
-                  onClick={() => {}}
-                  className=" md:w-[140px] w-full h-[41px] bg-black text-white"
-                >
-                  Place an Order
-                </Button>
+                {user.role !== "hrbp" && (
+                  <Button
+                    type="button"
+                    onClick={() => {}}
+                    className=" md:w-[140px] w-full h-[41px] bg-black text-white"
+                  >
+                    Place an Order
+                  </Button>
+                )}
                 <Button
                   onClick={() => {}}
                   type="button"
@@ -291,7 +300,7 @@ const InboxMessagePage = () => {
 
             <SidePanel
               fileInputRef={fileInputRef}
-              scheduledMeeting={()=>setIsOpenMeeting(true)}
+              scheduledMeeting={() => setIsOpenMeeting(true)}
               otherUser={{
                 id: 2,
                 role: "Client",
@@ -341,29 +350,27 @@ const InboxMessagePage = () => {
         />
       )}
 
-
-{isOpenMeeting && (
+      {isOpenMeeting && (
         <PopupScheduleMeetingModal
           isOpen={isOpenMeeting}
           onOpenChange={() => {
             setIsOpenMeeting(false);
           }}
-          onContinue={(values)=>{
-            console.log(values)
-            setIsOpenMeeting(false)
-            setContent(values)
-            setIsOpenMeetingScheduled(true)
+          onContinue={(values) => {
+            console.log(values);
+            setIsOpenMeeting(false);
+            setContent(values);
+            setIsOpenMeetingScheduled(true);
           }}
         />
       )}
-    { isOpenMeetingScheduled && (
+      {isOpenMeetingScheduled && (
         <PopupMeetingScheduled
-          isOpen={ isOpenMeetingScheduled }
+          isOpen={isOpenMeetingScheduled}
           data={content}
           onOpenChange={() => {
             setIsOpenMeetingScheduled(false);
           }}
-        
         />
       )}
     </div>

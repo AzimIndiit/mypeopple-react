@@ -44,7 +44,12 @@ const OtpPage = () => {
 
   const onSubmit = (values: any) => {
     console.log(`Form Submitted`, values);
-    login({ name: "Tam Tarn", email: "tamtan09@gmail.com",role:"client" });
+    login({
+      name: "Tam Tarn",
+      email: "tamtan09@gmail.com",
+      role: "hrbp", 
+      id: 2,
+    });
     // navigate("/dashboard");
   };
 

@@ -2,12 +2,14 @@ import CountCard from "@/components/Dashboard/CountCard";
 import newMessageIcon from "@/assets/icons/new-message.svg";
 import pendingOrdersIcon from "@/assets/icons/pending-orders.svg";
 import myListIcon from "@/assets/icons/my-plan.svg";
-import UsersPage from "../hrbp/users/Page";
+import UsersPage from "../users/hrbp/Page";
 import { Link, useNavigate } from "react-router-dom";
 import OrdersPage from "../orders/Page";
 import { useViewport } from "@/hooks/use-mobile";
 import DashboardModal from "@/components/Dashboard/DashboardModal";
 import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
+import ClientsPage from "../users/client/Page";
 
 const CountCardData = [
   {
@@ -34,6 +36,7 @@ const DashboardPage = () => {
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
   const viewPort = useViewport();
+  const {user}=useAuth()
   console.log("viewPort", viewPort);
 
   return (
@@ -44,9 +47,9 @@ const DashboardPage = () => {
         ))}
       </div>
       <div className="w-full my-4">
-        <UsersPage showFilters={false} isDashboard={true} />
+        {user.role === "hrbp" ?  <ClientsPage showFilters={false} isDashboard={true} />: <UsersPage showFilters={false} isDashboard={true} />}
         <div className="flex justify-between items-center w-full mb-4">
-          <p className=" text-[16px] lg:text-[18px] font-semibold font-primary w-full ">
+          <p className=" text-[16px] lg:text-[18px] font-semibod font-primary w-full ">
             Recent Orders
           </p>
           <Link

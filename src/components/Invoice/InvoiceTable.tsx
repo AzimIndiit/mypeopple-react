@@ -213,7 +213,7 @@ export default function InvoiceTable({ isDashboard }: { isDashboard?: boolean })
           )}
         >
           <p className="text-[14px] font-light text-black">
-            No Invoice found
+            No Invoice Found
           </p>
         </div>
       )}

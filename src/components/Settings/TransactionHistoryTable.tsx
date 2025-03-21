@@ -172,7 +172,7 @@ export default function TransactionHistoryPage({}) {
         <div
           className={cn("flex justify-center items-center ", "min-h-[65vh]")}
         >
-          <p className="text-[14px] font-light text-black">No Transaction found</p>
+          <p className="text-[14px] font-light text-black">No Transaction Found</p>
         </div>
       )}
     </div>

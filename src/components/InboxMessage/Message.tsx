@@ -7,6 +7,7 @@ import meetingEndIcon from "@/assets/icons/meeting-end.svg";
 import languageIcon from "@/assets/icons/language-translate.svg";
 import { formatCurrency } from "@/utils/helper";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/context/AuthContext";
 
 const Attachments = ({ attachments }: { attachments: any }) => {
   if (!attachments || attachments.length === 0) return null;
@@ -81,8 +82,10 @@ const MeetingMessage = ({ message }: { message: any }) => (
 const EstimateMessage = ({
   message,
   onEstimateAction,
+  user
 }: {
   message: any;
+  user?:any;
   onEstimateAction: any;
 }) => (
   <div className="">
@@ -129,8 +132,9 @@ const EstimateMessage = ({
           />
         </div>
 
-        <div className="flex flex-col md:flex-row gap-[10px] w-full justify-center my-4 text-[14px]">
+        <div className={cn("flex flex-col md:flex-row gap-[10px] w-full justify-center my-4 text-[14px]",user.role==='hrbp' && "hidden")}>
           <Button
+           id={`btn-edit`}
             type="button"
             onClick={() => onEstimateAction("edit", message.estimateContent)}
             className="w-full md:w-[140px] bg-[#C7C7C7] hover:bg-[#C7C7C7]/80 text-black h-[41px] font-light"
@@ -138,6 +142,7 @@ const EstimateMessage = ({
             Edit Estimate
           </Button>
           <Button
+           id={`btn-valid`}
             type="button"
             onClick={() =>
               onEstimateAction("validated", message.estimateContent)
@@ -246,12 +251,14 @@ export const Message = memo(
     onEstimateAction: any;
     currentUserId: any;
   }) => {
+    const {user} =useAuth()
     return (
       <div key={message.id} className="space-y-2" ref={messageRef}>
         {message.type === "meeting" ? (
           <MeetingMessage message={message} />
         ) : message.type === "estimate" ? (
           <EstimateMessage
+          user={user}
             message={message}
             onEstimateAction={onEstimateAction}
           />

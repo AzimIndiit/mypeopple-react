@@ -13,19 +13,21 @@ const Balances = () => {
       count: "240 €",
       title: "From canceled orders",
       icon: newMessageIcon,
+      info:"Credits are used when paying for purchases. Check expiry dates so you don't miss out."
     },
     {
       bg: "bg-[#1A3E81]",
       count: "50 €",
       title: "Referal Credits",
       icon: referalIcon,
+      info:"Referral Credits are used when paying for purchases. Check expiry dates so you don't miss out."
     },
   ];
   return (
     <div className="w-full">
       <div className="grid  grid-cols-1  md:grid-cols-3  xl:grid-cols-3 gap-[8px] mb-4">
         {CountCardData.map((item, index) => (
-          <CountCard key={index} {...item} />
+          <CountCard showInfo key={index} {...item} />
         ))}
         <div
         

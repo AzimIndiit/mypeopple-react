@@ -1,8 +1,8 @@
 import { lazy } from "react";
 import { Route } from "react-router-dom";
 
-const UsersPage = lazy(() => import("@/pages/hrbp/users/Page"));
-const UserProfilePage = lazy(() => import("@/pages/hrbp/users/UserProfile"));
+const UsersPage = lazy(() => import("@/pages/users/hrbp/Page"));
+const UserProfilePage = lazy(() => import("@/pages/users/hrbp/UserProfile"));
 
 const UserRoutes = () => (
   <>

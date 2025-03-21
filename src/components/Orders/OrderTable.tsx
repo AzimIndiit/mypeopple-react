@@ -234,7 +234,7 @@ export default function OrderTable({ isDashboard }: { isDashboard: boolean }) {
             isDashboard ? "h-[100px]" : "min-h-[65vh]"
           )}
         >
-          <p className="text-[14px] font-light text-black">No orders found</p>
+          <p className="text-[14px] font-light text-black">No Orders Found</p>
         </div>
       )}
     </div>

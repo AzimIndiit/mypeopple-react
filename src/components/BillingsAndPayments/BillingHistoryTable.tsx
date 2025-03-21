@@ -226,7 +226,7 @@ export default function BillingHistoryTable({}) {
           className={cn("flex justify-center items-center ", "min-h-[65vh]")}
         >
           <p className="text-[14px] font-light text-black">
-            No Billing History found
+            No Billing History Found
           </p>
         </div>
       )}
