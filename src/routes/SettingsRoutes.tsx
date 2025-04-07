@@ -7,7 +7,7 @@ const TransactionHistoryPage = lazy(() => import("@/components/Settings/Transact
 const SavedPaymentMethods = lazy(() => import("@/components/Settings/SavedPaymentMethods"));
 const PrivacyPolicyPage = lazy(() => import("@/pages/privacy-policy/Page"));
 const TermsOfUsePage = lazy(() => import("@/pages/termsofuse/Page"));
-const ChangePlan = lazy(() => import("@/components/Settings/ChangePlan/ChangePlan"));
+const ChangePlan = lazy(() => import("@/components/Settings/Subscription"));
 
 const SettingsRoutes = () => (
   <>

@@ -29,7 +29,7 @@ const getColor = (status: string) => {
   };
   return colors[status as keyof typeof colors];
 };
-const UserCard: FC<UserCardProps> = ({ id, image, name,status }) => {
+const UserCard: FC<UserCardProps> = ({ id, image, name, status }) => {
   const navigate = useNavigate();
   return (
     <div className="p-[10px] xl:p-[15px]  flex flex-col justify-between  rounded-[16px] bg-white shadow-md w-full  gap-[16px]  xl:w-[258px] xl:h-[329px] border border-gray-200">
@@ -41,9 +41,8 @@ const UserCard: FC<UserCardProps> = ({ id, image, name,status }) => {
         />
         <div className="flex items-center justify-center gap-[5px] h-[26px] bg-white rounded-[25px] px-[10px] py-[7px] absolute top-[10px] right-[10px]">
           <div
-            className={`bg-[${getColor(
-              status
-            )}] rounded-full h-[10px] w-[10px]`}
+            className={` rounded-full h-[10px] w-[10px]`}
+            style={{ background: getColor(status) }}
           />
 
           <p
